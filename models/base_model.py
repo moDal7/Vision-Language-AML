@@ -1,10 +1,11 @@
 import torch.nn as nn
 from torchvision.models import resnet18
+from torchvision.models import ResNet18_Weights
 
 class FeatureExtractor(nn.Module):
     def __init__(self):
         super(FeatureExtractor, self).__init__()
-        self.resnet18 = resnet18(pretrained=True)
+        self.resnet18 = resnet18(weights=ResNet18_Weights.DEFAULT)
     
     def forward(self, x):
         x = self.resnet18.conv1(x)
