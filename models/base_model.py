@@ -19,7 +19,7 @@ class FeatureExtractor(nn.Module):
         x = x.squeeze()
         if len(x.size()) < 2:
             x = x.unsqueeze(0)
-        return 
+        return x
 
 class BaselineModel(nn.Module):
     def __init__(self):
