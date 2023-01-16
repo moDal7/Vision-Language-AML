@@ -98,7 +98,47 @@ def build_splits_baseline(opt):
 
     return train_loader, val_loader, test_loader
 
+
+class PACSDatasetDomDisentangle(Dataset):
+    def __init__(self, examples, transform):
+        self.examples = examples
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.examples)
+    
+    def __getitem__(self, index):
+        img_path, y, dom = self.examples[index]
+        x = self.transform(Image.open(img_path).convert('RGB'))
+        return x, y, dom
+
+
 def build_splits_domain_disentangle(opt):
+
+    source_domain = 'art_painting'
+    target_domain = opt['target_domain']
+
+    source_examples = read_lines(opt['data_path'], source_domain)
+    target_examples = read_lines(opt['data_path'], target_domain)
+
+    # Transforms
+    normalize = T.Normalize([0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # ResNet18 - ImageNet Normalization
+
+    train_transform = T.Compose([
+        T.Resize(256),
+        T.RandAugment(3, 15),
+        T.CenterCrop(224),
+        T.ToTensor(),
+        normalize
+    ])
+
+    eval_transform = T.Compose([
+        T.Resize(256),
+        T.CenterCrop(224),
+        T.ToTensor(),
+        normalize
+    ])
+    
     raise NotImplementedError('[TODO] Implement build_splits_domain_disentangle') #TODO
 
 def build_splits_clip_disentangle(opt):

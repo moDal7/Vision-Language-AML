@@ -52,15 +52,55 @@ class DomainDisentangleModel(nn.Module):
         super(DomainDisentangleModel, self).__init__()
         self.feature_extractor = FeatureExtractor()
 
-        self.domain_encoder = None #TODO
-        self.category_encoder = None #TODO
+        #TODO verify domain encoder
+        self.domain_encoder = nn.Sequential(
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
 
-        self.domain_classifier = None #TODO
-        self.category_classifier = None #TODO
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
 
-        self.reconstructor = None #TODO
-        raise NotImplementedError('[TODO] Implement DomainDisentangleModel')
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU()
+        )
+
+        # category encoder as in baseline
+        self.category_encoder = nn.Sequential(
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU()
+        )
+
+        self.domain_classifier = nn.Linear(512, 2)
+        self.category_classifier = nn.Linear(512, 7)
+
+        self.feature_reconstructor = nn.Sequential(
+            nn.ReLU(),
+            nn.BatchNorm1d(512),
+            nn.Linear(512, 512),
+
+            nn.ReLU(),
+            nn.BatchNorm1d(512),
+            nn.Linear(512, 512),
+
+            nn.ReLU(),
+            nn.BatchNorm1d(512),
+            nn.Linear(512, 512)
+        )
+
 
     def forward(self, x):
-        #TODO
-        raise NotImplementedError('[TODO] Implement DomainDisentangleModel forward() method')
+        x = self.feature_extractor(x)
+        #raise NotImplementedError('[TODO] Implement DomainDisentangleModel forward() method')
+        return x
