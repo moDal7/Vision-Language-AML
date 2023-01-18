@@ -15,9 +15,10 @@ class DomainDisentangleExperiment: # See point 2. of the project
         for param in self.model.parameters():
             param.requires_grad = True
 
-        # Setup optimization procedure TODO
-        #self.optimizer = torch.optim.Adam(self.model.parameters(), lr=opt['lr'])
-        #self.criterion = torch.nn.CrossEntropyLoss()
+        # Setup optimization procedure 
+        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=opt['lr'])
+        self.loss_ce = torch.nn.CrossEntropyLoss()
+        self.loss_MSE = torch.nn.MSELoss()
 
     def save_checkpoint(self, path, iteration, best_accuracy, total_train_loss):
         checkpoint = {}

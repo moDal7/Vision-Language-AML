@@ -52,6 +52,21 @@ class DomainDisentangleModel(nn.Module):
         super(DomainDisentangleModel, self).__init__()
         self.feature_extractor = FeatureExtractor()
 
+        # is this needed?
+        self.disentangler = nn.Sequential(
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU()
+        )
+
         #TODO verify domain encoder
         self.domain_encoder = nn.Sequential(
             nn.Linear(512, 512),
@@ -85,22 +100,72 @@ class DomainDisentangleModel(nn.Module):
         self.domain_classifier = nn.Linear(512, 2)
         self.category_classifier = nn.Linear(512, 7)
 
+        # TODO ! how to reconstructor?
         self.feature_reconstructor = nn.Sequential(
-            nn.ReLU(),
-            nn.BatchNorm1d(512),
             nn.Linear(512, 512),
-
-            nn.ReLU(),
             nn.BatchNorm1d(512),
+            nn.ReLU(),
+
             nn.Linear(512, 512),
-
-            nn.ReLU(),
             nn.BatchNorm1d(512),
-            nn.Linear(512, 512)
+            nn.ReLU(),
+
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU()
         )
 
 
-    def forward(self, x):
-        x = self.feature_extractor(x)
-        #raise NotImplementedError('[TODO] Implement DomainDisentangleModel forward() method')
-        return x
+    def forward(self, x, step):
+        
+        # training the category classifier
+        if step==0:
+            x = self.feature_extractor(x)
+            x = self.disentangler(x)
+            x = self.category_encoder(x)
+            x = self.category_classifier(x)
+            return x
+
+        # training the domain classifier
+        if step==1:
+            x = self.feature_extractor(x)
+            x = self.disentangler(x)
+            x = self.domain_encoder(x)
+            x = self.domain_classifier(x)
+            return x
+        
+        # adversarial training the disentangler fooling the category classifier 
+        if step==2:
+            x = self.feature_extractor(x)
+            x = self.disentangler(x)
+            x = self.domain_encoder(x)
+            x = self.category_classifier(x)
+            return x
+
+        # adversarial training the disentangler fooling the domain classifier 
+        if step==3:
+            x = self.feature_extractor(x)
+            x = self.disentangler(x)
+            x = self.category_encoder(x)
+            x = self.domain_classifier(x)
+            return x
+
+        # end to end, feature reconstructor, return three results for different losses computation
+        if step==4:
+
+            x = self.feature_extractor(x)
+            x = self.disentangler(x)
+
+            x1 = self.category_encoder(x)
+            x1_class = self.category_classifier(x1)
+
+            x1_adv = self.domain_classifier(x1)
+
+            x2 = self.domain_encoder(x)
+            x2_class = self.domain_classifier(x2)
+
+            x2_adv = self.domain_classifier(x2)
+
+            x_rec = self.feature_reconstructor(x1+x2)
+
+            return x1_class, x1_adv, x2_class, x2_adv, x_rec
