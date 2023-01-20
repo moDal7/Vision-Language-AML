@@ -1,5 +1,14 @@
 import torch
+from torch import nn
 from models.base_model import DomainDisentangleModel
+
+
+class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2Vec: Domain Embedding for Unsupervised Domain Adaptation', inherits from nn.Module and uses torch functions to preserve autograd
+    def __init__(self):
+        super().__init__()
+
+    def forward(self, x):
+        return -torch.sum(torch.sum(torch.log(x), 0)/x.shape[0])
 
 class DomainDisentangleExperiment: # See point 2. of the project
     
@@ -7,6 +16,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         # Utils
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
+        self.weights = torch.ones(3)
 
         # Setup model
         self.model = DomainDisentangleModel()
@@ -18,7 +28,9 @@ class DomainDisentangleExperiment: # See point 2. of the project
         # Setup optimization procedure 
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=opt['lr'])
         self.loss_ce = torch.nn.CrossEntropyLoss()
+        self.loss_entropy = EntropyLoss()
         self.loss_MSE = torch.nn.MSELoss()
+        
 
     def save_checkpoint(self, path, iteration, best_accuracy, total_train_loss):
         checkpoint = {}

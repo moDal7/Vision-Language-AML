@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 from torchvision.models import resnet18
 from torchvision.models import ResNet18_Weights
@@ -52,21 +53,6 @@ class DomainDisentangleModel(nn.Module):
         super(DomainDisentangleModel, self).__init__()
         self.feature_extractor = FeatureExtractor()
 
-        # is this needed?
-        self.disentangler = nn.Sequential(
-            nn.Linear(512, 512),
-            nn.BatchNorm1d(512),
-            nn.ReLU(),
-
-            nn.Linear(512, 512),
-            nn.BatchNorm1d(512),
-            nn.ReLU(),
-
-            nn.Linear(512, 512),
-            nn.BatchNorm1d(512),
-            nn.ReLU()
-        )
-
         #TODO verify domain encoder
         self.domain_encoder = nn.Sequential(
             nn.Linear(512, 512),
@@ -101,7 +87,9 @@ class DomainDisentangleModel(nn.Module):
         self.category_classifier = nn.Linear(512, 7)
 
         # TODO ! how to reconstructor?
-        self.feature_reconstructor = nn.Sequential(
+        self.feature_reconstructor = nn.Sequential( # test reconstructor
+            nn.Conv1d(1024, 512, 1, stride=2),
+
             nn.Linear(512, 512),
             nn.BatchNorm1d(512),
             nn.ReLU(),
@@ -121,7 +109,6 @@ class DomainDisentangleModel(nn.Module):
         # training the category classifier
         if step==0:
             x = self.feature_extractor(x)
-            x = self.disentangler(x)
             x = self.category_encoder(x)
             x = self.category_classifier(x)
             return x
@@ -129,7 +116,6 @@ class DomainDisentangleModel(nn.Module):
         # training the domain classifier
         if step==1:
             x = self.feature_extractor(x)
-            x = self.disentangler(x)
             x = self.domain_encoder(x)
             x = self.domain_classifier(x)
             return x
@@ -137,7 +123,6 @@ class DomainDisentangleModel(nn.Module):
         # adversarial training the disentangler fooling the category classifier 
         if step==2:
             x = self.feature_extractor(x)
-            x = self.disentangler(x)
             x = self.domain_encoder(x)
             x = self.category_classifier(x)
             return x
@@ -145,16 +130,13 @@ class DomainDisentangleModel(nn.Module):
         # adversarial training the disentangler fooling the domain classifier 
         if step==3:
             x = self.feature_extractor(x)
-            x = self.disentangler(x)
             x = self.category_encoder(x)
             x = self.domain_classifier(x)
             return x
 
         # end to end, feature reconstructor, return three results for different losses computation
         if step==4:
-
             x = self.feature_extractor(x)
-            x = self.disentangler(x)
 
             x1 = self.category_encoder(x)
             x1_class = self.category_classifier(x1)
@@ -166,6 +148,6 @@ class DomainDisentangleModel(nn.Module):
 
             x2_adv = self.domain_classifier(x2)
 
-            x_rec = self.feature_reconstructor(x1+x2)
+            x_rec = self.feature_reconstructor(torch.cat((x1,x2),0)) # test reconstructor
 
             return x1_class, x1_adv, x2_class, x2_adv, x_rec
