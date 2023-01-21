@@ -45,7 +45,7 @@ if __name__ == '__main__':
         sat = input('Color Saturation, the intensity and brilliance of colors in the image: ')
         shades = input('Color Shades, if there are shades of colors in the image: ')
         bg = input('Background, description of the background: ')
-        instances = input('Single Instance, if the image is composed by a single instance or mulitple instances: ')
+        instances = input('Single Instance, if the image is composed by a single instance or multiple instances: ')
         txt = input('Text, if there is text in the image: ')
         texture = input('Texture, if there is a visual pattern repeated: ')
         persp = input('Perspective, if the three dimensional proportions of the object parts are realistic: ')
