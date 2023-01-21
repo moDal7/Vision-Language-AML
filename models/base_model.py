@@ -137,17 +137,12 @@ class DomainDisentangleModel(nn.Module):
         # end to end, feature reconstructor, return three results for different losses computation
         if step==4:
             x = self.feature_extractor(x)
-
             x1 = self.category_encoder(x)
             x1_class = self.category_classifier(x1)
-
             x1_adv = self.domain_classifier(x1)
-
             x2 = self.domain_encoder(x)
             x2_class = self.domain_classifier(x2)
-
             x2_adv = self.domain_classifier(x2)
-
             x_rec = self.feature_reconstructor(torch.cat((x1,x2),0)) # test reconstructor
 
             return x1_class, x1_adv, x2_class, x2_adv, x_rec
