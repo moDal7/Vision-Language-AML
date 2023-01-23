@@ -8,7 +8,11 @@ class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2V
         super().__init__()
 
     def forward(self, x):
-        return -torch.sum(torch.sum(torch.log(x), 0)/x.shape[0])
+        softmax_batch = list()
+        for el in x:
+            elem = -torch.sum(torch.sum(torch.log(el), 1)/el.shape[0])
+            softmax_batch.append(elem)
+        return softmax_batch
 
 class DomainDisentangleExperiment: # See point 2. of the project
     
@@ -30,6 +34,9 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.loss_ce = torch.nn.CrossEntropyLoss()
         self.loss_entropy = EntropyLoss()
         self.loss_MSE = torch.nn.MSELoss()
+
+        # Validation loss
+        self.criterion = torch.nn.CrossEntropyLoss()
         
 
     def save_checkpoint(self, path, iteration, best_accuracy, total_train_loss):
@@ -119,9 +126,9 @@ class DomainDisentangleExperiment: # See point 2. of the project
                 x = x.to(self.device)
                 y = y.to(self.device)
 
-                '''logits = self.model(x)
+                logits = self.model(x)
                 loss += self.criterion(logits, y)
-                pred = torch.argmax(logits, dim=-1)'''
+                pred = torch.argmax(logits, dim=-1)
 
                 accuracy += (pred == y).sum().item()
                 count += x.size(0)
