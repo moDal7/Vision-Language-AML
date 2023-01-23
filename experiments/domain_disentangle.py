@@ -57,7 +57,76 @@ class DomainDisentangleExperiment: # See point 2. of the project
         return iteration, best_accuracy, total_train_loss
 
     def train_iteration(self, data):
-        raise NotImplementedError('[TODO] Implement DomainDisentangleExperiment.')
+        x, y, dom = data
+        x = x.to(self.device)
+        y = y.to(self.device)
+        dom = dom.to(self.device)
+
+        
+        #step 0
+        logits = self.model(x, 0) 
+        loss_0 = self.loss_ce(logits, y)
+
+        self.optimizer.zero_grad()
+        loss_0.backward()
+        self.optimizer.step()
+
+        #step 1
+        logits = self.model(x, 1) 
+        loss_1 = self.loss_ce(logits, dom)
+
+        self.optimizer.zero_grad()
+        loss_1.backward()
+        self.optimizer.step()
+        #step 2
+        logits = self.model(x, 2) 
+        loss_2 = self.loss_entropy(torch.softmax(logits))
+
+        self.optimizer.zero_grad()
+        loss_2.backward()
+        self.optimizer.step()
+
+        #step 3
+        logits = self.model(x, 3) 
+        loss_3 = self.loss_entropy(torch.softmax(logits))
+
+        self.optimizer.zero_grad()
+        loss_3.backward()
+        self.optimizer.step()
+
+        #step 4
+        logits = self.model(x, 4)
+        loss_0 = self.loss_ce(logits[1], y)
+        loss_1 = self.loss_ce(logits[3], dom)
+        loss_2 = self.loss_entropy(torch.softmax(logits[2]))
+        loss_3 = self.loss_entropy(torch.softmax(logits[4]))
+        loss_4 = self.loss_MSE(logits[5], logits[0]) 
+
+        loss_final = self.weights[0] * (loss_0 + loss_2) + self.weights[1] * (loss_1 + loss_3) + self.weights[2] * loss_4
+        self.optimizer.zero_grad()
+        loss_final.backward()
+        self.optimizer.step()
+        
+        return loss_final.item()
 
     def validate(self, loader):
-        raise NotImplementedError('[TODO] Implement DomainDisentangleExperiment.')
+        self.model.eval()
+        accuracy = 0
+        count = 0
+        loss = 0
+        with torch.no_grad():
+            for x, y in loader:
+                x = x.to(self.device)
+                y = y.to(self.device)
+
+                '''logits = self.model(x)
+                loss += self.criterion(logits, y)
+                pred = torch.argmax(logits, dim=-1)'''
+
+                accuracy += (pred == y).sum().item()
+                count += x.size(0)
+
+        mean_accuracy = accuracy / count
+        mean_loss = loss / count
+        self.model.train()
+        return mean_accuracy, mean_loss
