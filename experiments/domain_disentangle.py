@@ -86,9 +86,15 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.optimizer.zero_grad()
         loss_1.backward()
         self.optimizer.step()
+        
         #step 2
+        #freezing layers for the adversarial stepe of the training
+        self.model.domain_classifier.weight.requires_grad = False
+        self.model.domain_classifier.bias.requires_grad = False
+        self.model.category_classifier.weight.requires_grad = False
+        self.model.category_classifier.bias.requires_grad = False
+        self.optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, self.model.parameters()), lr=self.opt['lr'])
         logits = self.model(x, 2) 
-        print(smax(logits))
         loss_2 = self.loss_entropy(smax(logits))
 
         self.optimizer.zero_grad()
@@ -104,6 +110,12 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.optimizer.step()
 
         #step 4
+        self.model.domain_classifier.weight.requires_grad = True
+        self.model.domain_classifier.bias.requires_grad = True
+        self.model.category_classifier.weight.requires_grad = True
+        self.model.category_classifier.bias.requires_grad = True
+        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.opt['lr'])
+
         logits = self.model(x, 4)
         loss_0 = self.loss_ce(logits[1], y)
         loss_1 = self.loss_ce(logits[3], dom)
