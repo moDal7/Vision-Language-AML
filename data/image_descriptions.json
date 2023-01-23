@@ -1,0 +1,5602 @@
+[
+  {
+    "image_name": "art_painting/dog/pic_349.jpg",
+    "descriptions": [
+      "fairly detailed, but artistic",
+      "defined edges, not sharp",
+      "low saturation",
+      "yellow, brown tones",
+      "beige wall, building",
+      "single instance",
+      "none",
+      "none",
+      "almost realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/guitar/pic_050.jpg",
+    "descriptions": [
+      "rich of detail",
+      "blurred, imprecise",
+      "strong saturated color",
+      "yellow, orange, brown and black",
+      "black and grey solids",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_249.jpg",
+    "descriptions": [
+      "low level of detail",
+      "sharp, black",
+      "low saturation",
+      "blue, green",
+      "blue, green, painting-like",
+      "multiple instances",
+      "none",
+      "none",
+      "non realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_334.jpg",
+    "descriptions": [
+      "high, dense",
+      "definite, sharp",
+      "high saturation",
+      "a lot of different shades",
+      "solid black",
+      "single instance",
+      "some text",
+      "a lot of textures, squares, circles, stars",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_127.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "sharp but imprecise",
+      "high",
+      "yellow, brown, turqoise",
+      "turquoise and black square",
+      "single instance",
+      "none",
+      "none",
+      "realistitc"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_268.jpg",
+    "descriptions": [
+      "medium",
+      "blurred, imprecise",
+      "medium",
+      "brown",
+      "ivory, with text",
+      "single",
+      "there's a complete sentence",
+      "dark circles on the neck",
+      "fairly unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_398.jpg",
+    "descriptions": [
+      "high level of detail",
+      "sharp, irregular",
+      "some saturated areas",
+      "pink, red, black and white",
+      "white, ivory",
+      "single instance",
+      "none",
+      "white dots repeated in some areas",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_266.jpg",
+    "descriptions": [
+      "fairly rich",
+      "defined, mostrly straight",
+      "high saturation",
+      "yellow, brown, green light-blue",
+      "light-blue sky",
+      "multiple instances",
+      "none",
+      "repeated on the trunk",
+      "a bit exaggerated"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_169.jpg",
+    "descriptions": [
+      "medium, higher in specific areas",
+      "definite, irregular",
+      "medium",
+      "yellow, brown",
+      "solid white",
+      "single",
+      "a word on the bottom left",
+      "circles on the animal's neck",
+      "fairly realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_405.jpg",
+    "descriptions": [
+      "high level of detail",
+      "some sharp lines, but generally confused",
+      "low",
+      "pink, grey, white",
+      "grey, with lines, not precise",
+      "single",
+      "some text on the bottom right, handwritten",
+      "none",
+      "a bit unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_105.jpg",
+    "descriptions": [
+      "high level of detail",
+      "blurred, indefinite",
+      "high in some areas",
+      "green, yellow, pink tints black",
+      "repeated pattern, green, yellow",
+      "single",
+      "none",
+      "repeated on the background, squares ",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/horse/pic_141.jpg",
+    "descriptions": [
+      "rich",
+      "straight and sharp in areas, more imprecise in others",
+      "high saturation",
+      "yellow, red, orange, white,  black",
+      "solid black",
+      "single",
+      "not very visible but present, bottom right",
+      "repeated, on the animal's body",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_259.jpg",
+    "descriptions": [
+      "very rich",
+      "sharp",
+      "very high",
+      "red, beige, yellow, turquoise",
+      "red and beige, solid",
+      "multiple instances",
+      "yes, multiple lines and sentences, sharp",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_497.jpg",
+    "descriptions": [
+      "fairly rich",
+      "sharp",
+      "intense colors",
+      "yellow, mauve, blue",
+      "painting-like blue",
+      "multiple instances",
+      "none",
+      "none",
+      "medium realism"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_086.jpg",
+    "descriptions": [
+      "high level of detail",
+      "sharp, white strokes",
+      "high saturation",
+      "yellow, orange, green",
+      "solid yellow",
+      "single instance",
+      "none",
+      "none",
+      "fairly realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_209.jpg",
+    "descriptions": [
+      "high level of detail",
+      "imprecise, colorful",
+      "high saturation",
+      "multiple colors",
+      "white solid",
+      "single instance",
+      "none",
+      "repeated noise in some areas",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_104.jpg",
+    "descriptions": [
+      "fairly high",
+      "blurred imprecise",
+      "medium",
+      "green, blue, yellow, orange",
+      "painting like, multpile colors",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_234.jpg",
+    "descriptions": [
+      "medium",
+      "",
+      "medium",
+      "red, green, blue",
+      "irregular, colors and wood like texture",
+      "single instance",
+      "none",
+      "wood in the background",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_048.jpg",
+    "descriptions": [
+      "high level of detail",
+      "sharp, black, irregular",
+      "high saturation",
+      "multiple colors, blue, yellow, pink, orange and green",
+      "solid blue",
+      "single instance",
+      "none",
+      "none",
+      "fairly unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_194.jpg",
+    "descriptions": [
+      "high level of detail",
+      "precise, regular, curves",
+      "low",
+      "blue, black, some pink",
+      "solid black with golden frame",
+      "multiple instances",
+      "none",
+      "none",
+      "almost realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_146.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "brush like strokes",
+      "medium",
+      "pink, turquoise, yellow, brown",
+      "solid white",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/horse/pic_225.jpg",
+    "descriptions": [
+      "high level of detail",
+      "blurred, imprecise",
+      "high",
+      "green, yellow, blue, brown",
+      "painting-like sky with multtiple colors",
+      "single instance",
+      "some text in the image",
+      "none",
+      "medium realism"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_304.jpg",
+    "descriptions": [
+      "high level of detail",
+      "sharp but irregular",
+      "very high saturation",
+      "a lot of different colors",
+      "solid black",
+      "single instance",
+      "none",
+      "squres, circles, stars repeated",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/horse/pic_219.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "clear but irregular, melds with background in some areas",
+      "low",
+      "brown, green, blue",
+      "sky with clouds",
+      "single instance",
+      "none",
+      "none",
+      "fairly realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_560.jpg",
+    "descriptions": [
+      "medium detail",
+      "some parts are definite, others are more imprecise",
+      "medium-low saturation",
+      "brown, pink, green, mauve",
+      "naturalistic landscape",
+      "five instances",
+      "none",
+      "no evident texture repeated",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_240.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "brush-like strokes, irregular",
+      "high",
+      "blue, brown, green, with grey patches",
+      "sky with clouds",
+      "single instance",
+      "none",
+      "windows repeated on the building",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_249.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "sharp black lines, irregular patchs",
+      "high",
+      "golden yellow, red and pink",
+      "solid golden yellow background",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/horse/pic_155.jpg",
+    "descriptions": [
+      "high level of detail",
+      "sharp, clear, separated objects and parts",
+      "mediumm to low saturation",
+      "red, brown and white",
+      "white, with some landscape elements",
+      "multiple instances, two animals",
+      "none",
+      "none",
+      "fairly unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_251.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "blurry and imprecise edges, except for some areas",
+      "low saturation",
+      "red, brown, and black",
+      "gradient from brown to dark red",
+      "multiple instances, three animals",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_059.jpg",
+    "descriptions": [
+      "low detail",
+      "sharp contours, mostly curved shapes",
+      "high",
+      "blue, red and some brown",
+      "solid red",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_306.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "blurry edges with curved shapes",
+      "low saturation",
+      "brown, grey and black",
+      "imprecise, building like shapes",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_471.jpg",
+    "descriptions": [
+      "very high",
+      "precise edges ",
+      "high saturation",
+      "red, blue, white and yellow",
+      "colourful abstract ",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/guitar/pic_037.jpg",
+    "descriptions": [
+      "medium to low detail",
+      "multiple lines, imprecise,  sketch-like",
+      "very high",
+      "green, red, yellow, blue",
+      "colorful background ",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_016.jpg",
+    "descriptions": [
+      "medium detail",
+      "paint-like edges, thick, irregular",
+      "medium to high",
+      "green, brown, red, turquoise, blue",
+      "sky with clouds",
+      "multiple instances",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/guitar/pic_051.jpg",
+    "descriptions": [
+      "medium detail",
+      "definite, thick lines",
+      "high",
+      "yellow, green, red and purple patches",
+      "colorful with lines and repeated textures",
+      "single instance",
+      "none",
+      "multiple lines and abstract patterns repeated",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_303.jpg",
+    "descriptions": [
+      "low level of detail",
+      "blurred, imprecise",
+      "medium to low",
+      "purple, light-green, brown and blue",
+      "sky and mountain shapes",
+      "single instnace",
+      "none",
+      "repeated circles on the animall's body",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_107.jpg",
+    "descriptions": [
+      "high",
+      "blurred, brush-like strokes",
+      "medium o low saturation",
+      "pink, orange, brown and black",
+      "grey and black shades",
+      "single instnace",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_008.jpg",
+    "descriptions": [
+      "pretty realistic representation, medium high level of detail",
+      "imprecise but definite, non sharp",
+      "medium to low saturation",
+      "red, light-blue, yellow, brown",
+      "sky with some clouds",
+      "multiple instances",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_218.jpg",
+    "descriptions": [
+      "high level of detail",
+      "sharp, precise, organic shapes",
+      "low",
+      "yellow, pink, light-blue and white",
+      "sky and natural winter landscape",
+      "multiple instances",
+      "none",
+      "none",
+      "fairly realistic proportions"
+    ]
+  },
+  {
+    "image_name": "art_painting/elephant/pic_140.jpg",
+    "descriptions": [
+      "medium ",
+      "brush like, paint edges",
+      "mvery high in some areas",
+      "yellow, pink, light-blue",
+      "solid white",
+      "multiple instances",
+      "none",
+      "none",
+      "fairly realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/elephant/pic_002.jpg",
+    "descriptions": [
+      "fairly high, realistic details",
+      "sharp, colorful",
+      "medo high",
+      "yellow, purple, green, blue",
+      "white, with strokes of color on it",
+      "single instance",
+      "none",
+      "none",
+      "a bit unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_225.jpg",
+    "descriptions": [
+      "medium level of detail and richness",
+      "blurry, indefinite",
+      "medium to low saturation",
+      "brown, yellow, orange",
+      "white with yellow patches",
+      "single",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/elephant/pic_079.jpg",
+    "descriptions": [
+      "fairly realistic details of the subject",
+      "visible, photo-like thin edges",
+      "verintense monochrome",
+      "dark yellow, orange",
+      "solid dark yellow, orange",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_220.jpg",
+    "descriptions": [
+      "medium to low, a bit unrealistic representation",
+      "soft, blurry edges",
+      "low saturation",
+      "salmon, yellow, mauve",
+      "solid color with blue lines",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_385.jpg",
+    "descriptions": [
+      "very high level of detail",
+      "precise, sharp lines",
+      "low saturation",
+      "yellow, orange, green",
+      "greenish sky",
+      "single instance",
+      "some text, bottom right",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_058.jpg",
+    "descriptions": [
+      "low level representation, unrealistic",
+      "strokes of a brush, imprecise",
+      "very high",
+      "yellow, orange, greenish tints",
+      "colorful landscape and sky",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_178.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "sharp on the background, curved lines",
+      "medium",
+      "light-blue, yellow, brown",
+      "solid light-blue color",
+      "single instance",
+      "none",
+      "none",
+      "a bit unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_086.jpg",
+    "descriptions": [
+      "low level of detail, abstract",
+      "straight, jagged lines, sharp",
+      "high saturation",
+      "blue, red, yellow, green, olive",
+      "colorful shapes",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/elephant/pic_232.jpg",
+    "descriptions": [
+      "low level of detail",
+      "irregular, sketchy edges ",
+      "low",
+      "blue, pink and white",
+      "solid white",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_237.jpg",
+    "descriptions": [
+      "low level of detail, realistic in some parts",
+      "brush like strokes",
+      "low saturation",
+      "brown, white, gray",
+      "solid white",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/guitar/pic_180.jpg",
+    "descriptions": [
+      "low level of detail, abstract representation",
+      "solid, curved lines",
+      "very high, monochrome",
+      "blue",
+      "blue with organic shapes",
+      "single instance",
+      "none",
+      "repeated white stars",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/elephant/pic_042.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "sharp, definite edges",
+      "medium to low",
+      "pink, yellow, green, gray",
+      "gray with some organic shapes",
+      "single instance",
+      "none",
+      "none",
+      "fairly realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_431.jpg",
+    "descriptions": [
+      "low level of detail, very painterly",
+      "imprecise, soft edges, shapes melding ",
+      "medium to high saturation",
+      "yellow, green, white, blue",
+      "natural landscape",
+      "single instance",
+      "none",
+      "none",
+      "fairly realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_188.jpg",
+    "descriptions": [
+      "low level of detail, simplified",
+      "thich, colorful edges",
+      "very high",
+      "yellow, red, white, blue, turquoise",
+      "solid turquoise with black and blue shapes",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_201.jpg",
+    "descriptions": [
+      "medium to high, fairly faithful representation",
+      "solid definite edges",
+      "medium to low saturation",
+      "colorful patches of green, mauve, blue, orange and yellow",
+      "solid light-blue",
+      "single instance",
+      "none",
+      "repeated patches of colors",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_463.jpg",
+    "descriptions": [
+      "low level of detail",
+      "sharp, definite edges",
+      "low saturation, greyish tones",
+      "grey, light-blue, brown",
+      "abstract natural landscape",
+      "mulitple instances",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_386.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "soft, blurred edges",
+      "medium to high saturation",
+      "green, yellow, blue, gray, white",
+      "colorful blurred patches",
+      "single instance",
+      "none",
+      "none",
+      "fairly realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_314.jpg",
+    "descriptions": [
+      "medium to high, very precise parts",
+      "sharp at times, painterly and blurred in other parts",
+      "medium to low",
+      "green, yellow, blue",
+      "naturalistic landscape",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/horse/pic_113.jpg",
+    "descriptions": [
+      "low level of detail, abstract",
+      "sharp edges on the main subject, blurred on the background elements",
+      "fairly high",
+      "magenta, blue, green and orange",
+      "colorful patches of color",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/horse/pic_136.jpg",
+    "descriptions": [
+      "low level of detail, painterly look",
+      "very sharp at times, soft and indefinite in other parts",
+      "medium",
+      "blue, light-blue, magenta and some golden yellow",
+      "white",
+      "single instance",
+      "some text at the bottom of the image",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/horse/pic_205.jpg",
+    "descriptions": [
+      "medium-high level of detail",
+      "soft edges and blurry look",
+      "medium to high saturation",
+      "brown, golden yellow and reddish tones",
+      "golden yellow with brushes of brown",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_051.jpg",
+    "descriptions": [
+      "medium",
+      "sharp, precise",
+      "low",
+      "brown",
+      "white with realistic elements outside of the frame",
+      "sinngle instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_217.jpg",
+    "descriptions": [
+      "pretty high level of detail, correct representation",
+      "sharp inside, blurrier in some outside parts",
+      "very high",
+      "multiple colors, yellow, pinkg, green and red",
+      "solid black with splashes of color",
+      "single instance",
+      "none",
+      "squares, circles and stars",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_071.jpg",
+    "descriptions": [
+      "rich level of detail",
+      "mostly sharp and precise",
+      "medium to high",
+      "green, yellow, red and blue",
+      "sky with natural landscape and palm-trees",
+      "single instance",
+      "none",
+      "none",
+      "c but not super precise"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_068.jpg",
+    "descriptions": [
+      "medium to low, very imprecise parts",
+      "blurry, soft, indefinite",
+      "medium to low",
+      "yellow, brown, blue",
+      "blue with clouds",
+      "multiple instances",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_280.jpg",
+    "descriptions": [
+      "low level of detail",
+      "sharp precise edges ",
+      "high",
+      "green, pink, yellow and blue",
+      "white with traces of blue",
+      "single instance",
+      "yes, on the subject and at the bottom of the frame",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/guitar/pic_020.jpg",
+    "descriptions": [
+      "low level of detail, abstract",
+      "sharp edges between subject and background",
+      "medium to low",
+      "red, orange shades",
+      "red and orange color patches, abstract",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_122.jpg",
+    "descriptions": [
+      "medium ",
+      "soft, non-sharp edges",
+      "medium to low",
+      "reddish, green tones with some light-blue tint",
+      "sky and nature and forests",
+      "single instance",
+      "none",
+      "wall repeated texture, stones",
+      "fairly realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_144.jpg",
+    "descriptions": [
+      "medium to high level of detail",
+      "non sharp edges, blurry painterly like ",
+      "low, dull tones",
+      "dominant green and white",
+      "forest and trees",
+      "multiple instances",
+      "none",
+      "none",
+      "fairly realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/dog/pic_294.jpg",
+    "descriptions": [
+      "medium level of detail",
+      "blurry, some parts are jagged lines",
+      "medium to high saturation",
+      "blue, green , orange and pink",
+      "abstract color patches",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/elephant/pic_116.jpg",
+    "descriptions": [
+      "low level of detail, abstract shapes",
+      "soft, drawn edges, with patches of color",
+      "medium to high",
+      "orange, yellow, green and purple",
+      "irregular patches of colors",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_129.jpg",
+    "descriptions": [
+      "low level of detail",
+      "sharp definite edges",
+      "medium to high",
+      "yellow, orange, gray, blue tones",
+      "solid color with some shapes",
+      "single instance",
+      "word, center of frame",
+      "repeated pumpkin texture",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_055.jpg",
+    "descriptions": [
+      "medium to high realism",
+      "definite, clear edges, with distinguishable shapes",
+      "medium to high saturatio",
+      "blue, green, yellow and reddish tones",
+      "landscape, with sky and clouds",
+      "multiple instances",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_247.jpg",
+    "descriptions": [
+      "medium to low realism and detail",
+      "blurry, brushy edges",
+      "medium to low",
+      "yellow, blue, brown",
+      "sky with clouds",
+      "multiple instances",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/horse/pic_023.jpg",
+    "descriptions": [
+      "medium level of detail, realistic elements",
+      "definite, brush-like edges, with some sharp details",
+      "very low",
+      "grey, a slight blue tint",
+      "grey and white abstract background",
+      "single instance",
+      "text at the bottom right of the page",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/giraffe/pic_147.jpg",
+    "descriptions": [
+      "low detail, a abstract representation",
+      "confused, hard to read",
+      "medium to high",
+      "green, yellow, orange",
+      "horizontal lines with yellow, green and white strokes",
+      "single instance",
+      "none",
+      "repeated horizontal lines",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_108.jpg",
+    "descriptions": [
+      "medium to high",
+      "dark, thick edges, with some more blurry parts",
+      "medium to low",
+      "blue, red, yellow tints",
+      "urban landscape with sky and clouds",
+      "multiple instances",
+      "none",
+      "none",
+      "fairly realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/house/pic_185.jpg",
+    "descriptions": [
+      "medium to high, painterly but realistic",
+      "definite edges",
+      "medium to low, pastel",
+      "salmon, green, blue, pink, magentaa",
+      "sky and sea, clouds",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/person/pic_047.jpg",
+    "descriptions": [
+      "fairly high",
+      "thick, dark edges, contrasty",
+      "zero saturation",
+      "black and white",
+      "solid black",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "art_painting/guitar/pic_035.jpg",
+    "descriptions": [
+      "low, abstract",
+      "thick black lines",
+      "medium to high",
+      "blue, brown, red, orange",
+      "abstract blue and brown colors",
+      "single instance",
+      "none",
+      "none",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "photo/house/pic_072.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, photographic",
+      "medium",
+      "green, blue",
+      "sky with clouds",
+      "single instasnce",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/dog/056_0045.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, definite",
+      "low",
+      "brown tint, gray",
+      "wall, with sand ground",
+      "single instance",
+      "none",
+      "wall bricks repeated",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/elephant/064_0084.jpg",
+    "descriptions": [
+      "high level of detail",
+      "sharp, contrasty",
+      "medium to low",
+      "green, gray",
+      "trees",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/giraffe/n02439033_11845.jpg",
+    "descriptions": [
+      "very high, realistic, close-up",
+      "sharp subject, defocus background",
+      "medium to ghigh",
+      "green, brown",
+      "defocused forest landscape",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/guitar/063_0072.jpg",
+    "descriptions": [
+      "medium to high",
+      "sharp, precise",
+      "medium",
+      "blue, brown, yellow",
+      "solid black",
+      "single instance",
+      "none",
+      "repeated lines on the fretboard",
+      "almost realistic"
+    ]
+  },
+  {
+    "image_name": "photo/horse/105_0172.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, clear, definite",
+      "medium",
+      "green, black, gray",
+      "cloudy landscape",
+      "single instance",
+      "none",
+      "none",
+      "realistic, wide angle"
+    ]
+  },
+  {
+    "image_name": "photo/person/253_0088.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, precise",
+      "medium",
+      "pink, brown ",
+      "books on a bookshelf",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/person/253_0361.jpg",
+    "descriptions": [
+      "realistic, rich",
+      "sharp, focused edges on the subject",
+      "medium",
+      "pink, brown, reddish tones",
+      "wall of a dimly lit room",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/house/pic_146.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, definite, precise",
+      "medium to low saturation",
+      "green, gray, light-blue",
+      "cloudy sky",
+      "multiple instances",
+      "none",
+      "repeated lines on the house wall",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/horse/105_0154.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, backlit edges",
+      "medium to high",
+      "brown, green",
+      "forest and trees",
+      "multiple instances, around 8",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/person/253_0351.jpg",
+    "descriptions": [
+      "high, realistic",
+      "sharp, precise, photographic",
+      "medium",
+      "pink, brown, reddish tones",
+      "dimly lit interior",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/house/pic_065.jpg",
+    "descriptions": [
+      "realistic, high",
+      "sharp, definite, precise, photographic",
+      "medium to high",
+      "brown, green, blue",
+      "forest with cloudy sky",
+      "single instance",
+      "none",
+      "repeated woodboards on the exterior walls",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/dog/n02103406_1754.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp in some areaas, blurred due to motion in others",
+      "medium to high",
+      "green, magenta, black, whitae",
+      "park. trees, grass",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/giraffe/n02439033_9398.jpg",
+    "descriptions": [
+      "high level of detail",
+      "sharp on the subject, defocus on the background",
+      "medium to low",
+      "green, brown, white",
+      "defocused trees",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up of the subject"
+    ]
+  },
+  {
+    "image_name": "photo/giraffe/n02439033_11273.jpg",
+    "descriptions": [
+      "rich in detail, realistic",
+      "sharp, definite, precise",
+      "medium",
+      "green, yellow, brown, white",
+      "trees with trunks",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up, wide angle"
+    ]
+  },
+  {
+    "image_name": "photo/dog/n02103406_13049.jpg",
+    "descriptions": [
+      "medium to ric",
+      "precise, sharp",
+      "medium to high",
+      "green, brown, reddish tones",
+      "grass and plants",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/guitar/063_0077.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, precise, definite",
+      "medium",
+      "red, yellow, black and white",
+      "solid white background",
+      "single instance",
+      "none",
+      "lines on the fretboard",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/horse/n02374451_2248.jpg",
+    "descriptions": [
+      "high, rich, realistic",
+      "sharp, definite, precise",
+      "medium to low",
+      "brown, green, white, red",
+      "trees and fences",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/elephant/064_0131.jpg",
+    "descriptions": [
+      "High, precise, realistic",
+      "sharp, contrasty",
+      "zero, black and white image",
+      "white, gray and black",
+      "trees and ground",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/house/pic_268.jpg",
+    "descriptions": [
+      "very high, rich, photoreal",
+      "sharp, definite, precise",
+      "medium",
+      "brown, white, some red, some blue",
+      "cloudy clear sky",
+      "multiple instances, two adjacent instances",
+      "none",
+      "repeated windows on the wall",
+      "realistic, wide angle"
+    ]
+  },
+  {
+    "image_name": "photo/dog/056_0009.jpg",
+    "descriptions": [
+      "rich, realistic representation",
+      "sharp, definite, precise",
+      "medium saturation",
+      "brown, golden yellow and green",
+      "grass",
+      "single instance",
+      "yes, multiple words on the top left of the image",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/horse/105_0029.jpg",
+    "descriptions": [
+      "realistic, rich in detail",
+      "sharp on the subject, very blurry outside",
+      "medium",
+      "green, yellow, brown, white",
+      "solid white",
+      "single instance",
+      "yes, multiple words, on the center of the image",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/elephant/n02503517_7020.jpg",
+    "descriptions": [
+      "high, realistic representation",
+      "sharp, distinct",
+      "medium to low",
+      "light-blue, green, gray, white",
+      "building with sky and clouds",
+      "single instance",
+      "none",
+      "repeated columns in the background building",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/guitar/n03467517_21884.jpg",
+    "descriptions": [
+      "high, rich in detail",
+      "very sharp ",
+      "medium to high",
+      "brown tones",
+      "solid black",
+      "single instance",
+      "none",
+      "reapeated lines on the fretboard",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/person/253_0174.jpg",
+    "descriptions": [
+      "high, photoreal representation",
+      "sharp, distinct",
+      "medium to high",
+      "pink, brown, some turquoise in the background",
+      "dimly-lit interior, wall",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/elephant/064_0115.jpg",
+    "descriptions": [
+      "high",
+      "very sharp, thick edges",
+      "medium to high",
+      "green, gray",
+      "rocks and trees",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/person/253_0160.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, distinct",
+      "medium to high",
+      "pink, brown, yellow, gray",
+      "gray and yellow posters, white wall",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/guitar/n02676566_9577.jpg",
+    "descriptions": [
+      "rich, realistic representation",
+      "sharp, distinct edges",
+      "low saturation",
+      "gray, brown, black",
+      "gray wall",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/guitar/063_0119.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, distinct edges",
+      "low",
+      "gray, black, yellow tones",
+      "white wall",
+      "single instance",
+      "none",
+      "repeated lines on the fretboard",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/dog/056_0101.jpg",
+    "descriptions": [
+      "very rich, sharp, detailed",
+      "sharp edges, precise contours",
+      "medium",
+      "brown, yellow, white, black",
+      "gray background",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/person/253_0093.jpg",
+    "descriptions": [
+      "rich in detail",
+      "sharp, clear edges",
+      "medium",
+      "light blue, pink, gray",
+      "books and white wall",
+      "single instance",
+      "yes, multiple words in the background",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/person/253_0330.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, precise edges",
+      "medium",
+      "yellow, black, green",
+      "dimly-lit house interior",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/elephant/064_0073.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, precise contours",
+      "medium",
+      "brown tones, light-blue, gray",
+      "sky and sand",
+      "multiple, 2 instances",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/elephant/064_0036.jpg",
+    "descriptions": [
+      "very rich, realistic",
+      "sharp edges",
+      "medium to high saturation",
+      "green, blue, reddish tones, gray",
+      "natural landscape and sky",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/horse/n02374451_15307.jpg",
+    "descriptions": [
+      "very rich, realistic",
+      "sharp, precise",
+      "medium ",
+      "brown, white, gray",
+      "people seated on stpes, white sky",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/dog/n02103406_371.jpg",
+    "descriptions": [
+      "realistic, rich in detail",
+      "sharp on the subject, blurred on the background",
+      "medium to low",
+      "green, blue, red, white, black",
+      "grass, and cars defocused",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/elephant/n02503517_7211.jpg",
+    "descriptions": [
+      "high, rich representation",
+      "sharp, precise edges",
+      "medium",
+      "gray, brown, green, light-blue",
+      "grees, mountain landscape and white sky",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/house/pic_186.jpg",
+    "descriptions": [
+      "very rich, detailed",
+      "sharp, precise edges",
+      "medium",
+      "green, gray, light-blue",
+      "trees and cloudy sky",
+      "single instance",
+      "none",
+      "repeated windows on the front wall",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/person/253_0035.jpg",
+    "descriptions": [
+      "rich, detailed",
+      "sharp, precise edges",
+      "medium to high",
+      "red, yellow, brown, pink, white",
+      "books and posters on a wall",
+      "single instance",
+      "yes, visible in the background, right part of the image",
+      "repeated black object on the left of the background",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/person/253_0086.jpg",
+    "descriptions": [
+      "rich, realistic representation",
+      "sharp, precise, definite",
+      "medium",
+      "pink, brown, green",
+      "trees and a brown wall",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/house/pic_138.jpg",
+    "descriptions": [
+      "rich in detail, realistic",
+      "sharp, clear, precise",
+      "medium",
+      "green, gray, brown tones",
+      "forest with overcast sky",
+      "single isntance",
+      "none",
+      "repeated windows on the front",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/elephant/n02503517_3108.jpg",
+    "descriptions": [
+      "realistic, rich",
+      "sharp, precise edges",
+      "medium to high",
+      "yellow, brown, green tints",
+      "trees and overcast sky",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/dog/056_0003.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, precise contours",
+      "medium to low",
+      "green, black, white",
+      "green defocused grass",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/horse/105_0083.jpg",
+    "descriptions": [
+      "rich, realistic details",
+      "sharp, precise edges",
+      "medium to low",
+      "brown, yellow, gray tones",
+      "gray and brown walls",
+      "multiple instances",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/dog/056_0089.jpg",
+    "descriptions": [
+      "rich, realistic representation",
+      "sharp, precise edges",
+      "medium saturation",
+      "red, brown, black and white",
+      "bed with covers",
+      "single instance",
+      "none",
+      "yes, very evide, colored lines",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/giraffe/084_0013.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp edges",
+      "medium intensity",
+      "green, blue, brown shades",
+      "trees and blue sky",
+      "single instance",
+      "yes, at the bottom of the image, multiple words",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/giraffe/n02439033_14962.jpg",
+    "descriptions": [
+      "rich, realistic",
+      "sharp, precise edges on the subject, blurred on the background",
+      "medium to high intensity",
+      "green, brown, yellow",
+      "blurred tree leaves",
+      "single instance",
+      "none",
+      "none",
+      "realistic, close-up"
+    ]
+  },
+  {
+    "image_name": "photo/house/pic_126.jpg",
+    "descriptions": [
+      "realistic, rich representation",
+      "sharp, precise edges",
+      "low",
+      "gray, some green",
+      "overcast sky",
+      "single instance",
+      "none",
+      "repeated windows in the front",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/house/pic_155.jpg",
+    "descriptions": [
+      "rich, precise representation",
+      "sharp, definite",
+      "medium to high color intensity",
+      "green, blue, gray, white",
+      "cloudy sky",
+      "single instance",
+      "none",
+      "repeated window patterns in the front",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "photo/person/253_0374.jpg",
+    "descriptions": [
+      "rich, realistic ",
+      "sharp, precise contours",
+      "medium intensity",
+      "pink, light-blue, black, green tones",
+      "green shaded dimly lit interior",
+      "single instance",
+      "none",
+      "none",
+      "realistic"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/7409.png",
+    "descriptions": [
+      "low level details",
+      "scattered lines",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_995-3.png",
+    "descriptions": [
+      "low-level",
+      "definite stroke",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_9604-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02109525_1893-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_1583-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/person/12138.png",
+    "descriptions": [
+      "low-level of details",
+      "thin definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02106662_10406-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03467517_23229-5.png",
+    "descriptions": [
+      "low-level of definition",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_10528-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monchrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_8280-1.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_7031-7.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_11273-3.png",
+    "descriptions": [
+      "low-level of details",
+      "definite and dotted strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_6430-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_557-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_1324-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_14600-9.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_7844-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_13868-7.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_11458-3.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_2478-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/person/12133.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_6784-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_4849-6.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/person/12088.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03467517_8929-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_6914-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_17634-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02106662_11133-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/house/8847.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_10491-6.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_9398-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_11627-6.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/7618.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_1324-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_12128-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_12128-3.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_1234-3.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes, sometimes dotted",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/person/12214.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_11666-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_1443-4.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_10761-2.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_9612-4.png",
+    "descriptions": [
+      "low-level of details",
+      "very trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02109525_12875-1.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes, with some dots",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_12418-1.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling dotted strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03467517_19701-4.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_9043-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_11114-2.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/7397.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_8875-6.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_9892-1.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_14580-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_11215-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_8362-8.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_792-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02109525_10297-4.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_15005-4.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03272010_6718-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_4818-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_5287-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_11377-3.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/house/8827.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_10075-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/person/12212.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/7427.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_9064-6.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_15555-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_8571-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite but sparse srokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02106662_8511-6.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_9892-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_14497-6.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_6852-9.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_4916-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_6207-6.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/8554.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/person/12105.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/7405.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03272010_12468-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/7626.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_4795-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_1292-6.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/house/8841.png",
+    "descriptions": [
+      "low-level of details",
+      "slightly trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03467517_16911-4.png",
+    "descriptions": [
+      "low-level of details",
+      "very trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_12059-2.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_3750-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02109525_1893-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_10778-3.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/person/12134.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_6396-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03272010_12151-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_3808-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03272010_6809-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_2380-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_7031-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_8744-9.png",
+    "descriptions": [
+      "low-level of details",
+      "definite but sometimes trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_8269-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_14781-8.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_9719-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/5925.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_4582-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/7671.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02106662_10406-6.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_5735-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_16483-3.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_15479-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/8551.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/7637.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_11845-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03467517_22246-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/7631.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/person/12081.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/7412.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_15453-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite and partially thin strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_8269-3.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/house/8828.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_5004-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_2954-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_5905-7.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_17043-3.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_7927-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_6530-7.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_11059-9.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_2444-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_15401-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite but sometimes trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_2954-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_15479-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_5489-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_13384-3.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_17384-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_1852-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/7401.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_8859-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_8718-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_10558-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_14962-7.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_3255-9.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/house/8846.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_14121-10.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_1963-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_10279-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/house/8833.png",
+    "descriptions": [
+      "low-level of details",
+      "definite thin strokes, with visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03272010_6737-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_10439-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03272010_6926-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_17384-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02109525_7874-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes with some dots",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_6948-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n03272010_1708-6.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_12413-3.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_14580-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_6430-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/5327.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling thin strokes, with some visible pixels",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_7083-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_1453-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_5084-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02106662_18405-3.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes with some dots",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_468-8.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes with some dots",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02106662_18402-5.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_79-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_11683-3.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_5563-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_194-1.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_8265-3.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_970-1.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_8222-4.png",
+    "descriptions": [
+      "low-level of details",
+      "trembling strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02106662_2157-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/dog/n02103406_3750-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/guitar/n02676566_2866-2.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/horse/n02374451_10118-1.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/elephant/n02503517_1453-5.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "sketch/giraffe/n02439033_14060-4.png",
+    "descriptions": [
+      "low-level of details",
+      "definite strokes",
+      "low saturation",
+      "black and white",
+      "monochrome white",
+      "single instance",
+      "without text",
+      "without texture",
+      "unrealistic perspective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_147.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_433.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "yes, some shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some blured text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_175.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_062.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_229.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, some shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_039.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_355.jpg",
+    "descriptions": [
+      "mid-high level of details",
+      "precise and solid lines",
+      "high color saturation",
+      "yes, different colorful shades but mainly green",
+      "rich vegetations",
+      "yes, single instance",
+      "no text present",
+      "yes, greenish texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_020.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "yes, different shades of blue and green color",
+      "different shades of blue sky",
+      "yes, single instance",
+      "yes, sometext present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_134.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_319.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_475.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "yes, some shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_134.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_337.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single black color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_126.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_054.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, some shades",
+      "single white color",
+      "no, 4 istances are present",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_009.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "yes, some shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_087.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_346.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "yes, some shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_225.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_143.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "yes, some shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_261.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_412.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_115.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, some shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_277.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_118.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "blue and green color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_342.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "no, 2 instances",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/guitar/pic_107.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/guitar/pic_045.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_327.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_208.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "single azure color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_074.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_264.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_339.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "yes, realistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_116.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_275.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_013.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_096.jpg",
+    "descriptions": [
+      "mid level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, different shades",
+      "different shades of orange",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_046.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/guitar/pic_092.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_193.jpg",
+    "descriptions": [
+      "high level of details",
+      "blured lines",
+      "mid color saturation",
+      "different shades but mainly green",
+      "rich vegetation",
+      "yes, single instance",
+      "no text present",
+      "yes, greenish texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_132.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "yes, some shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_122.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_014.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_109.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_218.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_454.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "single white color",
+      "no, 2 instances",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_466.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "no color saturation",
+      "no shades",
+      "gray color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_380.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "no, 2 instances",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_200.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "white and azure colors",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_094.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_053.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, some shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_152.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, some shades",
+      "green and blue colors",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_210.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "yes, some shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/guitar/pic_065.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_291.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_219.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_086.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_168.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "no, multiple instances",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/guitar/pic_043.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_306.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "single white color",
+      "no, 2 instances",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_089.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single pink color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_058.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_250.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/guitar/pic_105.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_171.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_133.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, some shades",
+      "single black color",
+      "no, 2 instances",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/guitar/pic_028.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_034.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_299.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_212.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, some shades",
+      "white and yellow colors",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_303.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single blue color",
+      "no, multiple instances",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_119.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_235.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_327.jpg",
+    "descriptions": [
+      "mid level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, some shades",
+      "single white color",
+      "no, multiple instances",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_385.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, some shades of green",
+      "mainly blue and green color",
+      "no, 2 instances",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/guitar/pic_032.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_338.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_300.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "different colors but mainly white",
+      "no, 2 instances",
+      "yes, some text present",
+      "no definite texture",
+      "no, urealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_031.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "yes, realistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_328.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_381.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single green color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_267.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "yes, realistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_352.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_406.jpg",
+    "descriptions": [
+      "mid-high level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "different shades of different colors",
+      "multiple shades of different colors",
+      "no, multimple instances",
+      "yes, some text present",
+      "yes, poster texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_312.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_349.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "yes, different orange shades",
+      "different orange shades",
+      "no, multiple instances",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/guitar/pic_150.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_069.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_266.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, different shades",
+      "different shades of blue and white",
+      "no, multiple instances",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_199.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_359.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/giraffe/pic_211.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_438.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/elephant/pic_493.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/person/pic_427.jpg",
+    "descriptions": [
+      "mid level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "different shades",
+      "different shades of orange",
+      "yes, single instance",
+      "no text present",
+      "yes, anime",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/dog/pic_266.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/horse/pic_129.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "low color saturation",
+      "no shades",
+      "single white color",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_017.jpg",
+    "descriptions": [
+      "mid level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, different shades",
+      "different colors like blue, green and brown",
+      "yes, single instance",
+      "yes, some text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_120.jpg",
+    "descriptions": [
+      "mid level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "yes, colorful shades",
+      "shades of blue",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  },
+  {
+    "image_name": "cartoon/house/pic_237.jpg",
+    "descriptions": [
+      "low level of details",
+      "precise and solid lines",
+      "mid color saturation",
+      "different shades of blue and green",
+      "different shades of blue and green",
+      "yes, single instance",
+      "no text present",
+      "no definite texture",
+      "no, unrealistic perpective"
+    ]
+  }
+]
