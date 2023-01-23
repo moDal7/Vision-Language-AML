@@ -80,7 +80,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.optimizer.step()
         #step 2
         logits = self.model(x, 2) 
-        loss_2 = self.loss_entropy(torch.softmax(logits))
+        loss_2 = self.loss_entropy(torch.nn.Softmax(logits))
 
         self.optimizer.zero_grad()
         loss_2.backward()
@@ -88,7 +88,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
         #step 3
         logits = self.model(x, 3) 
-        loss_3 = self.loss_entropy(torch.softmax(logits))
+        loss_3 = self.loss_entropy(torch.nn.Softmax(logits))
 
         self.optimizer.zero_grad()
         loss_3.backward()
@@ -98,8 +98,8 @@ class DomainDisentangleExperiment: # See point 2. of the project
         logits = self.model(x, 4)
         loss_0 = self.loss_ce(logits[1], y)
         loss_1 = self.loss_ce(logits[3], dom)
-        loss_2 = self.loss_entropy(torch.softmax(logits[2]))
-        loss_3 = self.loss_entropy(torch.softmax(logits[4]))
+        loss_2 = self.loss_entropy(torch.nn.Softmax(logits[2]))
+        loss_3 = self.loss_entropy(torch.nn.Softmax(logits[4]))
         loss_4 = self.loss_MSE(logits[5], logits[0]) 
 
         loss_final = self.weights[0] * (loss_0 + loss_2) + self.weights[1] * (loss_1 + loss_3) + self.weights[2] * loss_4
