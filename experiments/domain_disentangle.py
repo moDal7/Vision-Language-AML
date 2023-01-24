@@ -138,13 +138,8 @@ class DomainDisentangleExperiment: # See point 2. of the project
                 _ = _.to(self.device)
 
                 logits = self.model(x, 4)
-<<<<<<< HEAD
                 loss += self.criterion(logits[1], y)
                 pred = torch.argmax(logits[1], dim=-1)
-=======
-                loss += self.criterion(logits, y)
-                pred = torch.argmax(logits, dim=-1)
->>>>>>> 5aa4312f09afef351967de8ad364d9948398da0d
 
                 accuracy += (pred == y).sum().item()
                 count += x.size(0)
