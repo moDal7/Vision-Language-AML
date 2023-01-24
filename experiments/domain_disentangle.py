@@ -8,10 +8,7 @@ class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2V
         super().__init__()
 
     def forward(self, x):
-        softmax_batch = list()
-        for el in x:
-            elem = -torch.sum(torch.sum(torch.log(el), 1)/el.shape[0])
-            softmax_batch.append(elem)
+        softmax_batch = -torch.sum(torch.sum(torch.log(x), 0)/x.shape[0])
         return softmax_batch
 
 class DomainDisentangleExperiment: # See point 2. of the project
@@ -70,7 +67,6 @@ class DomainDisentangleExperiment: # See point 2. of the project
         dom = dom.to(self.device)
         smax = nn.Softmax(dim=1)
 
-        
         #step 0
         logits = self.model(x, 0) 
         loss_0 = self.loss_ce(logits, y)
@@ -136,13 +132,14 @@ class DomainDisentangleExperiment: # See point 2. of the project
         count = 0
         loss = 0
         with torch.no_grad():
-            for x, y in loader:
+            for x, y, _ in loader:
                 x = x.to(self.device)
                 y = y.to(self.device)
+                _ = _.to(self.device)
 
-                logits = self.model(x)
-                loss += self.criterion(logits, y)
-                pred = torch.argmax(logits, dim=-1)
+                logits = self.model(x, 4)
+                loss += self.criterion(logits[1], y)
+                pred = torch.argmax(logits[1], dim=-1)
 
                 accuracy += (pred == y).sum().item()
                 count += x.size(0)
