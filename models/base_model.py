@@ -88,19 +88,19 @@ class DomainDisentangleModel(nn.Module):
 
         # TODO ! how to reconstructor?
         self.feature_reconstructor = nn.Sequential( # test reconstructor
-            nn.Conv1d(1024, 512, 2),
+            #nn.Conv1d(1024, 512, 2),
 
-            nn.Linear(512, 512),
-            nn.BatchNorm1d(512),
             nn.ReLU(),
-
-            nn.Linear(512, 512),
             nn.BatchNorm1d(512),
+            nn.Linear(512, 512),
+
             nn.ReLU(),
-
-            nn.Linear(512, 512),
             nn.BatchNorm1d(512),
-            nn.ReLU()
+            nn.Linear(512, 512),
+
+            nn.ReLU(),
+            nn.BatchNorm1d(512),
+            nn.Linear(512, 512)
         )
 
 
@@ -143,6 +143,7 @@ class DomainDisentangleModel(nn.Module):
             x2 = self.domain_encoder(x)
             x2_class = self.domain_classifier(x2)
             x2_adv = self.category_classifier(x2) 
-            x_rec = self.feature_reconstructor(torch.cat((x1,x2), 0)) # test reconstructor
+            #x_rec = self.feature_reconstructor(torch.cat((x1,x2), 0)) # test reconstructor
+            x_rec = self.feature_reconstructor((x1+x2)/2) # test reconstructor
 
             return x, x1_class, x1_adv, x2_class, x2_adv, x_rec
