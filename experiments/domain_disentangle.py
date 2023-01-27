@@ -17,7 +17,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         # Utils
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
-        self.weights = torch.ones(3)
+        self.weights = torch.ones(5) #TODO: hyperparameters search of the weights
 
         # Setup model
         self.model = DomainDisentangleModel()
@@ -85,10 +85,14 @@ class DomainDisentangleExperiment: # See point 2. of the project
         
         #step 2
         #freezing layers for the adversarial stepe of the training
-        self.model.domain_classifier.weight.requires_grad = False
-        self.model.domain_classifier.bias.requires_grad = False
-        self.model.category_classifier.weight.requires_grad = False
-        self.model.category_classifier.bias.requires_grad = False
+        for param in self.model.category_encoder.parameters():
+            param.requires_grad = False
+        for param in self.model.category_classifier.parameters():
+            param.requires_grad = False
+        for param in self.model.domain_encoder.parameters():
+            param.requires_grad = False
+        for param in self.model.domain_classifier.parameters():
+            param.requires_grad = False
         self.optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, self.model.parameters()), lr=self.opt['lr'])
         logits = self.model(x, 2) 
         loss_2 = self.loss_entropy(smax(logits))
@@ -106,11 +110,14 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.optimizer.step()
 
         #step 4
-        self.model.domain_classifier.weight.requires_grad = True
-        self.model.domain_classifier.bias.requires_grad = True
-        self.model.category_classifier.weight.requires_grad = True
-        self.model.category_classifier.bias.requires_grad = True
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.opt['lr'])
+        for param in self.model.category_encoder.parameters():
+            param.requires_grad = True
+        for param in self.model.category_classifier.parameters():
+            param.requires_grad = True
+        for param in self.model.domain_encoder.parameters():
+            param.requires_grad = True
+        for param in self.model.domain_classifier.parameters():
+            param.requires_grad = True
 
         logits = self.model(x, 4)
         loss_0 = self.loss_ce(logits[1], y)
@@ -119,7 +126,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         loss_3 = self.loss_entropy(smax(logits[4]))
         loss_4 = self.loss_MSE(logits[5], logits[0]) 
 
-        loss_final = self.weights[0] * (loss_0 + loss_2) + self.weights[1] * (loss_1 + loss_3) + self.weights[2] * loss_4
+        loss_final = self.weights[0] * (loss_0 + self.weights[3] * loss_2) + self.weights[1] * (loss_1 + self.weights[4] * loss_3) + self.weights[2] * loss_4
         self.optimizer.zero_grad()
         loss_final.backward()
         self.optimizer.step()
