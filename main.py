@@ -40,7 +40,7 @@ def main(opt):
         else:
             logging.info(opt)
         
-        with tqdm(total=5000) as pbar:
+        with tqdm(total= opt['max_iterations'] ) as pbar:
 
             # Train loop
             while iteration < opt['max_iterations']:
