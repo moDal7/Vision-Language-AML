@@ -77,7 +77,6 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         for param in clip_model.parameters():
             param.requires_grad = False
 
-
         tokenized_text = clip.tokenize(desc).to(device)
         text_features = clip_model.encode_text(tokenized_text)
 
