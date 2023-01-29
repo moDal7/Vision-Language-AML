@@ -72,7 +72,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         desc = desc.to(self.device)
         smax = nn.Softmax(dim=1)
         
-        # TODO TEST CLIP
+        # TODO TEST CLIP TEST NEEDED
         clip_model.eval()
         for param in clip_model.parameters():
             param.requires_grad = False
