@@ -2,6 +2,7 @@ from PIL import Image
 import torch
 import numpy 
 import random
+import os
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as T
 
@@ -122,6 +123,7 @@ def seed_worker(worker_id):
     random.seed(worker_seed)
 
 torch.manual_seed(0)
+os.environ["CUBLAS_WORKSPACE_CONFIG"]=":4096:8"
 torch.use_deterministic_algorithms(True)
 g = torch.Generator()
 g.manual_seed(0)
