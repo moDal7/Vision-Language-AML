@@ -18,12 +18,14 @@ class DomainDisentangleExperiment: # See point 2. of the project
         # Utils
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
+
         if (opt['weights']): #load weights from command line argument
             self.weights = torch.Tensor(opt['weights'])
         else:
             self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2])
         logging.info(f'INITIAL WEIGHTS : {self.weights}')
         logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
+
 
         # Setup model
         self.model = DomainDisentangleModel()
@@ -84,7 +86,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         # self.optimizer.zero_grad()
         # loss_0.backward()
         # self.optimizer.step()
-
+        
         # if ( debug and i%500 == 0 ):
         #     logging.info(f'[TRAIN - iteration {i}] logits size step 0 : {logits.size()}')
         #     logging.info(f'[TRAIN - iteration {i}] logits step 0 : {logits}')

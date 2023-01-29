@@ -61,6 +61,7 @@ def main(opt):
                     if iteration % opt['validate_every'] == 0:
                         # Run validation
                         train_loss = experiment.train_iteration(data)
+
                         if (opt['debug']):
                             val_accuracy, val_loss = experiment.validate(validation_loader, debug = True, i = iteration)
                         else :
@@ -81,6 +82,9 @@ def main(opt):
                         break
 
                     pbar.update(1)
+        
+        if opt["plot"]:
+            plot_loss(train_log, validation_log, iteration_log)
 
         if opt["plot"]:
             plot_loss(train_log, validation_log, iteration_log)
