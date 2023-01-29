@@ -2,6 +2,8 @@ import torch
 from torch import nn
 from models.base_model import DomainDisentangleModel
 
+import random
+import numpy
 
 class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2Vec: Domain Embedding for Unsupervised Domain Adaptation', inherits from nn.Module and uses torch functions to preserve autograd
     def __init__(self):
@@ -18,6 +20,11 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
         self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2])
+
+        random.seed(0)
+        numpy.random.seed(0)
+        torch.manual_seed(0)
+        torch.use_deterministic_algorithms(True)
 
         # Setup model
         self.model = DomainDisentangleModel()

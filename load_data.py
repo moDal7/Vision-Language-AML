@@ -16,6 +16,27 @@ CATEGORIES = {
     'person': 6,
 }
 
+
+
+
+os.environ["CUBLAS_WORKSPACE_CONFIG"]=":4096:8"
+random.seed(0)
+numpy.random.seed(0)
+torch.manual_seed(0)
+torch.use_deterministic_algorithms(True)
+g = torch.Generator()
+g.manual_seed(0)
+
+def seed_worker(worker_id):
+    worker_seed = torch.initial_seed() % 2**32
+    numpy.random.seed(worker_seed)
+    random.seed(worker_seed)
+
+
+
+
+
+
 class PACSDatasetBaseline(Dataset):
     def __init__(self, examples, transform):
         self.examples = examples
@@ -117,16 +138,10 @@ class PACSDatasetDomDisentangle(Dataset):
         return x, y, dom
 
 
-def seed_worker(worker_id):
-    worker_seed = torch.initial_seed() % 2**32
-    numpy.random.seed(worker_seed)
-    random.seed(worker_seed)
 
-torch.manual_seed(0)
-os.environ["CUBLAS_WORKSPACE_CONFIG"]=":4096:8"
-torch.use_deterministic_algorithms(True)
-g = torch.Generator()
-g.manual_seed(0)
+
+
+
 
 
 def build_splits_domain_disentangle(opt):
