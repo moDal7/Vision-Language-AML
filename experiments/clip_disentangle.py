@@ -65,8 +65,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         return iteration, best_accuracy, total_train_loss
 
     def comes_with_text(self, data) -> bool:
-        _, _, _, desc = data
-        return True if desc is not None else False
+        return True if len(data)==4 else False
     
     def train_iteration(self, data):
 

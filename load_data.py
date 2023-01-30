@@ -13,7 +13,7 @@ CATEGORIES = {
     'person': 6,
 }
 
-LABEL_FILE_PATH = "data/image_descriptions.json"
+LABEL_FILE_PATH = "/content/Vision-Language-AML/data/all_image_descriptions.json"
 
 
 class PACSDatasetBaseline(Dataset):
@@ -215,10 +215,15 @@ class PACSDatasetClipDisentangle(Dataset):
         return len(self.examples)
     
     def __getitem__(self, index):
-        img_path, y, dom, description = self.examples[index]
-        x = self.transform(Image.open(img_path).convert('RGB'))
-        return x, y, dom, description
-
+        descriptions = get_descriptions()
+        if self.examples[index][0] in descriptions.keys():
+            img_path, y, dom, description = self.examples[index]
+            x = self.transform(Image.open(img_path).convert('RGB'))
+            return x, y, dom, description
+        else:
+            img_path, y, dom = self.examples[index]
+            x = self.transform(Image.open(img_path).convert('RGB'))
+            return x, y, dom
 
 def build_splits_clip_disentangle(opt):
     source_domain = 'art_painting'
@@ -246,11 +251,17 @@ def build_splits_clip_disentangle(opt):
                 else:
                     train_examples.append([example, category_idx, 0])
             else:
-                val_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
+                if example in descriptions.keys():    
+                    val_examples.append([example, category_idx, 0, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                else:
+                    val_examples.append([example, category_idx, 0]) # each triplet is [path_to_img, class_label, domain]
     
     for category_idx, examples_list in target_examples.items():
         for example in examples_list:
-            test_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
+            if example in descriptions.keys():    
+                test_examples.append([example, category_idx, 1, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+            else:
+                test_examples.append([example, category_idx, 1]) # each triplet is [path_to_img, class_label, domain]
 
     # Transforms
     normalize = T.Normalize([0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # ResNet18 - ImageNet Normalization
