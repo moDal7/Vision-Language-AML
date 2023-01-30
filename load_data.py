@@ -241,13 +241,16 @@ def build_splits_clip_disentangle(opt):
         split_idx = round(source_category_ratios[category_idx] * val_split_length)
         for i, example in enumerate(examples_list):
             if i > split_idx:
-                train_examples.append([example, category_idx, 0, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                if example in descriptions.keys():
+                    train_examples.append([example, category_idx, 0, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                else:
+                    train_examples.append([example, category_idx, 0])
             else:
-                val_examples.append([example, category_idx, 0, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                val_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
     
     for category_idx, examples_list in target_examples.items():
         for example in examples_list:
-            test_examples.append([example, category_idx, 1, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+            test_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
 
     # Transforms
     normalize = T.Normalize([0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # ResNet18 - ImageNet Normalization

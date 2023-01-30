@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from torchvision.models import resnet18
 from torchvision.models import ResNet18_Weights
+import clip
 
 class FeatureExtractor(nn.Module):
     def __init__(self):
@@ -143,8 +144,7 @@ class DomainDisentangleModel(nn.Module):
             x2 = self.domain_encoder(x)
             x2_class = self.domain_classifier(x2)
             x2_adv = self.category_classifier(x2) 
-            #x_rec = self.feature_reconstructor(torch.cat((x1,x2), 0)) # test reconstructor
-            x_rec = self.feature_reconstructor(torch.cat((x1,x2), 0)) # test reconstructor
+            x_rec = self.feature_reconstructor(torch.cat((x1,x2), 1)) # test reconstructor
 
             return x, x1_class, x1_adv, x2_class, x2_adv, x_rec
         
