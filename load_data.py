@@ -1,4 +1,8 @@
 from PIL import Image
+import torch
+import numpy 
+import random
+import os
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as T
 
@@ -11,6 +15,27 @@ CATEGORIES = {
     'house': 5,
     'person': 6,
 }
+
+
+
+
+os.environ["CUBLAS_WORKSPACE_CONFIG"]=":4096:8"
+random.seed(0)
+numpy.random.seed(0)
+torch.manual_seed(0)
+torch.use_deterministic_algorithms(True)
+g = torch.Generator()
+g.manual_seed(0)
+
+def seed_worker(worker_id):
+    worker_seed = torch.initial_seed() % 2**32
+    numpy.random.seed(worker_seed)
+    random.seed(worker_seed)
+
+
+
+
+
 
 class PACSDatasetBaseline(Dataset):
     def __init__(self, examples, transform):
@@ -113,6 +138,12 @@ class PACSDatasetDomDisentangle(Dataset):
         return x, y, dom
 
 
+
+
+
+
+
+
 def build_splits_domain_disentangle(opt):
 
     source_domain = 'art_painting'
@@ -176,11 +207,11 @@ def build_splits_domain_disentangle(opt):
     ])
 
     # Dataloaders
-    train_loader = DataLoader(PACSDatasetDomDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
+    train_loader = DataLoader(PACSDatasetDomDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True, worker_init_fn= seed_worker, generator=g)
     #train_dom_loader = DataLoader(PACSDatasetDomDisentangle(train_examples_dom, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
-    val_loader = DataLoader(PACSDatasetDomDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False) 
+    val_loader = DataLoader(PACSDatasetDomDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, worker_init_fn= seed_worker, generator=g) 
     #val_dom_loader = DataLoader(PACSDatasetDomDisentangle(val_examples_dom, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
-    test_loader = DataLoader(PACSDatasetDomDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
+    test_loader = DataLoader(PACSDatasetDomDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, worker_init_fn= seed_worker, generator=g)
 
     return train_loader, val_loader, test_loader #train_dom_loader,val_dom_loader
 

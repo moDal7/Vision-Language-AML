@@ -3,6 +3,8 @@ from torch import nn
 from models.base_model import DomainDisentangleModel
 import logging
 
+import random
+import numpy
 
 class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2Vec: Domain Embedding for Unsupervised Domain Adaptation', inherits from nn.Module and uses torch functions to preserve autograd
     def __init__(self):
@@ -26,6 +28,11 @@ class DomainDisentangleExperiment: # See point 2. of the project
         logging.info(f'INITIAL WEIGHTS : {self.weights}')
         logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
 
+
+        random.seed(0)
+        numpy.random.seed(0)
+        torch.manual_seed(0)
+        torch.use_deterministic_algorithms(True)
 
         # Setup model
         self.model = DomainDisentangleModel()
