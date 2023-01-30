@@ -8,4 +8,6 @@ def plot_loss(train_loss: list, val_loss: list, iteration_log: list) -> None:
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
     plt.grid()
-    plt.legend()        
+
+    plt.legend() 
+

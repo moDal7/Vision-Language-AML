@@ -44,13 +44,16 @@ def main(opt):
         else:
             logging.info(opt)
         
-        with tqdm(total=5000) as pbar:
+        with tqdm(total= opt['max_iterations'] ) as pbar:
 
             # Train loop
             while iteration < opt['max_iterations']:
                 for data in train_loader:
 
-                    total_train_loss += experiment.train_iteration(data)
+                    if (opt['debug']):
+                        total_train_loss += experiment.train_iteration(data, debug = True, i = iteration)
+                    else :
+                        total_train_loss += experiment.train_iteration(data)
 
                     if iteration % opt['print_every'] == 0:
                         logging.info(f'[TRAIN - {iteration}] Loss: {total_train_loss / (iteration + 1)}')
@@ -58,13 +61,17 @@ def main(opt):
                     if iteration % opt['validate_every'] == 0:
                         # Run validation
                         train_loss = experiment.train_iteration(data)
-                        val_accuracy, val_loss = experiment.validate(validation_loader)
-                        logging.info(f'[VAL - {iteration}] Loss: {val_loss} | Accuracy: {(100 * val_accuracy):.2f}')
 
+                        if (opt['debug']):
+                            val_accuracy, val_loss = experiment.validate(validation_loader, debug = True, i = iteration)
+                        else :
+                            val_accuracy, val_loss = experiment.validate(validation_loader)
+                        logging.info(f'[VAL - {iteration}] Loss: {val_loss} | Accuracy: {(100 * val_accuracy):.2f}')
+                        
                         iteration_log.append(iteration)
                         train_log.append(train_loss)
-                        validation_log.append(val_loss)
-
+                        validation_log.append(val_loss)                        
+                        
                         if val_accuracy > best_accuracy:
                             best_accuracy = val_accuracy
                             experiment.save_checkpoint(f'{opt["output_path"]}/best_checkpoint.pth', iteration, best_accuracy, total_train_loss)
@@ -76,6 +83,9 @@ def main(opt):
 
                     pbar.update(1)
         
+        if opt["plot"]:
+            plot_loss(train_log, validation_log, iteration_log)
+
         if opt["plot"]:
             plot_loss(train_log, validation_log, iteration_log)
 

@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 from models.base_model import DomainDisentangleModel
+import logging
 
 import random
 import numpy
@@ -19,7 +20,14 @@ class DomainDisentangleExperiment: # See point 2. of the project
         # Utils
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
-        self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2])
+
+        if (opt['weights']): #load weights from command line argument
+            self.weights = torch.Tensor(opt['weights'])
+        else:
+            self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2])
+        logging.info(f'INITIAL WEIGHTS : {self.weights}')
+        logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
+
 
         random.seed(0)
         numpy.random.seed(0)
@@ -67,54 +75,78 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
         return iteration, best_accuracy, total_train_loss
 
-    def train_iteration(self, data):
+    def train_iteration(self, data, debug = False, i = False):
+
         x, y, dom = data
         x = x.to(self.device)
         y = y.to(self.device)
         dom = dom.to(self.device)
         smax = nn.Softmax(dim=1)
 
-        #step 0
-        logits = self.model(x, 0) 
-        loss_0 = self.loss_ce(logits, y)
+        if ( debug and i%500 == 0 ):
+            logging.info(f'[TRAIN - iteration {i}] ')
 
-        self.optimizer.zero_grad()
-        loss_0.backward()
-        self.optimizer.step()
+        # #step 0     #TODO: only step 4 for now
+        # logits = self.model(x, 0) 
+        # loss_0 = self.loss_ce(logits, y)
 
-        #step 1
-        logits = self.model(x, 1) 
-        loss_1 = self.loss_ce(logits, dom)
-
-        self.optimizer.zero_grad()
-        loss_1.backward()
-        self.optimizer.step()
+        # self.optimizer.zero_grad()
+        # loss_0.backward()
+        # self.optimizer.step()
         
-        #step 2
-        #freezing layers for the adversarial stepe of the training
-        for param in self.model.category_encoder.parameters():
-            param.requires_grad = False
-        for param in self.model.category_classifier.parameters():
-            param.requires_grad = False
-        for param in self.model.domain_encoder.parameters():
-            param.requires_grad = False
-        for param in self.model.domain_classifier.parameters():
-            param.requires_grad = False
-        self.optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, self.model.parameters()), lr=self.opt['lr'])
-        logits = self.model(x, 2) 
-        loss_2 = self.loss_entropy(smax(logits))
+        # if ( debug and i%500 == 0 ):
+        #     logging.info(f'[TRAIN - iteration {i}] logits size step 0 : {logits.size()}')
+        #     logging.info(f'[TRAIN - iteration {i}] logits step 0 : {logits}')
+        #     logging.info(f'[TRAIN - iteration {i}] loss_0 : {loss_0}')
 
-        self.optimizer.zero_grad()
-        loss_2.backward()
-        self.optimizer.step()
+        # #step 1
+        # logits = self.model(x, 1) 
+        # loss_1 = self.loss_ce(logits, dom)
 
-        #step 3
-        logits = self.model(x, 3) 
-        loss_3 = self.loss_entropy(smax(logits))
+        # self.optimizer.zero_grad()
+        # loss_1.backward()
+        # self.optimizer.step()
 
-        self.optimizer.zero_grad()
-        loss_3.backward()
-        self.optimizer.step()
+        # if ( debug and i%500 == 0 ):
+        #     logging.info(f'[TRAIN - iteration {i}] logits size step 1 : {logits.size()}')
+        #     logging.info(f'[TRAIN - iteration {i}] logits step 1 : {logits}')
+        #     logging.info(f'[TRAIN - iteration {i}] loss_1 : {loss_1}')
+        
+        # #step 2
+        # #freezing layers for the adversarial stepe of the training
+        # for param in self.model.category_encoder.parameters():
+        #     param.requires_grad = False
+        # for param in self.model.category_classifier.parameters():
+        #     param.requires_grad = False
+        # for param in self.model.domain_encoder.parameters():
+        #     param.requires_grad = False
+        # for param in self.model.domain_classifier.parameters():
+        #     param.requires_grad = False
+        # self.optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, self.model.parameters()), lr=self.opt['lr'])
+        # logits = self.model(x, 2) 
+        # loss_2 = self.loss_entropy(smax(logits))
+
+        # self.optimizer.zero_grad()
+        # loss_2.backward()
+        # self.optimizer.step()
+
+        # if ( debug and i%500 == 0 ):
+        #     logging.info(f'[TRAIN - iteration {i}] logits step 2 size : {logits.size()}')
+        #     logging.info(f'[TRAIN - iteration {i}] logits step 2 : {logits}')
+        #     logging.info(f'[TRAIN - iteration {i}] loss_2 : {loss_2}')
+
+        # #step 3
+        # logits = self.model(x, 3) 
+        # loss_3 = self.loss_entropy(smax(logits))
+
+        # self.optimizer.zero_grad()
+        # loss_3.backward()
+        # self.optimizer.step()
+
+        # if ( i%500 == 0 and debug):
+        #     logging.info(f'[TRAIN - iteration {i}] logits step 3 size : {logits.size()}')
+        #     logging.info(f'[TRAIN - iteration {i}] logits step 3 : {logits}')
+        #     logging.info(f'[TRAIN - iteration {i}] loss_3 : {loss_3}')
 
         #step 4
         for param in self.model.category_encoder.parameters():
@@ -125,7 +157,6 @@ class DomainDisentangleExperiment: # See point 2. of the project
             param.requires_grad = True
         for param in self.model.domain_classifier.parameters():
             param.requires_grad = True
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.opt['lr'])
 
         logits = self.model(x, 4)
         loss_0 = self.loss_ce(logits[1], y)
@@ -138,10 +169,22 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.optimizer.zero_grad()
         loss_final.backward()
         self.optimizer.step()
-        
+
+        if ( debug and i%500 == 0 ):
+            logging.info(f'[TRAIN - iteration {i}] logits size step 4 : ')
+            for j in range(5):
+                logging.info(f'logits[{j}]: {logits[j].size()}')
+            logging.info(f'[TRAIN - iteration {i}] logits step 4 : {logits}')
+            logging.info(f'[TRAIN - iteration {i}] loss_0 : {loss_0}')
+            logging.info(f'[TRAIN - iteration {i}] loss_1 : {loss_1}')
+            logging.info(f'[TRAIN - iteration {i}] loss_2 : {loss_2}')
+            logging.info(f'[TRAIN - iteration {i}] loss_3 : {loss_3}')
+            logging.info(f'[TRAIN - iteration {i}] loss_4 : {loss_4}')
+            logging.info(f'[TRAIN - iteration {i}] loss_final : {loss_final}')
+                
         return loss_final.item()
 
-    def validate(self, loader):
+    def validate(self, loader, debug = False, i=3):
         self.model.eval()
         accuracy = 0
         count = 0
@@ -158,6 +201,13 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
                 accuracy += (pred == y).sum().item()
                 count += x.size(0)
+
+                if ( debug and i%500 == 0 ):
+                    logging.info(f'[VALIDATION - iteration {i}] ')
+                    for elem in logits:
+                      logging.info(f'[VALIDATION - iteration {i}] logits size : {elem.size()}')
+                      logging.info(f'[VALIDATION - iteration {i}] logits : {elem}')
+                    logging.info(f'[VALIDATION - iteration {i}] loss : {loss}')
 
         mean_accuracy = accuracy / count
         mean_loss = loss / count
