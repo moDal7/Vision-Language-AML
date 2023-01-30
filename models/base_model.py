@@ -145,5 +145,4 @@ class DomainDisentangleModel(nn.Module):
             x2_adv = self.category_classifier(x2) 
             x_rec = self.feature_reconstructor(torch.cat((x1,x2), 1)) 
 
-
             return x, x1_class, x1_adv, x2_class, x2_adv, x_rec

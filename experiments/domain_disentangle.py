@@ -11,7 +11,7 @@ class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2V
         super().__init__()
 
     def forward(self, x):
-        softmax_batch = -torch.sum(torch.sum(torch.log(x), 0)/x.shape[0])
+        softmax_batch = -torch.sum(torch.sum(torch.log(x), 1)/x.shape[1])
         return softmax_batch
 
 class DomainDisentangleExperiment: # See point 2. of the project
@@ -149,14 +149,14 @@ class DomainDisentangleExperiment: # See point 2. of the project
         #     logging.info(f'[TRAIN - iteration {i}] loss_3 : {loss_3}')
 
         #step 4
-        for param in self.model.category_encoder.parameters():
-            param.requires_grad = True
-        for param in self.model.category_classifier.parameters():
-            param.requires_grad = True
-        for param in self.model.domain_encoder.parameters():
-            param.requires_grad = True
-        for param in self.model.domain_classifier.parameters():
-            param.requires_grad = True
+        #for param in self.model.category_encoder.parameters():
+        #    param.requires_grad = True
+        #for param in self.model.category_classifier.parameters():
+        #    param.requires_grad = True
+        #for param in self.model.domain_encoder.parameters():
+        #    param.requires_grad = True
+        #for param in self.model.domain_classifier.parameters():
+        #    param.requires_grad = True
 
         logits = self.model(x, 4)
         loss_0 = self.loss_ce(logits[1], y)
@@ -172,7 +172,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
         if ( debug and i%500 == 0 ):
             logging.info(f'[TRAIN - iteration {i}] logits size step 4 : ')
-            for j in range(5):
+            for j in range(6):
                 logging.info(f'logits[{j}]: {logits[j].size()}')
             logging.info(f'[TRAIN - iteration {i}] logits step 4 : {logits}')
             logging.info(f'[TRAIN - iteration {i}] loss_0 : {loss_0}')

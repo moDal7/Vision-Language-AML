@@ -137,13 +137,6 @@ class PACSDatasetDomDisentangle(Dataset):
         x = self.transform(Image.open(img_path).convert('RGB'))
         return x, y, dom
 
-
-
-
-
-
-
-
 def build_splits_domain_disentangle(opt):
 
     source_domain = 'art_painting'
