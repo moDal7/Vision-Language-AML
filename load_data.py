@@ -2,6 +2,7 @@ from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as T
 import json
+import torch
 
 CATEGORIES = {
     'dog': 0,
@@ -53,13 +54,14 @@ def get_descriptions() -> dict:
 
     for elem in desc_json:
         description = str()
-        path = f'data/PACS/kfold/{elem["image_name"]}'
+        path = f'/content/Vision-Language-AML/data/PACS/kfold/{elem["image_name"]}'
         for descr in elem["descriptions"]:
             if description=="":
                 description = descr
             else:
                 description = description + ", " + descr
         final_descr = description
+        print(final_descr)
         dict_description.update({path: final_descr})
 
     return dict_description
@@ -241,18 +243,21 @@ def build_splits_clip_disentangle(opt):
     train_examples = []
     val_examples = []
     test_examples = []
+    train_examples_text = []
+    val_examples_text = []
+    test_examples_text = []
 
     for category_idx, examples_list in source_examples.items():
         split_idx = round(source_category_ratios[category_idx] * val_split_length)
         for i, example in enumerate(examples_list):
             if i > split_idx:
                 if example in descriptions.keys():
-                    train_examples.append([example, category_idx, 0, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                    train_examples_text.append([example, category_idx, 0, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
                 else:
                     train_examples.append([example, category_idx, 0])
             else:
                 if example in descriptions.keys():    
-                    val_examples.append([example, category_idx, 0, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                    val_examples_text.append([example, category_idx, 0, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
                 else:
                     val_examples.append([example, category_idx, 0]) # each triplet is [path_to_img, class_label, domain]
     
@@ -261,7 +266,7 @@ def build_splits_clip_disentangle(opt):
             if example in descriptions.keys():    
                 test_examples.append([example, category_idx, 1, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
             else:
-                test_examples.append([example, category_idx, 1]) # each triplet is [path_to_img, class_label, domain]
+                test_examples_text.append([example, category_idx, 1]) # each triplet is [path_to_img, class_label, domain]
 
     # Transforms
     normalize = T.Normalize([0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # ResNet18 - ImageNet Normalization
@@ -282,9 +287,17 @@ def build_splits_clip_disentangle(opt):
     ])
 
     # Dataloaders
-    train_loader = DataLoader(PACSDatasetClipDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
-    val_loader = DataLoader(PACSDatasetClipDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False) 
-    test_loader = DataLoader(PACSDatasetClipDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
+    train_loader1 = DataLoader(PACSDatasetClipDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
+    val_loader1 = DataLoader(PACSDatasetClipDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False) 
+    test_loader1= DataLoader(PACSDatasetClipDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
+    train_loader_text = DataLoader(PACSDatasetClipDisentangle(train_examples_text, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
+    val_loader_text = DataLoader(PACSDatasetClipDisentangle(val_examples_text, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False) 
+    test_loader_text = DataLoader(PACSDatasetClipDisentangle(test_examples_text, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
 
+    train_loader = torch.cat((train_loader1, train_loader_text),1)
+    val_loader = torch.cat((val_loader1, val_loader_text),1)
+    test_loader = torch.cat((test_loader1, test_loader_text),1)
+    print(f"train loader shape -> {train_loader.shape}")
+    
     return train_loader, val_loader, test_loader 
 
