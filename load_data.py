@@ -61,7 +61,6 @@ def get_descriptions() -> dict:
             else:
                 description = description + ", " + descr
         final_descr = description
-        print(final_descr)
         dict_description.update({path: final_descr})
 
     return dict_description
