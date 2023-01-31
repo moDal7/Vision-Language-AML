@@ -14,7 +14,8 @@ class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2V
         super().__init__()
 
     def forward(self, x):
-        softmax_batch = -torch.sum(torch.sum(torch.log(x), 0)/x.shape[0])
+        softmax_batch = -torch.sum(torch.sum(torch.log(x), 1)/x.shape[1])
+        return softmax_batch
         
 class CLIPDisentangleExperiment: # See point 4. of the project
 
@@ -172,16 +173,25 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         count = 0
         loss = 0
         with torch.no_grad():
-            for x, y in loader:
-                x = x.to(self.device)
-                y = y.to(self.device)
+            if self.comes_with_text(loader):
+                for x, y, _, _ in loader:
+                    x = x.to(self.device)
+                    y = y.to(self.device)
+                    _ = _.to(self.device)
+                    _ = _.to(self.device)
+            else:
+                for x, y, _ in loader:
+                    x = x.to(self.device)
+                    y = y.to(self.device)
+                    _ = _.to(self.device)
+                
 
-                logits = self.model(x, 4)
-                loss += self.criterion(logits[1], y)
-                pred = torch.argmax(logits[1], dim=-1)
+            logits = self.model(x, 4)
+            loss += self.criterion(logits[1], y)
+            pred = torch.argmax(logits[1], dim=-1)
 
-                accuracy += (pred == y).sum().item()
-                count += x.size(0)
+            accuracy += (pred == y).sum().item()
+            count += x.size(0)
 
         mean_accuracy = accuracy / count
         mean_loss = loss / count
