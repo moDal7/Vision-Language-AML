@@ -66,23 +66,23 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         return iteration, best_accuracy, total_train_loss
 
     def comes_with_text(self, data) -> bool:
-        
-        return True if len(data)==4 else False
+        *test_text, = data
+        test = True if len(test_text)==4 else False
+        return test
     
     def train_iteration(self, data):
 
         if self.comes_with_text(data):
-            x, y, dom, desc = data
+            x, y, dom, description = data
             x = x.to(self.device)
             y = y.to(self.device)
             dom = dom.to(self.device)
-            desc = desc.to(self.device)
 
             clip_model.eval()
             for param in clip_model.parameters():
                 param.requires_grad = False
-
-            tokenized_text = clip.tokenize(desc).to(device)
+                
+            tokenized_text = clip.tokenize(description).to(device)
             text_features = clip_model.encode_text(tokenized_text)
             
         else:
@@ -93,7 +93,6 @@ class CLIPDisentangleExperiment: # See point 4. of the project
             
         smax = nn.Softmax(dim=1)
         
-
         #step 0
         #logits = self.model(x, 0) 
         #loss_0 = self.loss_ce(logits, y)
@@ -172,18 +171,9 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         count = 0
         loss = 0
         with torch.no_grad():
-            if self.comes_with_text(loader):
-                for x, y, _, _ in loader:
-                    x = x.to(self.device)
-                    y = y.to(self.device)
-                    _ = _.to(self.device)
-                    _ = _.to(self.device)
-            else:
-                for x, y, _ in loader:
-                    x = x.to(self.device)
-                    y = y.to(self.device)
-                    _ = _.to(self.device)
-                
+            for x, y in loader:
+                x = x.to(self.device)
+                y = y.to(self.device)
 
             logits = self.model(x, 4)
             loss += self.criterion(logits[1], y)

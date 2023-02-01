@@ -226,6 +226,19 @@ class PACSDatasetClipDisentangle(Dataset):
             x = self.transform(Image.open(img_path).convert('RGB'))
             return x, y, dom
 
+class PACSDatasetClipValidate(Dataset):
+    def __init__(self, examples, transform):
+        self.examples = examples
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.examples)
+    
+    def __getitem__(self, index):
+        img_path, y = self.examples[index]
+        x = self.transform(Image.open(img_path).convert('RGB'))
+        return x, y
+
 def build_splits_clip_disentangle(opt):
     source_domain = 'art_painting'
     target_domain = opt['target_domain']
@@ -253,33 +266,28 @@ def build_splits_clip_disentangle(opt):
                     train_examples.append([example, category_idx, 0])
             else:
                 if example in descriptions.keys():    
-                    val_examples.append([example, category_idx, 0, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                    val_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
                 else:
-                    val_examples.append([example, category_idx, 0]) # each triplet is [path_to_img, class_label, domain]
+                    val_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
     
     for category_idx, examples_list in target_examples.items():
         for example in examples_list:
             if example in descriptions.keys():    
-                test_examples.append([example, category_idx, 1, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                test_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
             else:
-                test_examples.append([example, category_idx, 1]) # each triplet is [path_to_img, class_label, domain]
+                test_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
 
-    def batch_sampler(dataset):
+    def custom_batch_sampler(dataset):
+        data_text = [index for index, _ in enumerate(dataset) if len(_)>3]
+        data_no_text = [index for index, _ in enumerate(dataset) if len(_)==3]
 
-        data_text = [index for index, _ in enumerate(dataset) if len(example)>3]
-        data_no_text = [index for index, _ in enumerate(dataset) if len(example)==3]
-
-        remainder_text = len(data_text)%opt["batch_size"]
         remainder_no_text = len(data_no_text)%opt["batch_size"]  
 
-        data_text = data_text[:-(remainder_text)]
         data_no_text = data_no_text[:-(remainder_no_text)]
+        data_no_text = data_no_text + data_text
 
-        data = data_no_text.append(data_text[-(remainder_text):])
-        data = data.append(data_text)
-
-        data_final = [data[i * opt["batch_size"]:(i + 1) * opt["batch_size"]] for i in range((len(data) + opt["batch_size"] - 1) // opt["batch_size"] )]
-
+        data_final = [data_no_text[i * opt["batch_size"]:(i + 1) * opt["batch_size"]] for i in range((len(data_no_text) + opt["batch_size"] - 1) // opt["batch_size"] )]
+        
         return data_final
     
     # Transforms
@@ -301,9 +309,9 @@ def build_splits_clip_disentangle(opt):
     ])
 
     # Dataloaders
-    train_loader = DataLoader(PACSDatasetClipDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], sampler=batch_sampler(PACSDatasetClipDisentangle(train_examples, train_transform)))
-    val_loader = DataLoader(PACSDatasetClipDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], sampler=batch_sampler(PACSDatasetClipDisentangle(val_examples, eval_transform))) 
-    test_loader = DataLoader(PACSDatasetClipDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], sampler=batch_sampler(PACSDatasetClipDisentangle(test_examples, eval_transform)))
+    train_loader = DataLoader(PACSDatasetClipDisentangle(train_examples, train_transform), num_workers=opt['num_workers'], batch_sampler=custom_batch_sampler(PACSDatasetClipDisentangle(train_examples, train_transform)))
+    val_loader = DataLoader(PACSDatasetClipValidate(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
+    test_loader = DataLoader(PACSDatasetClipValidate(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
 
     return train_loader, val_loader, test_loader 
 
