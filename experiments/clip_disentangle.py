@@ -66,7 +66,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         return iteration, best_accuracy, total_train_loss
 
     def comes_with_text(self, data) -> bool:
-        print(len(data))
+        
         return True if len(data)==4 else False
     
     def train_iteration(self, data):
@@ -84,7 +84,6 @@ class CLIPDisentangleExperiment: # See point 4. of the project
 
             tokenized_text = clip.tokenize(desc).to(device)
             text_features = clip_model.encode_text(tokenized_text)
-            print(text_features.shape)
             
         else:
             x, y, dom = data

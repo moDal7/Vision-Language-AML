@@ -68,6 +68,7 @@ def main(opt):
             total_val_loss = total_val_loss/SPLITS
             final_val_log.append(total_val_accuracy, total_val_loss, weights)
             logging.info(f'[WEIGHTS]: {weights}, [VAL] Accuracy: {(100 * total_val_accuracy):.2f}')
+            
     final_val_log.sort(key=final_val_log[0], reverse=True)
     logging.info(f'Best performing weights: {final_val_log[0][2]}, ACCURACY {(100 * final_val_log[0][0]):.2f}')
     print(f'Best performing weights: {final_val_log[0][2]}, ACCURACY {(100 * final_val_log[0][0]):.2f}')
