@@ -13,11 +13,11 @@ class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2V
 
 class DomainDisentangleExperiment: # See point 2. of the project
     
-    def __init__(self, opt):
+    def __init__(self, opt, weights):
         # Utils
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
-        self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2])
+        self.weights = torch.tensor(weights)
 
         # Setup model
         self.model = DomainDisentangleModel()
@@ -68,57 +68,48 @@ class DomainDisentangleExperiment: # See point 2. of the project
         smax = nn.Softmax(dim=1)
 
         #step 0
-        logits = self.model(x, 0) 
-        loss_0 = self.loss_ce(logits, y)
+        #logits = self.model(x, 0) 
+        #loss_0 = self.loss_ce(logits, y)
 
-        self.optimizer.zero_grad()
-        loss_0.backward()
-        self.optimizer.step()
+        #self.optimizer.zero_grad()
+        #loss_0.backward()
+        #self.optimizer.step()
 
         #step 1
-        logits = self.model(x, 1) 
-        loss_1 = self.loss_ce(logits, dom)
+        #logits = self.model(x, 1) 
+        #loss_1 = self.loss_ce(logits, dom)
 
-        self.optimizer.zero_grad()
-        loss_1.backward()
-        self.optimizer.step()
+        #self.optimizer.zero_grad()
+        #loss_1.backward()
+        #self.optimizer.step()
         
         #step 2
         #freezing layers for the adversarial stepe of the training
-        for param in self.model.category_encoder.parameters():
-            param.requires_grad = False
-        for param in self.model.category_classifier.parameters():
-            param.requires_grad = False
-        for param in self.model.domain_encoder.parameters():
-            param.requires_grad = False
-        for param in self.model.domain_classifier.parameters():
-            param.requires_grad = False
-        self.optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, self.model.parameters()), lr=self.opt['lr'])
-        logits = self.model(x, 2) 
-        loss_2 = self.loss_entropy(smax(logits))
+        #for param in self.model.category_encoder.parameters():
+        #    param.requires_grad = False
+        #for param in self.model.category_classifier.parameters():
+        #    param.requires_grad = False
+        #for param in self.model.domain_encoder.parameters():
+        #    param.requires_grad = False
+        #for param in self.model.domain_classifier.parameters():
+        #    param.requires_grad = False
+        #self.optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, self.model.parameters()), lr=self.opt['lr'])
+        #logits = self.model(x, 2) 
+        #loss_2 = self.loss_entropy(smax(logits))
 
-        self.optimizer.zero_grad()
-        loss_2.backward()
-        self.optimizer.step()
+        #loss_2.backward()
+        #self.optimizer.zero_grad()
+        #self.optimizer.step()
 
         #step 3
-        logits = self.model(x, 3) 
-        loss_3 = self.loss_entropy(smax(logits))
+        #logits = self.model(x, 3) 
+        #loss_3 = self.loss_entropy(smax(logits))
 
-        self.optimizer.zero_grad()
-        loss_3.backward()
-        self.optimizer.step()
+        #self.optimizer.zero_grad()
+        #loss_3.backward()
+        #self.optimizer.step()
 
         #step 4
-        for param in self.model.category_encoder.parameters():
-            param.requires_grad = True
-        for param in self.model.category_classifier.parameters():
-            param.requires_grad = True
-        for param in self.model.domain_encoder.parameters():
-            param.requires_grad = True
-        for param in self.model.domain_classifier.parameters():
-            param.requires_grad = True
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.opt['lr'])
 
         logits = self.model(x, 4)
         loss_0 = self.loss_ce(logits[1], y)
