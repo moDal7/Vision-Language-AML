@@ -43,21 +43,18 @@ def main(opt):
                         for data in train_loader:
 
                             total_train_loss += experiment.train_iteration(data)
-
-                            if iteration % opt['print_every'] == 0:
-                                logging.info(f'[TRAIN - {iteration}] Loss: {total_train_loss / (iteration + 1)}')
                         
-                                if iteration % opt['validate_every'] == 0:
-                                    # Run validation
-                                    train_loss = experiment.train_iteration(data)
-                                    iteration_log.append(iteration)
-                                    train_log.append(train_loss)
+                            if iteration % opt['validate_every'] == 0:
+                                # Run validation
+                                train_loss = experiment.train_iteration(data)
+                                iteration_log.append(iteration)
+                                train_log.append(train_loss)
 
-                                iteration += 1
-                                if iteration > opt['max_iterations']:
-                                    break
+                            iteration += 1
+                            if iteration > opt['max_iterations']:
+                                break
 
-                                pbar.update(1)
+                        pbar.update(1)
                 
                 if opt["plot"]:
                     plot_loss(train_log, iteration_log)
@@ -80,7 +77,7 @@ if __name__ == '__main__':
     opt = parse_arguments()
     opt['output_path_hyper'] = f'{opt["output_path"]}/record/hyperparam_tuning'
     # Setup output directories
-    os.makedirs(opt['output_path'], exist_ok=True)
+    os.makedirs(opt['output_path_hyper'], exist_ok=True)
 
     # Setup logger
     logging.basicConfig(filename=f'{opt["output_path_hyper"]}/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
