@@ -275,9 +275,12 @@ def build_splits_clip_disentangle(opt):
         data_text = data_text[:-(remainder_text)]
         data_no_text = data_no_text[:-(remainder_no_text)]
 
-        data = data_no_text.append(data_text)
+        data = data_no_text.append(data_text[-(remainder_text):])
+        data = data.append(data_text)
 
-        return data
+        data_final = [data[i * opt["batch_size"]:(i + 1) * opt["batch_size"]] for i in range((len(data) + opt["batch_size"] - 1) // opt["batch_size"] )]
+
+        return data_final
     
     # Transforms
     normalize = T.Normalize([0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # ResNet18 - ImageNet Normalization
@@ -298,9 +301,9 @@ def build_splits_clip_disentangle(opt):
     ])
 
     # Dataloaders
-    train_loader = DataLoader(PACSDatasetClipDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], collate_fn=custom_collate, shuffle=False)
-    val_loader = DataLoader(PACSDatasetClipDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], collate_fn=custom_collate, shuffle=False) 
-    test_loader = DataLoader(PACSDatasetClipDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], collate_fn=custom_collate, shuffle=False)
+    train_loader = DataLoader(PACSDatasetClipDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], sampler=batch_sampler(PACSDatasetClipDisentangle(train_examples, train_transform)))
+    val_loader = DataLoader(PACSDatasetClipDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], sampler=batch_sampler(PACSDatasetClipDisentangle(val_examples, eval_transform))) 
+    test_loader = DataLoader(PACSDatasetClipDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], sampler=batch_sampler(PACSDatasetClipDisentangle(test_examples, eval_transform)))
 
     return train_loader, val_loader, test_loader 
 
