@@ -264,6 +264,20 @@ def build_splits_clip_disentangle(opt):
             else:
                 test_examples.append([example, category_idx, 1]) # each triplet is [path_to_img, class_label, domain]
 
+    def custom_collate(data):
+        
+        data_text = [example for example in data if len(example)>3]
+        data_no_text = [example for example in data if len(example)==3]
+
+        remainder_text = len(data_text)%opt["batch_size"]
+        remainder_no_text = len(data_no_text)%opt["batch_size"]  
+
+        data_text = data_text[:-(remainder_text)]
+        data_no_text = data_no_text[:-(remainder_no_text)]
+
+        data = data_no_text.append(data_text)
+
+        return data
     # Transforms
     normalize = T.Normalize([0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # ResNet18 - ImageNet Normalization
 
@@ -283,9 +297,9 @@ def build_splits_clip_disentangle(opt):
     ])
 
     # Dataloaders
-    train_loader = DataLoader(PACSDatasetClipDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
-    val_loader = DataLoader(PACSDatasetClipDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False) 
-    test_loader = DataLoader(PACSDatasetClipDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
+    train_loader = DataLoader(PACSDatasetClipDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], collate_fn=custom_collate, shuffle=False)
+    val_loader = DataLoader(PACSDatasetClipDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], collate_fn=custom_collate, shuffle=False) 
+    test_loader = DataLoader(PACSDatasetClipDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], collate_fn=custom_collate, shuffle=False)
 
     return train_loader, val_loader, test_loader 
 
