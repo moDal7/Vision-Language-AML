@@ -43,7 +43,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
         # Setup optimization procedure 
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=opt['lr'])
-        self.loss_ce_cat = torch.nn.CrossEntropyLoss(size_average=True, ignore_index=-100)
+        self.loss_ce_cat = torch.nn.CrossEntropyLoss(ignore_index=-100)
         self.loss_ce_dom = torch.nn.CrossEntropyLoss()
         self.loss_entropy = EntropyLoss()
         self.loss_MSE = torch.nn.MSELoss()
