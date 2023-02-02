@@ -21,6 +21,7 @@ def setup_experiment(opt):
     elif opt['experiment'] == 'domain_disentangle_tuning':
         experiment = DomainDisentangleExperiment(opt)
         train_loader, validation_loader = build_splits_validation(opt)
+        return experiment, train_loader, validation_loader
 
     elif opt['experiment'] == 'clip_disentangle':
         experiment = CLIPDisentangleExperiment(opt)
