@@ -25,8 +25,8 @@ class DomainDisentangleExperiment: # See point 2. of the project
             self.weights = torch.Tensor(opt['weights'])
         else:
             self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2])
-        logging.info(f'INITIAL WEIGHTS : {self.weights}')
-        logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
+        #logging.info(f'INITIAL WEIGHTS : {self.weights}')
+        #logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
 
 
         random.seed(0)
