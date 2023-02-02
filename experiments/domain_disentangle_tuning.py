@@ -1,13 +1,7 @@
 import torch
 from torch import nn
-from models.base_model import ClipDisentangleModel
-import clip
+from models.base_model import DomainDisentangleModel
 
-# Load CLIP model and freeze it
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
-clip_model, _ = clip.load('ViT-B/32', device='cpu') # load it first to CPU to ensure you're using fp32 precision.
-clip_model = clip_model.to(device)
 
 class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2Vec: Domain Embedding for Unsupervised Domain Adaptation', inherits from nn.Module and uses torch functions to preserve autograd
     def __init__(self):
@@ -16,17 +10,17 @@ class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2V
     def forward(self, x):
         softmax_batch = -torch.sum(torch.sum(torch.log(x), 1)/x.shape[1])
         return softmax_batch
-        
-class CLIPDisentangleExperiment: # See point 4. of the project
 
-    def __init__(self, opt):
+class DomainDisentangleExperiment: # See point 2. of the project
+    
+    def __init__(self, opt, weights):
         # Utils
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
-        self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2, 1])
+        self.weights = torch.tensor(weights)
 
         # Setup model
-        self.model = ClipDisentangleModel()
+        self.model = DomainDisentangleModel()
         self.model.train()
         self.model.to(self.device)
         for param in self.model.parameters():
@@ -40,6 +34,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
 
         # Validation loss
         self.criterion = torch.nn.CrossEntropyLoss()
+        
 
     def save_checkpoint(self, path, iteration, best_accuracy, total_train_loss):
         checkpoint = {}
@@ -65,34 +60,13 @@ class CLIPDisentangleExperiment: # See point 4. of the project
 
         return iteration, best_accuracy, total_train_loss
 
-    def comes_with_text(self, data) -> bool:
-        *test_text, = data
-        test = True if len(test_text)==4 else False
-        return test
-    
     def train_iteration(self, data):
-
-        if self.comes_with_text(data):
-            x, y, dom, description = data
-            x = x.to(self.device)
-            y = y.to(self.device)
-            dom = dom.to(self.device)
-
-            clip_model.eval()
-            for param in clip_model.parameters():
-                param.requires_grad = False
-                
-            tokenized_text = clip.tokenize(description).to(device)
-            text_features = clip_model.encode_text(tokenized_text)
-            
-        else:
-            x, y, dom = data
-            x = x.to(self.device)
-            y = y.to(self.device)
-            dom = dom.to(self.device)
-            
+        x, y, dom = data
+        x = x.to(self.device)
+        y = y.to(self.device)
+        dom = dom.to(self.device)
         smax = nn.Softmax(dim=1)
-        
+
         #step 0
         #logits = self.model(x, 0) 
         #loss_0 = self.loss_ce(logits, y)
@@ -123,8 +97,8 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         #logits = self.model(x, 2) 
         #loss_2 = self.loss_entropy(smax(logits))
 
-        #self.optimizer.zero_grad()
         #loss_2.backward()
+        #self.optimizer.zero_grad()
         #self.optimizer.step()
 
         #step 3
@@ -136,15 +110,6 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         #self.optimizer.step()
 
         #step 4
-        #for param in self.model.category_encoder.parameters():
-        #    param.requires_grad = True
-        #for param in self.model.category_classifier.parameters():
-        #    param.requires_grad = True
-        #for param in self.model.domain_encoder.parameters():
-        #    param.requires_grad = True
-        #for param in self.model.domain_classifier.parameters():
-        #    param.requires_grad = True
-        #self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.opt['lr'])
 
         logits = self.model(x, 4)
         loss_0 = self.loss_ce(logits[1], y)
@@ -153,12 +118,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         loss_3 = self.loss_entropy(smax(logits[4]))
         loss_4 = self.loss_MSE(logits[5], logits[0]) 
 
-        if self.comes_with_text(data):
-            loss_5 = self.loss_MSE(logits[6], text_features) 
-            loss_final = self.weights[0] * (loss_0 + self.weights[3] * loss_2) + self.weights[1] * (loss_1 + self.weights[4] * loss_3) + self.weights[2] * loss_4 + self.weights[5] * loss_5
-        else:
-            loss_final = self.weights[0] * (loss_0 + self.weights[3] * loss_2) + self.weights[1] * (loss_1 + self.weights[4] * loss_3) + self.weights[2] * loss_4
-        
+        loss_final = self.weights[0] * (loss_0 + self.weights[3] * loss_2) + self.weights[1] * (loss_1 + self.weights[4] * loss_3) + self.weights[2] * loss_4
         self.optimizer.zero_grad()
         loss_final.backward()
         self.optimizer.step()
@@ -171,16 +131,17 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         count = 0
         loss = 0
         with torch.no_grad():
-            for x, y in loader:
+            for x, y, _ in loader:
                 x = x.to(self.device)
                 y = y.to(self.device)
+                _ = _.to(self.device)
 
-            logits = self.model(x, 4)
-            loss += self.criterion(logits[1], y)
-            pred = torch.argmax(logits[1], dim=-1)
+                logits = self.model(x, 4)
+                loss += self.criterion(logits[1], y)
+                pred = torch.argmax(logits[1], dim=-1)
 
-            accuracy += (pred == y).sum().item()
-            count += x.size(0)
+                accuracy += (pred == y).sum().item()
+                count += x.size(0)
 
         mean_accuracy = accuracy / count
         mean_loss = loss / count

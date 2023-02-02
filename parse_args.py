@@ -16,6 +16,7 @@ def parse_arguments():
     parser.add_argument('--weights', help='List of floating point weights for the experiment.', nargs = 5, type = float) #TODO: only for domain_sisentangle for now
 
     parser.add_argument('--output_path', type=str, default='.', help='Where to create the output directory containing logs and weights.')
+    parser.add_argument('--output_path_hyper', type=str, default='.', help='Where to create the output directory containing logs and weights.')
     parser.add_argument('--data_path', type=str, default='data/PACS', help='Locate the PACS dataset on disk.')
 
     parser.add_argument('--cpu', action='store_true', help='If set, the experiment will run on the CPU.')
@@ -36,5 +37,7 @@ def parse_arguments():
         assert torch.cuda.is_available(), 'You need a CUDA capable device in order to run this experiment. See `--cpu` flag.'
 
     opt['output_path'] = f'{opt["output_path"]}/record/{opt["experiment"]}_{opt["target_domain"]}'
+    opt['output_path_hyper'] = f'{opt["output_path"]}'
+    
 
     return opt
