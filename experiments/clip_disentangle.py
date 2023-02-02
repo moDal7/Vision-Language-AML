@@ -175,12 +175,12 @@ class CLIPDisentangleExperiment: # See point 4. of the project
                 x = x.to(self.device)
                 y = y.to(self.device)
 
-            logits = self.model(x, 4)
-            loss += self.criterion(logits[1], y)
-            pred = torch.argmax(logits[1], dim=-1)
+                logits = self.model(x, 4)
+                loss += self.criterion(logits[1], y)
+                pred = torch.argmax(logits[1], dim=-1)
 
-            accuracy += (pred == y).sum().item()
-            count += x.size(0)
+                accuracy += (pred == y).sum().item()
+                count += x.size(0)
 
         mean_accuracy = accuracy / count
         mean_loss = loss / count
