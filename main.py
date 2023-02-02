@@ -104,6 +104,8 @@ def main(opt):
         SPLITS = 2
         experiment, train_loader, validation_loader = setup_experiment(opt)
         weights = opt["weights"]
+        total_val_accuracy = 0
+        total_val_loss = 0
         for i in range(SPLITS):
             if i == 1:
                 train_loader, validation_loader = validation_loader, train_loader
