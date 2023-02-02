@@ -150,15 +150,13 @@ def build_splits_domain_disentangle(opt):
     source_category_ratios = {category_idx: c / source_total_examples for category_idx, c in source_category_ratios.items()}
     val_split_length = source_total_examples * 0.2 # 20% of the training split used for validation
 
-    # target_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in target_examples.items()}
-    # target_total_examples = sum(target_category_ratios.values())
-    # target_category_ratios = {category_idx: c / target_total_examples for category_idx, c in target_category_ratios.items()}
-    # val_split_length_target = target_total_examples * 0.2 # 20% of the training split used for validation
+    target_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in target_examples.items()}
+    target_total_examples = sum(target_category_ratios.values())
+    target_category_ratios = {category_idx: c / target_total_examples for category_idx, c in target_category_ratios.items()}
+    val_split_length_target = target_total_examples * 0.2 # 20% of the training split used for validation
 
     train_examples = []
     val_examples = []
-    #train_examples_dom = []
-    #val_examples_dom = []
     test_examples = []
 
     for category_idx, examples_list in source_examples.items():
@@ -169,13 +167,9 @@ def build_splits_domain_disentangle(opt):
             else:
                 val_examples.append([example, category_idx, 0]) # each triplet is [path_to_img, class_label, domain]
     
-    # for category_idx, examples_list in target_examples.items():
-    #     split_idx = round(target_category_ratios[category_idx] * val_split_length_target)
-    #     for i, example in enumerate(examples_list):
-    #         if i > split_idx:
-    #             train_examples_dom.append([example, category_idx, 1]) # each triplet is [path_to_img, class_label, domain]
-    #         else:
-    #             val_examples_dom.append([example, category_idx, 1]) # each triplet is [path_to_img, class_label, domain]
+    for category_idx, examples_list in target_examples.items():
+        for i, example in enumerate(examples_list):
+            train_examples.append([example, -100, 1]) # each triplet is [path_to_img, class_label, domain]
     
     for category_idx, examples_list in target_examples.items():
         for example in examples_list:
@@ -201,12 +195,10 @@ def build_splits_domain_disentangle(opt):
 
     # Dataloaders
     train_loader = DataLoader(PACSDatasetDomDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True, worker_init_fn= seed_worker, generator=g)
-    #train_dom_loader = DataLoader(PACSDatasetDomDisentangle(train_examples_dom, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
     val_loader = DataLoader(PACSDatasetDomDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, worker_init_fn= seed_worker, generator=g) 
-    #val_dom_loader = DataLoader(PACSDatasetDomDisentangle(val_examples_dom, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
     test_loader = DataLoader(PACSDatasetDomDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, worker_init_fn= seed_worker, generator=g)
 
-    return train_loader, val_loader, test_loader #train_dom_loader,val_dom_loader
+    return train_loader, val_loader, test_loader
 
 def build_splits_clip_disentangle(opt):
     raise NotImplementedError('[TODO] Implement build_splits_clip_disentangle') #TODO
