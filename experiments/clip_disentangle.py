@@ -90,10 +90,10 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         test = True if len(test_text)==4 else False
         return test
     
-    def convert_models_to_fp32(model): 
-        for p in model.parameters(): 
-            p.data = p.data.float() 
-            p.grad.data = p.grad.data.float() 
+    #def convert_models_to_fp32(model): 
+    #    for p in model.parameters(): 
+    #        p.data = p.data.float() 
+    #        p.grad.data = p.grad.data.float() 
 
     def train_iteration(self, data):
         
@@ -228,7 +228,9 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         if self.device == "cpu":
             self.clip_optimizer.step()
         else : 
-            self.convert_models_to_fp32(self.clip_model)
+            for p in self.clip_model.parameters(): 
+                p.data = p.data.float() 
+                p.grad.data = p.grad.data.float() 
             self.clip_optimizer.step()
             clip.model.convert_weights(self.clip_model)
 
