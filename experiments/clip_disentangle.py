@@ -104,7 +104,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
             dom = dom.to(self.device)
                 
             self.clip_model.eval()
-            tokenized_text = clip.tokenize(description).to(self.device)
+            tokenized_text = clip.tokenize(description, truncate=True).to(self.device)
             text_features = self.clip_model.encode_text(tokenized_text)
             
         else:
@@ -216,7 +216,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         images, texts = data 
         
         images = images.to(self.device)
-        texts = clip.tokenize(texts).to(self.device)
+        texts = clip.tokenize(texts, truncate=True).to(self.device)
         
         logits_per_image, logits_per_text = self.clip_model(images, texts)
 
