@@ -40,6 +40,7 @@ def main(opt):
         iteration = 0
         best_accuracy = 0
         total_train_loss = 0
+        total_clip_loss = 0
         iteration_log = list()
         train_log = list()
         validation_log = list()

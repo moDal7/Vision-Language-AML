@@ -92,7 +92,7 @@ def get_descriptions() -> dict:
         for i, descr in enumerate(elem["descriptions"]):
             description = description + ", " + DESC_GUIDES[i] + ": " + descr if i != 0 else DESC_GUIDES[i] + ": " + descr
         final_descr = description
-        print(f"Final description: {final_descr}")
+
         dict_description.update({path: final_descr})
 
     return dict_description
@@ -364,7 +364,7 @@ def build_splits_clip_disentangle(opt):
     val_loader = DataLoader(PACSDatasetClipValidate(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
     test_loader = DataLoader(PACSDatasetClipValidate(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
     train_clip_loader = DataLoader(PACSDatasetClipTraining(train_clip), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
-    
+
     if opt["clip_finetune"]:
         return train_loader, val_loader, test_loader, train_clip_loader
     else:
