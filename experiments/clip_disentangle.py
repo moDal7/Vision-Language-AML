@@ -35,14 +35,14 @@ class CLIPDisentangleExperiment: # See point 4. of the project
 
         if self.opt["clip_finetune"]:
             clip_model, _ = clip.load("ViT-B/32", device=self.device, jit=False)
-            clip_model = clip_model.to(self.device)
+            self.clip_model = clip_model.to(self.device)
             for param in clip_model.parameters():
                 param.requires_grad = True
         else:
             clip_model, _ = clip.load('ViT-B/32', device='cpu') # load it first to CPU to ensure you're using fp32 precision.
-            clip_model = clip_model.to(self.device)
-            clip_model.eval()
-            for param in clip_model.parameters():
+            self.clip_model = clip_model.to(self.device)
+            self.clip_model.eval()
+            for param in self.clip_model.parameters():
                 param.requires_grad = False
         
         # Setup CLIP optimization procedure
