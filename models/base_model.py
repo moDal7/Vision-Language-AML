@@ -91,17 +91,17 @@ class DomainDisentangleModel(nn.Module):
         self.feature_reconstructor = nn.Sequential( # test reconstructor
             #nn.Conv1d(1024, 512, 2),
 
-            nn.ReLU(),
-            nn.BatchNorm1d(1024),
             nn.Linear(1024, 1024),
-
-            nn.ReLU(),
             nn.BatchNorm1d(1024),
-            nn.Linear(1024, 512),
-
             nn.ReLU(),
+
+            nn.Linear(1024, 512),
             nn.BatchNorm1d(512),
-            nn.Linear(512, 512)
+            nn.ReLU(),
+
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU()
         )
 
 
@@ -144,11 +144,7 @@ class DomainDisentangleModel(nn.Module):
             x2 = self.domain_encoder(x)
             x2_class = self.domain_classifier(x2)
             x2_adv = self.category_classifier(x2) 
-<<<<<<< HEAD
             x_rec = self.feature_reconstructor(torch.cat((x1,x2), 1)) 
-=======
-            x_rec = self.feature_reconstructor(torch.cat((x1,x2), 1)) # test reconstructor
->>>>>>> develop_clip_marco
 
             return x, x1_class, x1_adv, x2_class, x2_adv, x_rec
         
@@ -194,17 +190,17 @@ class ClipDisentangleModel(nn.Module):
         self.feature_reconstructor = nn.Sequential( # test reconstructor
             #nn.Conv1d(1024, 512, 2),
 
-            nn.ReLU(),
-            nn.BatchNorm1d(1024),
             nn.Linear(1024, 1024),
-
-            nn.ReLU(),
             nn.BatchNorm1d(1024),
-            nn.Linear(1024, 512),
-
             nn.ReLU(),
+
+            nn.Linear(1024, 512),
             nn.BatchNorm1d(512),
-            nn.Linear(512, 512)
+            nn.ReLU(),
+
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU()
         )
 
     def forward(self, x, step):

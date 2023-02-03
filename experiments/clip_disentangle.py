@@ -3,12 +3,6 @@ from torch import nn
 from models.base_model import ClipDisentangleModel
 import clip
 
-# Load CLIP model and freeze it
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
-clip_model, _ = clip.load('ViT-B/32', device='cpu') # load it first to CPU to ensure you're using fp32 precision.
-clip_model = clip_model.to(device)
-
 class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2Vec: Domain Embedding for Unsupervised Domain Adaptation', inherits from nn.Module and uses torch functions to preserve autograd
     def __init__(self):
         super().__init__()
@@ -24,6 +18,13 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
         self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2, 1])
+        # weights explanation:
+        # weights[0] = weight of category losses (category cross-entropy, category entropy)
+        # weights[1] = weight of domain losses (domain cross-entropy, domain entropy)
+        # weights[2] = weight of reconstructor loss
+        # weights[3] = alpha of category entropy
+        # weights[4] = alpha of domain entropy
+        # weights[5] = if present weight of clip
 
         # Setup model
         self.model = ClipDisentangleModel()
@@ -31,10 +32,18 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         self.model.to(self.device)
         for param in self.model.parameters():
             param.requires_grad = True
+        # Load CLIP model and freeze it
+        device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+
+        clip_model, _ = clip.load('ViT-B/32', device='cpu') # load it first to CPU to ensure you're using fp32 precision.
+        clip_model = clip_model.to(device)
+        for param in clip_model.parameters():
+            param.requires_grad = False
 
         # Setup optimization procedure 
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=opt['lr'])
-        self.loss_ce = torch.nn.CrossEntropyLoss()
+        self.loss_ce_cat = torch.nn.CrossEntropyLoss(ignore_index=-100)
+        self.loss_ce_dom = torch.nn.CrossEntropyLoss()
         self.loss_entropy = EntropyLoss()
         self.loss_MSE = torch.nn.MSELoss()
 
@@ -71,19 +80,15 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         return test
     
     def train_iteration(self, data):
-
+        
         if self.comes_with_text(data):
             x, y, dom, description = data
             x = x.to(self.device)
             y = y.to(self.device)
             dom = dom.to(self.device)
-
-            clip_model.eval()
-            for param in clip_model.parameters():
-                param.requires_grad = False
                 
-            tokenized_text = clip.tokenize(description).to(device)
-            text_features = clip_model.encode_text(tokenized_text)
+            tokenized_text = clip.tokenize(description).to(self.device)
+            text_features = self.clip_model.encode_text(tokenized_text)
             
         else:
             x, y, dom = data
@@ -147,8 +152,8 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         #self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.opt['lr'])
 
         logits = self.model(x, 4)
-        loss_0 = self.loss_ce(logits[1], y)
-        loss_1 = self.loss_ce(logits[3], dom)
+        loss_0 = self.loss_ce_cat(logits[1], y)
+        loss_1 = self.loss_ce_dom(logits[3], dom)
         loss_2 = self.loss_entropy(smax(logits[2]))
         loss_3 = self.loss_entropy(smax(logits[4]))
         loss_4 = self.loss_MSE(logits[5], logits[0]) 

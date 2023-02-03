@@ -18,6 +18,17 @@ CATEGORIES = {
     'person': 6,
 }
 
+DESC_GUIDES = [
+    'level of details',
+    'edges',
+    'color saturation',
+    'color shades',
+    'background',
+    'single instance',
+    'text',
+    'texture',
+    'perspective'
+]
 
 os.environ["CUBLAS_WORKSPACE_CONFIG"]=":4096:8"
 random.seed(0)
@@ -74,12 +85,10 @@ def get_descriptions() -> dict:
     for elem in desc_json:
         description = str()
         path = f'/content/Vision-Language-AML/data/PACS/kfold/{elem["image_name"]}'
-        for descr in elem["descriptions"]:
-            if description=="":
-                description = descr
-            else:
-                description = description + ", " + descr
+        for i, descr in enumerate(elem["descriptions"]):
+            description = description + ", " + DESC_GUIDES[i] + ": " + descr if i != 0 else DESC_GUIDES[i] + ": " + descr
         final_descr = description
+        print(f"Final description: {final_descr}")
         dict_description.update({path: final_descr})
 
     return dict_description
@@ -281,22 +290,28 @@ def build_splits_clip_disentangle(opt):
                     val_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
     
     for category_idx, examples_list in target_examples.items():
-        for example in examples_list:
-            if example in descriptions.keys():    
-                test_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
+        for i, example in enumerate(examples_list):
+            if example in descriptions.keys():
+                train_examples.append([example, -100, 1, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
             else:
-                test_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
+                train_examples.append([example, -100, 1]) # each triplet is [path_to_img, class_label, domain]
+
+
+    for category_idx, examples_list in target_examples.items():
+        for example in examples_list:
+            test_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
 
     def custom_batch_sampler(dataset):
         data_text = [index for index, _ in enumerate(dataset) if len(_)>3]
-        data_no_text = [index for index, _ in enumerate(dataset) if len(_)==3]
+        data_no_text =[index for index, _ in enumerate(dataset) if len(_)==3]
+        random.Random(0).shuffle(data_text)
+        random.Random(0).shuffle(data_no_text)
 
-        remainder_no_text = len(data_no_text)%opt["batch_size"]  
-
-        data_no_text = data_no_text[:-(remainder_no_text)]
+        data_no_text = data_no_text[:-(len(data_no_text)%opt["batch_size"])]
         data_no_text = data_no_text + data_text
 
         data_final = [data_no_text[i * opt["batch_size"]:(i + 1) * opt["batch_size"]] for i in range((len(data_no_text) + opt["batch_size"] - 1) // opt["batch_size"] )]
+        random.Random(0).shuffle(data_final)
         
         return data_final
     

@@ -27,7 +27,13 @@ class DomainDisentangleExperiment: # See point 2. of the project
             self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2])
         logging.info(f'INITIAL WEIGHTS : {self.weights}')
         logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
-
+        # weights explanation:
+        # weights[0] = weight of category losses (category cross-entropy, category entropy)
+        # weights[1] = weight of domain losses (domain cross-entropy, domain entropy)
+        # weights[2] = weight of reconstructor loss
+        # weights[3] = alpha of category entropy
+        # weights[4] = alpha of domain entropy
+        # weights[5] = if present weight of clip
 
         random.seed(0)
         numpy.random.seed(0)

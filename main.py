@@ -86,9 +86,6 @@ def main(opt):
         if opt["plot"]:
             plot_loss(train_log, validation_log, iteration_log)
 
-        if opt["plot"]:
-            plot_loss(train_log, validation_log, iteration_log)
-
     # Test
     experiment.load_checkpoint(f'{opt["output_path"]}/best_checkpoint.pth')
     test_accuracy, _ = experiment.validate(test_loader)
