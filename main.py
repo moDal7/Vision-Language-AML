@@ -20,15 +20,21 @@ def setup_experiment(opt):
 
     elif opt['experiment'] == 'clip_disentangle':
         experiment = CLIPDisentangleExperiment(opt)
-        train_loader, validation_loader, test_loader = build_splits_clip_disentangle(opt)
-
+        if opt['clip_finetune']:
+            train_loader, validation_loader, test_loader, train_clip_loader = build_splits_clip_disentangle(opt)
+            return experiment, train_loader, validation_loader, test_loader, train_clip_loader
+        else:
+            train_loader, validation_loader, test_loader = build_splits_clip_disentangle(opt)
     else:
         raise ValueError('Experiment not yet supported.')
-    
+
     return experiment, train_loader, validation_loader, test_loader
 
 def main(opt):
-    experiment, train_loader, validation_loader, test_loader = setup_experiment(opt)
+    if opt["clip_finetune"]:
+        experiment, train_loader, validation_loader, test_loader, train_clip_loader = setup_experiment(opt)
+    else:
+        experiment, train_loader, validation_loader, test_loader = setup_experiment(opt)
 
     if not opt['test']: # Skip training if '--test' flag is set
         iteration = 0
@@ -43,7 +49,30 @@ def main(opt):
             iteration, best_accuracy, total_train_loss = experiment.load_checkpoint(f'{opt["output_path"]}/last_checkpoint.pth')
         else:
             logging.info(opt)
-        
+
+        if opt["clip_finetune"]:   
+
+            with tqdm(total= opt['max_iterations'] ) as pbar:
+
+                # Train loop CLIP
+                while iteration < opt['max_iterations']:
+
+                    for data in train_clip_loader:
+
+                        if (opt['debug']):
+                            total_clip_loss += experiment.train_clip_iteration(data, debug = True, i = iteration)
+                        else :
+                            total_clip_loss += experiment.train_clip_iteration(data)
+
+                        if iteration % opt['print_every'] == 0:
+                            logging.info(f'[TRAIN CLIP - {iteration}] Loss CLIP: {total_clip_loss / (iteration + 1)}')               
+
+                        iteration += 1
+                        if iteration > opt['max_iterations']:
+                            break
+
+                        pbar.update(1)     
+
         with tqdm(total= opt['max_iterations'] ) as pbar:
 
             # Train loop

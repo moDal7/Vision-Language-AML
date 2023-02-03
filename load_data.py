@@ -7,6 +7,7 @@ from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as T
 import json
 import torch
+import clip
 
 CATEGORIES = {
     'dog': 0,
@@ -29,6 +30,9 @@ DESC_GUIDES = [
     'texture',
     'perspective'
 ]
+
+device = "cuda:0" if torch.cuda.is_available() else "cpu" # If using GPU then use mixed precision training.
+_, preprocess = clip.load("ViT-B/32",device=device,jit=False) #Must set jit=False for training
 
 os.environ["CUBLAS_WORKSPACE_CONFIG"]=":4096:8"
 random.seed(0)
@@ -257,7 +261,19 @@ class PACSDatasetClipValidate(Dataset):
         img_path, y = self.examples[index]
         x = self.transform(Image.open(img_path).convert('RGB'))
         return x, y
+    
+class PACSDatasetClipTraining(Dataset):
+    def __init__(self, examples):
+        self.examples = examples
 
+    def __len__(self):
+        return len(self.examples)
+    
+    def __getitem__(self, index):
+        img_path, descr = self.examples[index]
+        x = preprocess(Image.open(img_path))
+        return x, descr
+        
 def build_splits_clip_disentangle(opt):
     source_domain = 'art_painting'
     target_domain = opt['target_domain']
@@ -274,6 +290,7 @@ def build_splits_clip_disentangle(opt):
     train_examples = []
     val_examples = []
     test_examples = []
+    train_clip = []
 
     for category_idx, examples_list in source_examples.items():
         split_idx = round(source_category_ratios[category_idx] * val_split_length)
@@ -296,10 +313,19 @@ def build_splits_clip_disentangle(opt):
             else:
                 train_examples.append([example, -100, 1]) # each triplet is [path_to_img, class_label, domain]
 
-
     for category_idx, examples_list in target_examples.items():
         for example in examples_list:
             test_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
+
+    for category_idx, examples_list in source_examples.items():
+        for example in examples_list:
+            if example in descriptions.keys():
+                train_clip.append([example, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+    
+    for category_idx, examples_list in target_examples.items():
+        for example in examples_list:
+            if example in descriptions.keys():
+                train_clip.append([example, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
 
     def custom_batch_sampler(dataset):
         data_text = [index for index, _ in enumerate(dataset) if len(_)>3]
@@ -337,8 +363,12 @@ def build_splits_clip_disentangle(opt):
     train_loader = DataLoader(PACSDatasetClipDisentangle(train_examples, train_transform), num_workers=opt['num_workers'], batch_sampler=custom_batch_sampler(PACSDatasetClipDisentangle(train_examples, train_transform)))
     val_loader = DataLoader(PACSDatasetClipValidate(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
     test_loader = DataLoader(PACSDatasetClipValidate(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
-
-    return train_loader, val_loader, test_loader 
+    train_clip_loader = DataLoader(PACSDatasetClipTraining(train_clip), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
+    
+    if opt["clip_finetune"]:
+        return train_loader, val_loader, test_loader, train_clip_loader
+    else:
+        return train_loader, val_loader, test_loader
 
 def build_splits_validation(opt):
 

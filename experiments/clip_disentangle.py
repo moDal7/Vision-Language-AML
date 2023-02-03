@@ -32,13 +32,24 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         self.model.to(self.device)
         for param in self.model.parameters():
             param.requires_grad = True
-        # Load CLIP model and freeze it
-        device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-        clip_model, _ = clip.load('ViT-B/32', device='cpu') # load it first to CPU to ensure you're using fp32 precision.
-        clip_model = clip_model.to(device)
-        for param in clip_model.parameters():
-            param.requires_grad = False
+        if self.opt["clip_finetune"]:
+            clip_model, _ = clip.load("ViT-B/32", device=self.device, jit=False)
+            clip_model = clip_model.to(self.device)
+            for param in clip_model.parameters():
+                param.requires_grad = True
+        else:
+            clip_model, _ = clip.load('ViT-B/32', device='cpu') # load it first to CPU to ensure you're using fp32 precision.
+            clip_model = clip_model.to(self.device)
+            clip_model.eval()
+            for param in clip_model.parameters():
+                param.requires_grad = False
+        
+        # Setup CLIP optimization procedure
+
+        self.loss_img = nn.CrossEntropyLoss()
+        self.loss_txt = nn.CrossEntropyLoss()
+        self.clip_optimizer = torch.optim.Adam(self.clip_model.parameters(), lr=5e-5,betas=(0.9,0.98),eps=1e-6,weight_decay=0.2) #Params used from paper, the lr is smaller, more safe for fine tuning to new dataset
 
         # Setup optimization procedure 
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=opt['lr'])
@@ -79,6 +90,11 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         test = True if len(test_text)==4 else False
         return test
     
+    def convert_models_to_fp32(model): 
+        for p in model.parameters(): 
+            p.data = p.data.float() 
+            p.grad.data = p.grad.data.float() 
+
     def train_iteration(self, data):
         
         if self.comes_with_text(data):
@@ -87,6 +103,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
             y = y.to(self.device)
             dom = dom.to(self.device)
                 
+            self.clip_model.eval()
             tokenized_text = clip.tokenize(description).to(self.device)
             text_features = self.clip_model.encode_text(tokenized_text)
             
@@ -191,3 +208,28 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         mean_loss = loss / count
         self.model.train()
         return mean_accuracy, mean_loss
+
+    def train_clip_iteration(self, data):
+
+        self.clip_optimizer.zero_grad()
+
+        images, texts = data 
+        
+        images = images.to(self.device)
+        texts = texts.to(self.device)
+        
+        logits_per_image, logits_per_text = self.clip_model(images, texts)
+
+        ground_truth = torch.arange(len(images), dtype=torch.long, device=self.device)
+
+        total_loss = (self.loss_img(logits_per_image, ground_truth) + self.loss_txt(logits_per_text, ground_truth))/2
+        total_loss.backward()
+
+        if self.device == "cpu":
+            self.clip_optimizer.step()
+        else : 
+            self.convert_models_to_fp32(self.clip_model)
+            self.clip_optimizer.step()
+            clip.model.convert_weights(self.clip_model)
+
+        return total_loss
