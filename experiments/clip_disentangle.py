@@ -216,7 +216,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         images, texts = data 
         
         images = images.to(self.device)
-        texts = texts.to(self.device)
+        texts = clip.tokenize(texts).to(self.device)
         
         logits_per_image, logits_per_text = self.clip_model(images, texts)
 
