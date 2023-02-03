@@ -206,8 +206,10 @@ def build_splits_clip_disentangle(opt):
 def build_splits_validation(opt):
 
     source_domain = 'art_painting'
+    target_domain = opt['target_domain']
 
     source_examples = read_lines(opt['data_path'], source_domain)
+    target_examples = read_lines(opt['data_path'], target_domain)
 
     source_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in source_examples.items()}
     source_total_examples = sum(source_category_ratios.values())
@@ -216,6 +218,8 @@ def build_splits_validation(opt):
 
     train_examples = []
     val_examples = []
+    train_examples2 = []
+    val_examples2 = []
 
     for category_idx, examples_list in source_examples.items():
         split_idx = round(source_category_ratios[category_idx] * val_split_length)
@@ -225,6 +229,22 @@ def build_splits_validation(opt):
             else:
                 val_examples.append([example, category_idx, 0]) # each triplet is [path_to_img, class_label, domain]
     
+    for category_idx, examples_list in target_examples.items():
+        for i, example in enumerate(examples_list):
+            train_examples.append([example, -100, 1]) # each triplet is [path_to_img, class_label, domain]
+
+    for category_idx, examples_list in source_examples.items():
+        split_idx = round(source_category_ratios[category_idx] * val_split_length)
+        for i, example in enumerate(examples_list):
+            if i < split_idx:
+                train_examples2.append([example, category_idx, 0]) # each triplet is [path_to_img, class_label, domain]
+            else:
+                val_examples2.append([example, category_idx, 0]) # each triplet is [path_to_img, class_label, domain]
+    
+    for category_idx, examples_list in target_examples.items():
+        for i, example in enumerate(examples_list):
+            train_examples2.append([example, -100, 1]) # each triplet is [path_to_img, class_label, domain]
+
     # Transforms
     normalize = T.Normalize([0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # ResNet18 - ImageNet Normalization
 
@@ -246,5 +266,7 @@ def build_splits_validation(opt):
     # Dataloaders
     train_loader = DataLoader(PACSDatasetDomDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
     val_loader = DataLoader(PACSDatasetDomDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False) 
+    train_loader2 = DataLoader(PACSDatasetDomDisentangle(train_examples2, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
+    val_loader2 = DataLoader(PACSDatasetDomDisentangle(val_examples2, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False) 
 
-    return train_loader, val_loader #train_dom_loader,val_dom_loader
+    return ([train_loader, val_loader], [train_loader2, val_loader2])

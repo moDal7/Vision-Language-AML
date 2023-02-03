@@ -20,8 +20,8 @@ def setup_experiment(opt):
 
     elif opt['experiment'] == 'domain_disentangle_tuning':
         experiment = DomainDisentangleExperiment(opt)
-        train_loader, validation_loader = build_splits_validation(opt)
-        return experiment, train_loader, validation_loader
+        loaders = build_splits_validation(opt)
+        return experiment, loaders
 
     elif opt['experiment'] == 'clip_disentangle':
         experiment = CLIPDisentangleExperiment(opt)
@@ -102,13 +102,12 @@ def main(opt):
         print(f'[TEST] Accuracy: {(100 * test_accuracy):.2f}')
     else: #domain disentanglement weights tuning
         SPLITS = 2
-        experiment, train_loader, validation_loader = setup_experiment(opt)
+        experiment, loaders = setup_experiment(opt)
         weights = opt["weights"]
         total_val_accuracy = 0
         total_val_loss = 0
         for i in range(SPLITS):
-            if i == 1:
-                train_loader, validation_loader = validation_loader, train_loader
+            train_loader, validation_loader = loaders[i]
             iteration = 0
             best_accuracy = 0
             total_train_loss = 0
