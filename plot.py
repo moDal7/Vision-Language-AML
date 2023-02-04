@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 def plot_loss(train_loss: list, val_loss: list, iteration_log: list) -> None:
     plt.plot(iteration_log, train_loss, label="Training")
