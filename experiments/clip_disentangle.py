@@ -17,7 +17,11 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         # Utils
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
-        self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2, 1])
+        
+        if (opt['weights_clip']): #load weights from command line argument
+            self.weights = torch.Tensor(opt['weights_clip'])
+        else:
+            self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2, 1])
         # weights explanation:
         # weights[0] = weight of category losses (category cross-entropy, category entropy)
         # weights[1] = weight of domain losses (domain cross-entropy, domain entropy)
