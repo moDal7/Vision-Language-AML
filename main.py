@@ -52,7 +52,7 @@ def main(opt):
             logging.info(opt)
 
         if opt["clip_finetune"]:   
-
+            print("CLIP training started.")
             with tqdm(total= opt['max_iterations'] ) as pbar:
 
                 # Train loop CLIP
@@ -73,8 +73,9 @@ def main(opt):
                             break
 
                         pbar.update(1)     
-
+            print("CLIP training finished.")
         with tqdm(total= opt['max_iterations'] ) as pbar:
+            print("Model training started.")
             iteration = 0
             # Train loop
             while iteration < opt['max_iterations']:
