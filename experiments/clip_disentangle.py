@@ -229,10 +229,10 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         if self.device == "cpu":
             self.clip_optimizer.step()
         else : 
-            for p in self.clip_model.parameters(): 
-                p.data = p.data.float() 
-                p.grad.data = p.grad.data.float() 
+            #for p in self.clip_model.parameters(): 
+            #    p.data = p.data.float() 
+            #    p.grad.data = p.grad.data.float() 
             self.clip_optimizer.step()
-            clip.model.convert_weights(self.clip_model)
+            #clip.model.convert_weights(self.clip_model)
 
         return total_loss
