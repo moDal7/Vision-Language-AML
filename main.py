@@ -75,7 +75,7 @@ def main(opt):
                         pbar.update(1)     
 
         with tqdm(total= opt['max_iterations'] ) as pbar:
-
+            iteration = 0
             # Train loop
             while iteration < opt['max_iterations']:
                 for data in train_loader:
