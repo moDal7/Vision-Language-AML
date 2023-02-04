@@ -14,6 +14,7 @@ def parse_arguments():
     parser.add_argument('--print_every', type=int, default=50)
     parser.add_argument('--validate_every', type=int, default=100)
     parser.add_argument('--weights', help='List of floating point weights for the experiment.', nargs = 5, type = float) #TODO: only for domain_sisentangle for now
+    parser.add_argument('--weights_clip', help='List of floating point weights for the experiment.', nargs = 6, type = float) #TODO: clip requires 6 weights
 
     parser.add_argument('--output_path', type=str, default='.', help='Where to create the output directory containing logs and weights.')
     parser.add_argument('--output_path_hyper', type=str, default='.', help='Where to create the output directory containing logs and weights.')
