@@ -115,7 +115,7 @@ def main(opt):
                     pbar.update(1)
         
         if opt["plot"]:
-            plot_loss(train_log, validation_log, iteration_log)
+            plot_loss(train_log.cpu(), validation_log.cpu(), iteration_log.cpu())
 
     # Test
     experiment.load_checkpoint(f'{opt["output_path"]}/best_checkpoint.pth')

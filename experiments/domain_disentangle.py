@@ -23,7 +23,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         if (opt['weights']): #load weights from command line argument
             self.weights = torch.Tensor(opt['weights'])
         else:
-            self.weights = torch.tensor([20, 1, 0.05, 0.1, 10])
+            self.weights = torch.tensor([15, 1, 0.02, 0.05, 5])
         logging.info(f'INITIAL WEIGHTS : {self.weights}')
         logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
         # weights explanation:
