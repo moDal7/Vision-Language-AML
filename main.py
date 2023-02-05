@@ -134,7 +134,7 @@ def main(opt):
                         if iteration > opt['max_iterations']:
                             break
 
-                    pbar.update(1)
+                        pbar.update(1)
             
             if opt["plot"]:
                 plot_loss(train_log, iteration_log)

@@ -264,9 +264,9 @@ def build_splits_validation(opt):
     ])
 
     # Dataloaders
-    train_loader = DataLoader(PACSDatasetDomDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
-    val_loader = DataLoader(PACSDatasetDomDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False) 
-    train_loader2 = DataLoader(PACSDatasetDomDisentangle(train_examples2, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
-    val_loader2 = DataLoader(PACSDatasetDomDisentangle(val_examples2, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False) 
+    train_loader = DataLoader(PACSDatasetDomDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, drop_last=True)
+    val_loader = DataLoader(PACSDatasetDomDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, drop_last=True) 
+    train_loader2 = DataLoader(PACSDatasetDomDisentangle(train_examples2, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, drop_last=True)
+    val_loader2 = DataLoader(PACSDatasetDomDisentangle(val_examples2, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, drop_last=True) 
 
     return ([train_loader, val_loader], [train_loader2, val_loader2])
