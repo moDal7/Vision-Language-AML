@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 from models.base_model import DomainDisentangleModel
+import torch.functional as funct
 import logging
 import random
 import numpy
@@ -10,9 +11,10 @@ class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2V
         super().__init__()
 
     def forward(self, x):
-        softmax_batch = -torch.sum(torch.sum(torch.log(x), 1)/x.shape[1])
-        return softmax_batch
-
+        entropy = funct.softmax(x, dim=1) * funct.log_softmax(x, dim=1)
+        soft_sum = 1.0 * entropy.sum()
+        return soft_sum / x.size(0)
+        
 class DomainDisentangleExperiment: # See point 2. of the project
     
     def __init__(self, opt):
@@ -23,7 +25,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         if (opt['weights']): #load weights from command line argument
             self.weights = torch.Tensor(opt['weights'])
         else:
-            self.weights = torch.tensor([15, 1, 0.02, 0.05, 5])
+            self.weights = torch.tensor([4, 1, 0.01, 0.01, 2])
         logging.info(f'INITIAL WEIGHTS : {self.weights}')
         logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
         # weights explanation:
@@ -88,7 +90,6 @@ class DomainDisentangleExperiment: # See point 2. of the project
         x = x.to(self.device)
         y = y.to(self.device)
         dom = dom.to(self.device)
-        smax = nn.Softmax(dim=1)
 
         if ( debug and i%500 == 0 ):
             logging.info(f'[TRAIN - iteration {i}] ')
@@ -168,8 +169,8 @@ class DomainDisentangleExperiment: # See point 2. of the project
         logits = self.model(x, 4)
         loss_0 = self.loss_ce_cat(logits[1], y)
         loss_1 = self.loss_ce_dom(logits[3], dom)
-        loss_2 = self.loss_entropy(smax(logits[2]))
-        loss_3 = self.loss_entropy(smax(logits[4]))
+        loss_2 = self.loss_entropy(logits[2])
+        loss_3 = self.loss_entropy(logits[4])
         loss_4 = self.loss_MSE(logits[5], logits[0]) 
 
         loss_final = self.weights[0] * (loss_0 + self.weights[3] * loss_2) + self.weights[1] * (loss_1 + self.weights[4] * loss_3) + self.weights[2] * loss_4
