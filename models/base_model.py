@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 from torchvision.models import resnet18
 from torchvision.models import ResNet18_Weights
-import clip
 
 class FeatureExtractor(nn.Module):
     def __init__(self):

@@ -34,10 +34,11 @@ class DomainDisentangleExperiment: # See point 2. of the project
         # weights[4] = alpha of domain entropy
         # weights[5] = if present weight of clip
 
-        random.seed(0)
-        numpy.random.seed(0)
-        torch.manual_seed(0)
-        torch.use_deterministic_algorithms(True)
+        if opt["determ"]:
+            random.seed(0)
+            numpy.random.seed(0)
+            torch.manual_seed(0)
+            torch.use_deterministic_algorithms(True)
 
         # Setup model
         self.model = DomainDisentangleModel()

@@ -34,13 +34,6 @@ DESC_GUIDES = [
 device = "cuda:0" if torch.cuda.is_available() else "cpu" # If using GPU then use mixed precision training.
 _, preprocess = clip.load("ViT-B/32",device=device,jit=False) #Must set jit=False for training
 
-os.environ["CUBLAS_WORKSPACE_CONFIG"]=":4096:8"
-random.seed(0)
-numpy.random.seed(0)
-torch.manual_seed(0)
-torch.use_deterministic_algorithms(True)
-g = torch.Generator()
-g.manual_seed(0)
 
 def seed_worker(worker_id):
     worker_seed = torch.initial_seed() % 2**32
@@ -169,6 +162,15 @@ class PACSDatasetDomDisentangle(Dataset):
 
 def build_splits_domain_disentangle(opt):
 
+    if opt["determ"]:
+        os.environ["CUBLAS_WORKSPACE_CONFIG"]=":4096:8"
+        random.seed(0)
+        numpy.random.seed(0)
+        torch.manual_seed(0)
+        torch.use_deterministic_algorithms(True)
+        g = torch.Generator()
+        g.manual_seed(0)
+
     source_domain = 'art_painting'
     target_domain = opt['target_domain']
 
@@ -222,11 +224,17 @@ def build_splits_domain_disentangle(opt):
         T.ToTensor(),
         normalize
     ])
-
-    # Dataloaders
-    train_loader = DataLoader(PACSDatasetDomDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True, worker_init_fn= seed_worker, generator=g)
-    val_loader = DataLoader(PACSDatasetDomDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, worker_init_fn= seed_worker, generator=g) 
-    test_loader = DataLoader(PACSDatasetDomDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, worker_init_fn= seed_worker, generator=g)
+    
+    if opt["determ"]:
+        
+        # Dataloaders
+        train_loader = DataLoader(PACSDatasetDomDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True, worker_init_fn= seed_worker, generator=g)
+        val_loader = DataLoader(PACSDatasetDomDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, worker_init_fn= seed_worker, generator=g) 
+        test_loader = DataLoader(PACSDatasetDomDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False, worker_init_fn= seed_worker, generator=g)
+    else:
+        train_loader = DataLoader(PACSDatasetDomDisentangle(train_examples, train_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
+        val_loader = DataLoader(PACSDatasetDomDisentangle(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False) 
+        test_loader = DataLoader(PACSDatasetDomDisentangle(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
 
     return train_loader, val_loader, test_loader
 
@@ -275,6 +283,16 @@ class PACSDatasetClipTraining(Dataset):
         return x, descr
         
 def build_splits_clip_disentangle(opt):
+
+    if opt["determ"]:
+        os.environ["CUBLAS_WORKSPACE_CONFIG"]=":4096:8"
+        random.seed(0)
+        numpy.random.seed(0)
+        torch.manual_seed(0)
+        torch.use_deterministic_algorithms(True)
+        g = torch.Generator()
+        g.manual_seed(0)
+
     source_domain = 'art_painting'
     target_domain = opt['target_domain']
     descriptions = get_descriptions()
