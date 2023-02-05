@@ -44,6 +44,7 @@ def main(opt):
         iteration_log = list()
         train_log = list()
         validation_log = list()
+        validation_accuracy_log = list()
 
         # Restore last checkpoint
         if os.path.exists(f'{opt["output_path"]}/last_checkpoint.pth'):
@@ -74,8 +75,9 @@ def main(opt):
 
                         pbar.update(1)     
             print("CLIP training finished.")
+                    print("Model training started.")
+
         with tqdm(total= opt['max_iterations'] ) as pbar:
-            print("Model training started.")
             iteration = 0
             # Train loop
             while iteration < opt['max_iterations']:
@@ -101,7 +103,8 @@ def main(opt):
                         
                         iteration_log.append(iteration)
                         train_log.append(train_loss)
-                        validation_log.append(val_loss)                        
+                        validation_log.append(val_loss)    
+                        validation_accuracy_log.append(val_accuracy)                       
                         
                         if val_accuracy > best_accuracy:
                             best_accuracy = val_accuracy
@@ -115,7 +118,7 @@ def main(opt):
                     pbar.update(1)
         
         if opt["plot"]:
-            plot_loss(train_log.cpu(), validation_log.cpu(), iteration_log.cpu())
+            plot_loss(train_log, validation_log, validation_accuracy_log, iteration_log, opt["experiment"], opt["target_domain"])
 
     # Test
     experiment.load_checkpoint(f'{opt["output_path"]}/best_checkpoint.pth')
