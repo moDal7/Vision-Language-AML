@@ -40,9 +40,7 @@ def seed_worker(worker_id):
     numpy.random.seed(worker_seed)
     random.seed(worker_seed)
 
-
 LABEL_FILE_PATH = "/content/Vision-Language-AML/data/all_image_descriptions.json"
-
 
 class PACSDatasetBaseline(Dataset):
     def __init__(self, examples, transform):
