@@ -75,8 +75,8 @@ def main(opt):
 
                         pbar.update(1)     
             print("CLIP training finished.")
-                    print("Model training started.")
-
+            
+        print("Model training started.")
         with tqdm(total= opt['max_iterations'] ) as pbar:
             iteration = 0
             # Train loop

@@ -12,8 +12,8 @@ class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2V
 
     def forward(self, x):
         entropy = funct.softmax(x, dim=1) * funct.log_softmax(x, dim=1)
-        soft_sum = 1.0 * entropy.sum()
-        return soft_sum / x.size(0)
+        soft_sum = -1.0 * (entropy.sum()/x.size(0))
+        return soft_sum 
         
 class DomainDisentangleExperiment: # See point 2. of the project
     
