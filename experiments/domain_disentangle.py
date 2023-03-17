@@ -1,7 +1,7 @@
-import time
-import torch
 from torch import nn
 from models.base_model import DomainDisentangleModel
+from time import gmtime, strftime
+import torch
 import torch.nn.functional as funct
 import logging
 import random
@@ -24,12 +24,13 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
 
+        self.time = strftime('%Y-%m-%d %H:%M:%S', gmtime())
         # Initialize wandb
         wandb.init(
             entity="vision-and-language2023", 
             project="vision-and-language",
             tags=["domain_disentangle", opt['experiment'], opt['target_domain']],
-            name=f"{opt['experiment']}_{opt['target_domain']}_{time.now().strftime('%Y-%m-%d_%H-%M-%S')}"
+            name=f"{opt['experiment']}_{opt['target_domain']}_{self.time}"
         )
 
         # initialize wandb config
