@@ -1,10 +1,11 @@
 import torch
 from torch import nn
 from models.base_model import DomainDisentangleModel
-import torch.functional as funct
+import torch.nn.functional as funct
 import logging
 import random
 import numpy
+import wandb
 
 class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2Vec: Domain Embedding for Unsupervised Domain Adaptation', inherits from nn.Module and uses torch functions to preserve autograd
     def __init__(self):
@@ -29,11 +30,11 @@ class DomainDisentangleExperiment: # See point 2. of the project
         logging.info(f'INITIAL WEIGHTS : {self.weights}')
         logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
         # weights explanation:
-        # weights[0] = weight of category losses (category cross-entropy, category entropy)
-        # weights[1] = weight of domain losses (domain cross-entropy, domain entropy)
-        # weights[2] = weight of reconstructor loss
-        # weights[3] = alpha of category entropy
-        # weights[4] = alpha of domain entropy
+        # weights[0] = weight of category classifier
+        # weights[1] = weight of domain classifier 
+        # weights[2] = alpha of category entropy
+        # weights[3] = alpha of domain entropy
+        # weights[4] = weight of reconstructor loss
         # weights[5] = if present weight of clip
 
         if opt["determ"]:
@@ -48,6 +49,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.model.to(self.device)
         for param in self.model.parameters():
             param.requires_grad = True
+        wandb.watch(self.model, log="all")
 
         # Setup optimization procedure 
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=opt['lr'])
@@ -84,8 +86,9 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
         return iteration, best_accuracy, total_train_loss
 
-    def train_iteration(self, data, debug = False, i = False):
-
+    def train_iteration(self, data, config, debug = False, i = False):
+        
+        config.weights = self.weights
         x, y, dom = data
         x = x.to(self.device)
         y = y.to(self.device)
@@ -95,13 +98,13 @@ class DomainDisentangleExperiment: # See point 2. of the project
             logging.info(f'[TRAIN - iteration {i}] ')
 
         logits = self.model(x, 4)
-        loss_0 = self.loss_ce_cat(logits[1], y)
-        loss_1 = self.loss_ce_dom(logits[3], dom)
-        loss_2 = self.loss_entropy(logits[2])
-        loss_3 = self.loss_entropy(logits[4])
-        loss_4 = self.loss_MSE(logits[5], logits[0]) 
+        loss_0 = self.weights[0] * self.loss_ce_cat(logits[1], y)
+        loss_1 = self.weights[1] * self.loss_ce_dom(logits[3], dom)
+        loss_2 = self.weights[2] * self.loss_entropy(logits[2])
+        loss_3 = self.weights[3] * self.loss_entropy(logits[4])
+        loss_4 = self.weights[4] * self.loss_MSE(logits[5], logits[0]) 
 
-        loss_final = self.weights[0] * (loss_0 + self.weights[3] * loss_2) + self.weights[1] * (loss_1 + self.weights[4] * loss_3) + self.weights[2] * loss_4
+        loss_final = loss_0 + loss_1 + loss_2 + loss_3 + loss_4
         self.optimizer.zero_grad()
         loss_final.backward()
         self.optimizer.step()
@@ -147,5 +150,6 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
         mean_accuracy = accuracy / count
         mean_loss = loss / count
+        wandb.log({"val_accuracy": mean_accuracy, "val_loss": mean_loss})
         self.model.train()
         return mean_accuracy, mean_loss

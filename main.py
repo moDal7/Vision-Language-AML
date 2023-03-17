@@ -1,5 +1,6 @@
 import os
 import logging
+import wandb
 from tqdm import tqdm
 from parse_args import parse_arguments
 from load_data import build_splits_baseline, build_splits_domain_disentangle, build_splits_clip_disentangle
@@ -31,12 +32,15 @@ def setup_experiment(opt):
     return experiment, train_loader, validation_loader, test_loader
 
 def main(opt):
+
+    # Setup experiment and data loaders, clip data loader if clip finetune is set
     if opt["clip_finetune"]:
         experiment, train_loader, validation_loader, test_loader, train_clip_loader = setup_experiment(opt)
     else:
         experiment, train_loader, validation_loader, test_loader = setup_experiment(opt)
-
-    if not opt['test']: # Skip training if '--test' flag is set
+    
+    # Skip training if '--test' flag is set
+    if not opt['test']: 
         iteration = 0
         best_accuracy = 0
         total_train_loss = 0
@@ -46,12 +50,27 @@ def main(opt):
         validation_log = list()
         validation_accuracy_log = list()
 
+        # Initialize wandb
+        wandb.init(entity="wandb", project="vision-and-language")
+
+        # initialize wandb config
+        config = wandb.config
+        config.backbone = "Resnet18"
+        config.experiment = opt['experiment']
+        config.target_domain = opt['target_domain']
+        config.max_iterations = opt['max_iterations']
+        config.batch_size = opt['batch_size']
+        config.learning_rate = opt['learning_rate']
+        config.validate_every = opt['validate_every']
+        config.clip_finetune = opt['clip_finetune']
+
         # Restore last checkpoint
         if os.path.exists(f'{opt["output_path"]}/last_checkpoint.pth'):
             iteration, best_accuracy, total_train_loss = experiment.load_checkpoint(f'{opt["output_path"]}/last_checkpoint.pth')
         else:
             logging.info(opt)
 
+        # finetune CLIP if needed
         if opt["clip_finetune"]:   
             print("CLIP training started.")
             with tqdm(total= opt['max_iterations'] ) as pbar:
@@ -75,7 +94,8 @@ def main(opt):
 
                         pbar.update(1)     
             print("CLIP training finished.")
-            
+        
+        # Train model
         print("Model training started.")
         with tqdm(total= opt['max_iterations'] ) as pbar:
             iteration = 0
@@ -86,7 +106,7 @@ def main(opt):
                     if (opt['debug']):
                         total_train_loss += experiment.train_iteration(data, debug = True, i = iteration)
                     else :
-                        total_train_loss += experiment.train_iteration(data)
+                        total_train_loss += experiment.train_iteration(data, config)
 
                     if iteration % opt['print_every'] == 0:
                         logging.info(f'[TRAIN - {iteration}] Loss: {total_train_loss / (iteration + 1)}')
@@ -109,14 +129,16 @@ def main(opt):
                         if val_accuracy > best_accuracy:
                             best_accuracy = val_accuracy
                             experiment.save_checkpoint(f'{opt["output_path"]}/best_checkpoint.pth', iteration, best_accuracy, total_train_loss)
+
                         experiment.save_checkpoint(f'{opt["output_path"]}/last_checkpoint.pth', iteration, best_accuracy, total_train_loss)
+                        wandb.save('model.h5')
 
                     iteration += 1
                     if iteration > opt['max_iterations']:
                         break
 
                     pbar.update(1)
-        
+        # Plot loss
         if opt["plot"]:
             plot_loss(train_log, validation_log, validation_accuracy_log, iteration_log, opt["experiment"], opt["target_domain"])
 
