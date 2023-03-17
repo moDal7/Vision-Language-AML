@@ -1,3 +1,4 @@
+import time
 import torch
 from torch import nn
 from models.base_model import DomainDisentangleModel
@@ -24,7 +25,12 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
 
         # Initialize wandb
-        wandb.init(entity="marcodalmo", project="vision-and-language")
+        wandb.init(
+            entity="vision-and-language2023", 
+            project="vision-and-language",
+            tags=["domain_disentangle", opt['experiment'], opt['target_domain']],
+            name=f"{opt['experiment']}_{opt['target_domain']}_{time.now().strftime('%Y-%m-%d_%H-%M-%S')}"
+        )
 
         # initialize wandb config
         config = wandb.config
@@ -33,14 +39,17 @@ class DomainDisentangleExperiment: # See point 2. of the project
         config.target_domain = opt['target_domain']
         config.max_iterations = opt['max_iterations']
         config.batch_size = opt['batch_size']
-        config.learning_rate = opt['learning_rate']
+        config.learning_rate = opt['lr']
         config.validate_every = opt['validate_every']
         config.clip_finetune = opt['clip_finetune']
 
         if (opt['weights']): #load weights from command line argument
             self.weights = torch.Tensor(opt['weights'])
+            config.weights = self.weights
+
         else:
             self.weights = torch.tensor([4, 1, 0.01, 0.01, 2])
+            config.weights = self.weights
         logging.info(f'INITIAL WEIGHTS : {self.weights}')
         logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
         # weights explanation:
@@ -101,9 +110,8 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
         return iteration, best_accuracy, total_train_loss
 
-    def train_iteration(self, data, config, debug = False, i = False):
+    def train_iteration(self, data, debug = False, i = False):
         
-        config.weights = self.weights
         x, y, dom = data
         x = x.to(self.device)
         y = y.to(self.device)
