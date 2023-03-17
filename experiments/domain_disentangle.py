@@ -24,7 +24,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
 
         # Initialize wandb
-        wandb.init(entity="wandb", project="vision-and-language")
+        wandb.init(entity="marcodalmo", project="vision-and-language")
 
         # initialize wandb config
         config = wandb.config
@@ -88,7 +88,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
         torch.save(checkpoint, path)
         wandb.save('model.pt')
-        
+
     def load_checkpoint(self, path):
         checkpoint = torch.load(path)
 
@@ -165,6 +165,5 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
         mean_accuracy = accuracy / count
         mean_loss = loss / count
-        wandb.log({"val_accuracy": mean_accuracy, "val_loss": mean_loss})
         self.model.train()
         return mean_accuracy, mean_loss
