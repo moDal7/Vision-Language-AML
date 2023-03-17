@@ -50,20 +50,6 @@ def main(opt):
         validation_log = list()
         validation_accuracy_log = list()
 
-        # Initialize wandb
-        wandb.init(entity="wandb", project="vision-and-language")
-
-        # initialize wandb config
-        config = wandb.config
-        config.backbone = "Resnet18"
-        config.experiment = opt['experiment']
-        config.target_domain = opt['target_domain']
-        config.max_iterations = opt['max_iterations']
-        config.batch_size = opt['batch_size']
-        config.learning_rate = opt['learning_rate']
-        config.validate_every = opt['validate_every']
-        config.clip_finetune = opt['clip_finetune']
-
         # Restore last checkpoint
         if os.path.exists(f'{opt["output_path"]}/last_checkpoint.pth'):
             iteration, best_accuracy, total_train_loss = experiment.load_checkpoint(f'{opt["output_path"]}/last_checkpoint.pth')
@@ -106,7 +92,7 @@ def main(opt):
                     if (opt['debug']):
                         total_train_loss += experiment.train_iteration(data, debug = True, i = iteration)
                     else :
-                        total_train_loss += experiment.train_iteration(data, config)
+                        total_train_loss += experiment.train_iteration(data)
 
                     if iteration % opt['print_every'] == 0:
                         logging.info(f'[TRAIN - {iteration}] Loss: {total_train_loss / (iteration + 1)}')
@@ -114,11 +100,13 @@ def main(opt):
                     if iteration % opt['validate_every'] == 0:
                         # Run validation
                         train_loss = experiment.train_iteration(data)
+                        wandb.log({"train_loss": train_loss})
 
                         if (opt['debug']):
                             val_accuracy, val_loss = experiment.validate(validation_loader, debug = True, i = iteration)
                         else :
                             val_accuracy, val_loss = experiment.validate(validation_loader)
+                        wandb.log({"val_loss": val_loss, "val_accuracy": val_accuracy})
                         logging.info(f'[VAL - {iteration}] Loss: {val_loss} | Accuracy: {(100 * val_accuracy):.2f}')
                         
                         iteration_log.append(iteration)

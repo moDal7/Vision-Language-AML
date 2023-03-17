@@ -23,6 +23,20 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
 
+        # Initialize wandb
+        wandb.init(entity="wandb", project="vision-and-language")
+
+        # initialize wandb config
+        config = wandb.config
+        config.backbone = "Resnet18"
+        config.experiment = opt['experiment']
+        config.target_domain = opt['target_domain']
+        config.max_iterations = opt['max_iterations']
+        config.batch_size = opt['batch_size']
+        config.learning_rate = opt['learning_rate']
+        config.validate_every = opt['validate_every']
+        config.clip_finetune = opt['clip_finetune']
+
         if (opt['weights']): #load weights from command line argument
             self.weights = torch.Tensor(opt['weights'])
         else:
@@ -73,7 +87,8 @@ class DomainDisentangleExperiment: # See point 2. of the project
         checkpoint['optimizer'] = self.optimizer.state_dict()
 
         torch.save(checkpoint, path)
-
+        wandb.save('model.pt')
+        
     def load_checkpoint(self, path):
         checkpoint = torch.load(path)
 
