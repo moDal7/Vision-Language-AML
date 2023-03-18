@@ -133,6 +133,14 @@ class DomainDisentangleExperiment: # See point 2. of the project
         loss_final.backward()
         self.optimizer.step()
 
+        wandb.log({"loss_ce_cat": loss_0},
+                  {"loss_ce_dom": loss_1}, 
+                  {"loss_entropy_cat": loss_2}, 
+                  {"loss_entropy_dom": loss_3}, 
+                  {"loss_reconstructor": loss_4},
+                  {"loss_final": loss_final})
+
+
         if ( debug and i%500 == 0 ):
             logging.info(f'[TRAIN - iteration {i}] logits size step 4 : ')
             for j in range(6):
