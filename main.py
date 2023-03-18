@@ -133,6 +133,7 @@ def main(opt):
     # Test
     experiment.load_checkpoint(f'{opt["output_path"]}/best_checkpoint.pth')
     test_accuracy, _ = experiment.validate(test_loader)
+    wandb.log({"test_accuracy": test_accuracy})
     logging.info(f'[TEST] Accuracy: {(100 * test_accuracy):.2f}')
     print(f'[TEST] Accuracy: {(100 * test_accuracy):.2f}')
 
