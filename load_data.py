@@ -180,10 +180,10 @@ def build_splits_domain_disentangle(opt):
     source_category_ratios = {category_idx: c / source_total_examples for category_idx, c in source_category_ratios.items()}
     val_split_length = source_total_examples * 0.2 # 20% of the training split used for validation
 
-    target_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in target_examples.items()}
-    target_total_examples = sum(target_category_ratios.values())
-    target_category_ratios = {category_idx: c / target_total_examples for category_idx, c in target_category_ratios.items()}
-    val_split_length_target = target_total_examples * 0.2 # 20% of the training split used for validation
+    # target_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in target_examples.items()}
+    # target_total_examples = sum(target_category_ratios.values())
+    # target_category_ratios = {category_idx: c / target_total_examples for category_idx, c in target_category_ratios.items()}
+    # val_split_length_target = target_total_examples * 0.2 # 20% of the training split used for validation
 
     train_examples = []
     val_examples = []
@@ -197,9 +197,9 @@ def build_splits_domain_disentangle(opt):
             else:
                 val_examples.append([example, category_idx, 0]) # each triplet is [path_to_img, class_label, domain]
     
-    for category_idx, examples_list in target_examples.items():
-        for i, example in enumerate(examples_list):
-            train_examples.append([example, -100, 1]) # each triplet is [path_to_img, class_label, domain]
+    # for category_idx, examples_list in target_examples.items():
+    #     for i, example in enumerate(examples_list):
+    #         train_examples.append([example, -100, 1]) # each triplet is [path_to_img, class_label, domain]
     
     for category_idx, examples_list in target_examples.items():
         for example in examples_list:

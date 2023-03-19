@@ -3,7 +3,7 @@ import logging
 import wandb
 from tqdm import tqdm
 from parse_args import parse_arguments
-from load_data import build_splits_baseline, build_splits_domain_disentangle, build_splits_clip_disentangle
+from load_data import build_splits_baseline, build_splits_domain_disentangle, build_splits_clip_disentangle, build_splits_validation
 from experiments.baseline import BaselineExperiment
 from experiments.domain_disentangle import DomainDisentangleExperiment
 from experiments.clip_disentangle import CLIPDisentangleExperiment
@@ -141,7 +141,8 @@ def main(opt):
         wandb.log({"test_accuracy": test_accuracy})
         logging.info(f'[TEST] Accuracy: {(100 * test_accuracy):.2f}')
         print(f'[TEST] Accuracy: {(100 * test_accuracy):.2f}')
-    else: #domain disentanglement weights tuning #TODO: aggiungere wandb
+    else: #domain disentanglement weights tuning #TODO: aggiungere wandb (manca save model)
+        #TODO: test? (anziché 2-fold training + test e vediamo risultati dei 3 domain? Forse possiamo rimuovere domain_disentangle_tuning)
         SPLITS = 2
         experiment, loaders = setup_experiment(opt)
         weights = opt["weights"]
@@ -168,6 +169,7 @@ def main(opt):
                         if iteration % opt['validate_every'] == 0:
                             # Run validation
                             train_loss = experiment.train_iteration(data)
+                            wandb.log({"train_loss": train_loss})
                             iteration_log.append(iteration)
                             #train_log.append(train_loss)
 
@@ -181,6 +183,7 @@ def main(opt):
                 plot_loss(train_log, iteration_log)
 
             val_accuracy, val_loss = experiment.validate(validation_loader)
+            wandb.log({"val_loss": val_loss, "val_accuracy": val_accuracy})
             logging.info(f'[WEIGHTS]: {weights}, [VAL - {i+1}] Accuracy: {(100 * val_accuracy):.2f}')
             #val_log.append(val_accuracy, val_loss, [weights])
 
