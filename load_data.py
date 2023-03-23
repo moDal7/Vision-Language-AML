@@ -301,12 +301,19 @@ def build_splits_clip_disentangle(opt):
     source_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in source_examples.items()}
     source_total_examples = sum(source_category_ratios.values())
     source_category_ratios = {category_idx: c / source_total_examples for category_idx, c in source_category_ratios.items()}
+
+    target_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in target_examples.items()}
+    target_total_examples = sum(target_category_ratios.values())
+    target_category_ratios = {category_idx: c / target_total_examples for category_idx, c in target_category_ratios.items()}
+
     val_split_length = source_total_examples * 0.2 # 20% of the training split used for validation
+    val_clip_split_length = target_total_examples * 0.2 # 20% of the training split used for validation
 
     train_examples = []
     val_examples = []
     test_examples = []
     train_clip = []
+    val_clip = []
 
     for category_idx, examples_list in source_examples.items():
         split_idx = round(source_category_ratios[category_idx] * val_split_length)
@@ -333,15 +340,24 @@ def build_splits_clip_disentangle(opt):
         for example in examples_list:
             test_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
 
+    # Clip training and validation split
     for category_idx, examples_list in source_examples.items():
-        for example in examples_list:
+        split_idx = round(source_category_ratios[category_idx] * val_clip_split_length)
+        for i, example in enumerate(examples_list):
             if example in descriptions.keys():
-                train_clip.append([example, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                if i > split_idx:
+                    train_clip.append([example, descriptions[example]]) 
+                else:
+                    val_clip.append([example, descriptions[example]])
     
     for category_idx, examples_list in target_examples.items():
-        for example in examples_list:
+        split_idx = round(target_category_ratios[category_idx] * val_clip_split_length)
+        for i, example in enumerate(examples_list):
             if example in descriptions.keys():
-                train_clip.append([example, descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                if i > split_idx:
+                    train_clip.append([example, descriptions[example]]) 
+                else:
+                    val_clip.append([example, descriptions[example]])
 
     def custom_batch_sampler(dataset):
         data_text = [index for index, _ in enumerate(dataset) if len(_)>3]
@@ -380,9 +396,10 @@ def build_splits_clip_disentangle(opt):
     val_loader = DataLoader(PACSDatasetClipValidate(val_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
     test_loader = DataLoader(PACSDatasetClipValidate(test_examples, eval_transform), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
     train_clip_loader = DataLoader(PACSDatasetClipTraining(train_clip), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=True)
+    val_clip_loader = DataLoader(PACSDatasetClipTraining(val_clip), batch_size=opt['batch_size'], num_workers=opt['num_workers'], shuffle=False)
 
     if opt["clip_finetune"]:
-        return train_loader, val_loader, test_loader, train_clip_loader
+        return train_loader, val_loader, test_loader, train_clip_loader, val_clip_loader
     else:
         return train_loader, val_loader, test_loader
 

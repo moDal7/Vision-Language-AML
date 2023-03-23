@@ -140,7 +140,6 @@ class DomainDisentangleExperiment: # See point 2. of the project
         wandb.log({"loss_reconstructor": loss_4})
         wandb.log({"loss_final": loss_final})
 
-
         if ( debug and i%500 == 0 ):
             logging.info(f'[TRAIN - iteration {i}] logits size step 4 : ')
             for j in range(6):

@@ -2,14 +2,18 @@ import torch
 from torch import nn
 from models.base_model import ClipDisentangleModel
 import clip
+from time import gmtime, strftime
+import torch.nn.functional as funct
+import wandb
 
 class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2Vec: Domain Embedding for Unsupervised Domain Adaptation', inherits from nn.Module and uses torch functions to preserve autograd
     def __init__(self):
         super().__init__()
 
     def forward(self, x):
-        softmax_batch = -torch.sum(torch.sum(torch.log(x), 1)/x.shape[1])
-        return softmax_batch
+        entropy = funct.softmax(x, dim=1) * funct.log_softmax(x, dim=1)
+        soft_sum = -1.0 * (entropy.sum()/x.size(0))
+        return soft_sum 
         
 class CLIPDisentangleExperiment: # See point 4. of the project
 
@@ -18,6 +22,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
         
+        self.time = strftime('%m-%d_%H:%M:%S', gmtime())
         if (opt['weights_clip']): #load weights from command line argument
             self.weights = torch.Tensor(opt['weights_clip'])
         else:
@@ -29,6 +34,25 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         # weights[3] = alpha of category entropy
         # weights[4] = alpha of domain entropy
         # weights[5] = if present weight of clip
+        
+        # Initialize wandb
+        wandb.init(
+            entity="vision-and-language2023", 
+            project="vision-and-language",
+            tags=["domain_disentangle", opt['experiment'], opt['target_domain']],
+            name=f"{opt['experiment']}_{opt['target_domain']}_{self.time}"
+        )
+
+        # initialize wandb config
+        config = wandb.config
+        config.backbone = "Resnet18"
+        config.experiment = opt['experiment']
+        config.target_domain = opt['target_domain']
+        config.max_iterations = opt['max_iterations']
+        config.batch_size = opt['batch_size']
+        config.learning_rate = opt['lr']
+        config.validate_every = opt['validate_every']
+        config.clip_finetune = opt['clip_finetune']
 
         # Setup model
         self.model = ClipDisentangleModel()
@@ -36,12 +60,14 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         self.model.to(self.device)
         for param in self.model.parameters():
             param.requires_grad = True
+        wandb.watch(self.model, log="all")
 
         if self.opt["clip_finetune"]:
             clip_model, _ = clip.load("ViT-B/32", device=self.device, jit=False)
             self.clip_model = clip_model.to(self.device)
             for param in clip_model.parameters():
                 param.requires_grad = True
+            wandb.watch(self.clip_model, log="all")
         else:
             clip_model, _ = clip.load('ViT-B/32', device=self.device) # load it first to CPU to ensure you're using fp32 precision.
             #clip_model, _ = clip.load('ViT-B/32', device='cpu') # load it first to CPU to ensure you're using fp32 precision.
@@ -51,7 +77,6 @@ class CLIPDisentangleExperiment: # See point 4. of the project
                 param.requires_grad = False
         
         # Setup CLIP optimization procedure
-
         self.loss_img = nn.CrossEntropyLoss()
         self.loss_txt = nn.CrossEntropyLoss()
         self.clip_optimizer = torch.optim.Adam(self.clip_model.parameters(), lr=5e-5,betas=(0.9,0.98),eps=1e-6,weight_decay=0.2) #Params used from paper, the lr is smaller, more safe for fine tuning to new dataset
@@ -77,6 +102,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         checkpoint['optimizer'] = self.optimizer.state_dict()
 
         torch.save(checkpoint, path)
+        wandb.save('model.pt')
 
     def load_checkpoint(self, path):
         checkpoint = torch.load(path)
@@ -131,6 +157,14 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         self.optimizer.zero_grad()
         loss_final.backward()
         self.optimizer.step()
+
+        wandb.log({"loss_ce_cat": loss_0})
+        wandb.log({"loss_ce_dom": loss_1})
+        wandb.log({"loss_entropy_cat": loss_2})
+        wandb.log({"loss_entropy_dom": loss_3})
+        wandb.log({"loss_reconstructor": loss_4})
+        wandb.log({"loss_clip": loss_5})
+        wandb.log({"loss_final": loss_final})
         
         return loss_final.item()
 
@@ -161,12 +195,9 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         self.clip_optimizer.zero_grad()
 
         images, texts = data 
-        
         images = images.to(self.device)
         texts = clip.tokenize(texts, truncate=True).to(self.device)
-        
         logits_per_image, logits_per_text = self.clip_model(images, texts)
-
         ground_truth = torch.arange(len(images), dtype=torch.long, device=self.device)
 
         total_loss = (self.loss_img(logits_per_image, ground_truth) + self.loss_txt(logits_per_text, ground_truth))/2
@@ -182,3 +213,23 @@ class CLIPDisentangleExperiment: # See point 4. of the project
             clip.self.clip_model.convert_weights(self.clip_model)
 
         return total_loss
+
+    def validate_clip(self, loader):
+        self.clip_model.eval()
+        count = 0
+        loss = 0
+
+        with torch.no_grad():
+            for images, texts in loader:
+                images = images.to(self.device)
+                texts = clip.tokenize(texts, truncate=True).to(self.device)
+                logits_per_image, logits_per_text = self.clip_model(images, texts)
+                ground_truth = torch.arange(len(images), dtype=torch.long, device=self.device)
+
+                loss += (self.loss_img(logits_per_image, ground_truth) + self.loss_txt(logits_per_text, ground_truth))/2
+                count += images.size(0)
+
+        mean_loss = loss / count
+        self.clip_model.train()
+        return mean_loss
+                

@@ -22,8 +22,8 @@ def setup_experiment(opt):
     elif opt['experiment'] == 'clip_disentangle':
         experiment = CLIPDisentangleExperiment(opt)
         if opt['clip_finetune']:
-            train_loader, validation_loader, test_loader, train_clip_loader = build_splits_clip_disentangle(opt)
-            return experiment, train_loader, validation_loader, test_loader, train_clip_loader
+            train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader = build_splits_clip_disentangle(opt)
+            return experiment, train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader
         else:
             train_loader, validation_loader, test_loader = build_splits_clip_disentangle(opt)
     else:
@@ -35,7 +35,7 @@ def main(opt):
 
     # Setup experiment and data loaders, clip data loader if clip finetune is set
     if opt["clip_finetune"]:
-        experiment, train_loader, validation_loader, test_loader, train_clip_loader = setup_experiment(opt)
+        experiment, train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader = setup_experiment(opt)
     else:
         experiment, train_loader, validation_loader, test_loader = setup_experiment(opt)
     
@@ -44,6 +44,7 @@ def main(opt):
         iteration = 0
         best_accuracy = 0
         total_train_loss = 0
+        best_clip_loss = 1000
         total_clip_loss = 0
         iteration_log = list()
         train_log = list()
@@ -65,6 +66,29 @@ def main(opt):
                 while iteration < opt['max_iterations']:
 
                     for data in train_clip_loader:
+                        if iteration % opt['validate_every'] == 0:
+                            # Run validation
+                            train_clip_loss = experiment.train_clip_iteration(data)
+                            wandb.log({"train_clip_loss": train_clip_loss})
+
+                            if (opt['debug']):
+                                val_clip_loss = experiment.validate_clip(val_clip_loader, debug = True, i = iteration)
+                            else :
+                                val_clip_loss = experiment.validate_clip(val_clip_loader)
+                            wandb.log({"val_clip_loss": val_clip_loss})
+                            logging.info(f'[VAL - {iteration}] Loss: {val_loss} | Accuracy: {(100 * val_accuracy):.2f}')
+                            
+                            iteration_log.append(iteration)
+                            train_log.append(train_loss)
+                            validation_log.append(val_loss)    
+                            validation_accuracy_log.append(val_accuracy)                       
+                            
+                            if val_clip_loss < best_clip_loss:
+                                best_clip_loss = val_clip_loss
+                                experiment.save_checkpoint(f'{opt["output_path"]}/best_clip_checkpoint.pth', iteration, best_clip_loss, total_clip_loss)
+
+                            experiment.save_checkpoint(f'{opt["output_path"]}/last_clip_checkpoint.pth', iteration, best_clip_loss, total_clip_loss)
+                            wandb.save('clip_model.h5')
 
                         if (opt['debug']):
                             total_clip_loss += experiment.train_clip_iteration(data, debug = True, i = iteration)
@@ -79,6 +103,7 @@ def main(opt):
                             break
 
                         pbar.update(1)     
+
             print("CLIP training finished.")
         
         # Train model

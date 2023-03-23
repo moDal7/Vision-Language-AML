@@ -1,4 +1,6 @@
 import torch
+import wandb
+from time import gmtime, strftime
 from models.base_model import BaselineModel
 
 class BaselineExperiment: # See point 1. of the project
@@ -7,6 +9,27 @@ class BaselineExperiment: # See point 1. of the project
         # Utils
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
+        
+        self.time = strftime('%m-%d_%H:%M:%S', gmtime())
+
+        # Initialize wandb
+        wandb.init(
+            entity="vision-and-language2023", 
+            project="vision-and-language",
+            tags=["domain_disentangle", opt['experiment'], opt['target_domain']],
+            name=f"{opt['experiment']}_{opt['target_domain']}_{self.time}"
+        )
+
+        # initialize wandb config
+        config = wandb.config
+        config.backbone = "Resnet18"
+        config.experiment = opt['experiment']
+        config.target_domain = opt['target_domain']
+        config.max_iterations = opt['max_iterations']
+        config.batch_size = opt['batch_size']
+        config.learning_rate = opt['lr']
+        config.validate_every = opt['validate_every']
+        config.clip_finetune = opt['clip_finetune']
 
         # Setup model
         self.model = BaselineModel()
@@ -14,6 +37,7 @@ class BaselineExperiment: # See point 1. of the project
         self.model.to(self.device)
         for param in self.model.parameters():
             param.requires_grad = True
+        wandb.watch(self.model, log="all")
 
         # Setup optimization procedure
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=opt['lr'])
@@ -30,6 +54,7 @@ class BaselineExperiment: # See point 1. of the project
         checkpoint['optimizer'] = self.optimizer.state_dict()
 
         torch.save(checkpoint, path)
+        wandb.save('model.pt')
 
     def load_checkpoint(self, path):
         checkpoint = torch.load(path)
@@ -55,6 +80,7 @@ class BaselineExperiment: # See point 1. of the project
         loss.backward()
         self.optimizer.step()
         
+        wandb.log({"loss": loss})
         return loss.item()
 
     def validate(self, loader):
