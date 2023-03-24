@@ -75,13 +75,7 @@ def main(opt):
                                 val_clip_loss = experiment.validate_clip(val_clip_loader, debug = True, i = iteration)
                             else :
                                 val_clip_loss = experiment.validate_clip(val_clip_loader)
-                            wandb.log({"val_clip_loss": val_clip_loss})
-                            logging.info(f'[VAL - {iteration}] Loss: {val_loss} | Accuracy: {(100 * val_accuracy):.2f}')
-                            
-                            iteration_log.append(iteration)
-                            train_log.append(train_loss)
-                            validation_log.append(val_loss)    
-                            validation_accuracy_log.append(val_accuracy)                       
+                            wandb.log({"val_clip_loss": val_clip_loss})                 
                             
                             if val_clip_loss < best_clip_loss:
                                 best_clip_loss = val_clip_loss

@@ -122,6 +122,9 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         return test
 
     def train_iteration(self, data):
+
+        if self.opt['clip_finetune']:
+            self.clip_model = self.load_checkpoint(f'{self.opt["output_path"]}/best_clip_checkpoint.pth')
         
         if self.comes_with_text(data):
             x, y, dom, description = data
