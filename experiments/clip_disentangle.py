@@ -210,7 +210,6 @@ class CLIPDisentangleExperiment: # See point 4. of the project
                 p.data = p.data.float() 
                 p.grad.data = p.grad.data.float() 
             self.clip_optimizer.step()
-            clip.self.clip_model.convert_weights(self.clip_model)
 
         return total_loss
 
