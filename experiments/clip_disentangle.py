@@ -166,7 +166,6 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         wandb.log({"loss_entropy_cat": loss_2})
         wandb.log({"loss_entropy_dom": loss_3})
         wandb.log({"loss_reconstructor": loss_4})
-        wandb.log({"loss_clip": loss_5})
         wandb.log({"loss_final": loss_final})
         
         return loss_final.item()
