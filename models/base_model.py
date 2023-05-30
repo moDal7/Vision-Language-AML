@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from torchvision.models import resnet18
 from torchvision.models import ResNet18_Weights
+from parse_args import parse_arguments
 
 class FeatureExtractor(nn.Module):
     def __init__(self):
@@ -52,6 +53,7 @@ class DomainDisentangleModel(nn.Module):
     def __init__(self):
         super(DomainDisentangleModel, self).__init__()
         self.feature_extractor = FeatureExtractor()
+        self.opt = parse_arguments()
 
         #TODO verify domain encoder
         self.domain_encoder = nn.Sequential(
@@ -83,7 +85,10 @@ class DomainDisentangleModel(nn.Module):
             nn.ReLU()
         )
 
-        self.domain_classifier = nn.Linear(512, 2)
+        if self.opt['dg']:
+            self.domain_classifier = nn.Linear(512, 4)
+        else:
+            self.domain_classifier = nn.Linear(512, 2)
         self.category_classifier = nn.Linear(512, 7)
 
         # reconstructor
@@ -151,6 +156,7 @@ class ClipDisentangleModel(nn.Module):
     def __init__(self):
         super(ClipDisentangleModel, self).__init__()
         self.feature_extractor = FeatureExtractor()
+        self.opt = parse_arguments()
 
         #TODO verify domain encoder
         self.domain_encoder = nn.Sequential(
@@ -182,7 +188,10 @@ class ClipDisentangleModel(nn.Module):
             nn.ReLU()
         )
 
-        self.domain_classifier = nn.Linear(512, 2)
+        if self.opt['dg']:
+            self.domain_classifier = nn.Linear(512, 4)
+        else:
+            self.domain_classifier = nn.Linear(512, 2)
         self.category_classifier = nn.Linear(512, 7)
 
         # reconstructor

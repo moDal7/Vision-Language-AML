@@ -4,6 +4,7 @@ import wandb
 from tqdm import tqdm
 from parse_args import parse_arguments
 from load_data import build_splits_baseline, build_splits_domain_disentangle, build_splits_clip_disentangle
+from load_data_dg import build_splits_domain_disentangle_dg, build_splits_clip_disentangle_dg
 from experiments.baseline import BaselineExperiment
 from experiments.domain_disentangle import DomainDisentangleExperiment
 from experiments.clip_disentangle import CLIPDisentangleExperiment
@@ -17,15 +18,15 @@ def setup_experiment(opt):
         
     elif opt['experiment'] == 'domain_disentangle':
         experiment = DomainDisentangleExperiment(opt)
-        train_loader, validation_loader, test_loader = build_splits_domain_disentangle(opt)
+        train_loader, validation_loader, test_loader = build_splits_domain_disentangle_dg(opt) if opt['dg'] else build_splits_domain_disentangle(opt)
 
     elif opt['experiment'] == 'clip_disentangle':
         experiment = CLIPDisentangleExperiment(opt)
         if opt['clip_finetune']:
-            train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader = build_splits_clip_disentangle(opt)
-            return experiment, train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader
-        else:
-            train_loader, validation_loader, test_loader = build_splits_clip_disentangle(opt)
+            train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader = build_splits_clip_disentangle_dg(opt) if opt['dg'] else build_splits_clip_disentangle(opt)
+        
+        return experiment, train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader
+
     else:
         raise ValueError('Experiment not yet supported.')
 
