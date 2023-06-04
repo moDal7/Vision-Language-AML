@@ -111,15 +111,12 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
         return iteration, best_accuracy, total_train_loss
 
-    def train_iteration(self, data, debug = False, i = False):
+    def train_iteration(self, data):
         
         x, y, dom = data
         x = x.to(self.device)
         y = y.to(self.device)
         dom = dom.to(self.device)
-
-        if ( debug and i%500 == 0 ):
-            logging.info(f'[TRAIN - iteration {i}] ')
 
         logits = self.model(x, 4)
         loss_0 = self.weights[0] * self.loss_ce_cat(logits[1], y)
@@ -139,22 +136,10 @@ class DomainDisentangleExperiment: # See point 2. of the project
         wandb.log({"loss_entropy_dom": loss_3})
         wandb.log({"loss_reconstructor": loss_4})
         wandb.log({"loss_final": loss_final})
-
-        if ( debug and i%500 == 0 ):
-            logging.info(f'[TRAIN - iteration {i}] logits size step 4 : ')
-            for j in range(6):
-                logging.info(f'logits[{j}]: {logits[j].size()}')
-            logging.info(f'[TRAIN - iteration {i}] logits step 4 : {logits}')
-            logging.info(f'[TRAIN - iteration {i}] loss_0 : {loss_0}')
-            logging.info(f'[TRAIN - iteration {i}] loss_1 : {loss_1}')
-            logging.info(f'[TRAIN - iteration {i}] loss_2 : {loss_2}')
-            logging.info(f'[TRAIN - iteration {i}] loss_3 : {loss_3}')
-            logging.info(f'[TRAIN - iteration {i}] loss_4 : {loss_4}')
-            logging.info(f'[TRAIN - iteration {i}] loss_final : {loss_final}')
                 
         return loss_final.item()
 
-    def validate(self, loader, debug = False, i=3):
+    def validate(self, loader):
         self.model.eval()
         accuracy = 0
         count = 0
@@ -171,13 +156,6 @@ class DomainDisentangleExperiment: # See point 2. of the project
 
                 accuracy += (pred == y).sum().item()
                 count += x.size(0)
-
-                if ( debug and i%500 == 0 ):
-                    logging.info(f'[VALIDATION - iteration {i}] ')
-                    for elem in logits:
-                      logging.info(f'[VALIDATION - iteration {i}] logits size : {elem.size()}')
-                      logging.info(f'[VALIDATION - iteration {i}] logits : {elem}')
-                    logging.info(f'[VALIDATION - iteration {i}] loss : {loss}')
 
         mean_accuracy = accuracy / count
         mean_loss = loss / count
