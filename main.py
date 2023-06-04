@@ -70,11 +70,7 @@ def main(opt):
                             # Run validation
                             train_clip_loss = experiment.train_clip_iteration(data)
                             wandb.log({"train_clip_loss": train_clip_loss})
-
-                            if (opt['debug']):
-                                val_clip_loss = experiment.validate_clip(val_clip_loader, debug = True, i = iteration)
-                            else :
-                                val_clip_loss = experiment.validate_clip(val_clip_loader)
+                            val_clip_loss = experiment.validate_clip(val_clip_loader)
                             wandb.log({"val_clip_loss": val_clip_loss})                 
                             
                             if val_clip_loss < best_clip_loss:
@@ -84,10 +80,7 @@ def main(opt):
                             experiment.save_checkpoint(f'{opt["output_path"]}/last_clip_checkpoint.pth', iteration, best_clip_loss, total_clip_loss)
                             wandb.save('clip_model.h5')
 
-                        if (opt['debug']):
-                            total_clip_loss += experiment.train_clip_iteration(data, debug = True, i = iteration)
-                        else :
-                            total_clip_loss += experiment.train_clip_iteration(data)
+                        total_clip_loss += experiment.train_clip_iteration(data)
 
                         if iteration % opt['print_every'] == 0:
                             logging.info(f'[TRAIN CLIP - {iteration}] Loss CLIP: {total_clip_loss / (iteration + 1)}')               
@@ -108,10 +101,7 @@ def main(opt):
             while iteration < opt['max_iterations']:
                 for data in train_loader:
 
-                    if (opt['debug']):
-                        total_train_loss += experiment.train_iteration(data, debug = True, i = iteration)
-                    else :
-                        total_train_loss += experiment.train_iteration(data)
+                    total_train_loss += experiment.train_iteration(data)
 
                     if iteration % opt['print_every'] == 0:
                         logging.info(f'[TRAIN - {iteration}] Loss: {total_train_loss / (iteration + 1)}')
@@ -121,10 +111,7 @@ def main(opt):
                         train_loss = experiment.train_iteration(data)
                         wandb.log({"train_loss": train_loss})
 
-                        if (opt['debug']):
-                            val_accuracy, val_loss = experiment.validate(validation_loader, debug = True, i = iteration)
-                        else :
-                            val_accuracy, val_loss = experiment.validate(validation_loader)
+                        val_accuracy, val_loss = experiment.validate(validation_loader)
                         wandb.log({"val_loss": val_loss, "val_accuracy": val_accuracy})
                         logging.info(f'[VAL - {iteration}] Loss: {val_loss} | Accuracy: {(100 * val_accuracy):.2f}')
                         
