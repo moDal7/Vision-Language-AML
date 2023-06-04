@@ -17,6 +17,7 @@ def parse_arguments():
     parser.add_argument('--validate_every', type=int, default=100)
 
     # Manual weight setting for tuning
+    #TODO: aggiungere parametri pesi? Attualmente sono fissati in hypertuning.py
     parser.add_argument('--weights', help='List of floating point weights for the experiment.', nargs = 5, type = float) #TODO: only for domain_sisentangle for now
     parser.add_argument('--weights_clip', help='List of floating point weights for the clip disentangle experiment.', nargs = 6, type = float) #TODO: clip requires 6 weights
 
