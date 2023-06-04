@@ -8,7 +8,6 @@ from load_data_dg import build_splits_domain_disentangle_dg, build_splits_clip_d
 from experiments.baseline import BaselineExperiment
 from experiments.domain_disentangle import DomainDisentangleExperiment
 from experiments.clip_disentangle import CLIPDisentangleExperiment
-from plot import plot_loss
 
 def setup_experiment(opt):
     
@@ -146,9 +145,6 @@ def main(opt):
                         break
 
                     pbar.update(1)
-        # Plot loss
-        if opt["plot"]:
-            plot_loss(train_log, validation_log, validation_accuracy_log, iteration_log, opt["experiment"], opt["target_domain"])
 
     # Test
     experiment.load_checkpoint(f'{opt["output_path"]}/best_checkpoint.pth')

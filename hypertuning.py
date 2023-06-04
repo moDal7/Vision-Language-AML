@@ -4,7 +4,6 @@ from tqdm import tqdm
 from parse_args import parse_arguments
 from load_data import build_splits_validation
 from experiments.domain_disentangle_tuning import DomainDisentangleExperiment
-from plot import plot_loss
 
 VALUES_TO_TEST = [0.01, 0.1, 1, 10, 100]
 NUM_WEIGHTS = 5
@@ -55,9 +54,6 @@ def main(opt):
                                 break
 
                         pbar.update(1)
-                
-                if opt["plot"]:
-                    plot_loss(train_log, iteration_log)
 
                 val_accuracy, val_loss = experiment.validate(validation_loader)
                 val_log.append(val_accuracy, val_loss, [weights])
