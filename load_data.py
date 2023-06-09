@@ -315,6 +315,7 @@ def build_splits_clip_disentangle(opt):
     train_clip = []
     val_clip = []
 
+
     for category_idx, examples_list in source_examples.items():
         split_idx = round(source_category_ratios[category_idx] * val_split_length)
         for i, example in enumerate(examples_list):

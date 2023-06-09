@@ -32,7 +32,6 @@ def setup_experiment(opt):
     return experiment, train_loader, validation_loader, test_loader
 
 def main(opt):
-
     # Setup experiment and data loaders, clip data loader if clip finetune is set
     if opt["clip_finetune"]:
         experiment, train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader = setup_experiment(opt)

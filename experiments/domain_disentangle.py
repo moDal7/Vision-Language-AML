@@ -118,6 +118,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         y = y.to(self.device)
         dom = dom.to(self.device)
 
+
         logits = self.model(x, 4)
         loss_0 = self.weights[0] * self.loss_ce_cat(logits[1], y)
         loss_1 = self.weights[1] * self.loss_ce_dom(logits[3], dom)
@@ -136,7 +137,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         wandb.log({"loss_entropy_dom": loss_3})
         wandb.log({"loss_reconstructor": loss_4})
         wandb.log({"loss_final": loss_final})
-                
+  
         return loss_final.item()
 
     def validate(self, loader):

@@ -32,6 +32,7 @@ def parse_arguments():
     parser.add_argument('--determ', action='store_true', help='If set, the experiment will run in deterministic mode.')
     parser.add_argument('--clip_finetune', action='store_true', help='If set, the experiment will train also the CLIP model.')
     parser.add_argument('--dg', action='store_true', help='If set, the experiment will work following the domain generalization settings.')
+
     
     # Additional arguments can go below this line:
     #parser.add_argument('--test', type=str, default='some default value', help='some hint that describes the effect')
