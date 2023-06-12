@@ -23,8 +23,7 @@ def setup_experiment(opt):
         experiment = CLIPDisentangleExperiment(opt)
         if opt['clip_finetune']:
             train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader = build_splits_clip_disentangle_dg(opt) if opt['dg'] else build_splits_clip_disentangle(opt)
-        
-        return experiment, train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader
+            return experiment, train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader
 
     else:
         raise ValueError('Experiment not yet supported.')
