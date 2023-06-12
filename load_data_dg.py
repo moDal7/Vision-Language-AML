@@ -272,9 +272,9 @@ def build_splits_clip_disentangle_dg(opt):
             for i, example in enumerate(examples_list):
                 domain = example.split("/")[-3] # extract domain from path
                 if example in descriptions.keys():
-                    train_examples.append([example, category_idx, DOMAINS[domain], descriptions[example]]) if i > split_idx else val_examples.append([example, category_idx, DOMAINS[domain], descriptions[example]])
+                    train_examples.append([example, category_idx, DOMAINS[domain], descriptions[example]]) if i > split_idx else val_examples.append([example, category_idx])
                 else:
-                    train_examples.append([example, category_idx, DOMAINS[domain]]) if i > split_idx else val_examples.append([example, category_idx, DOMAINS[domain]]) # each triplet is [path_to_img, class_label, domain]
+                    train_examples.append([example, category_idx, DOMAINS[domain]]) if i > split_idx else val_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
 
     # test dataloaders
     target_examples = read_lines(opt['data_path'], target_domain)
