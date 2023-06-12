@@ -17,9 +17,8 @@ def parse_arguments():
     parser.add_argument('--validate_every', type=int, default=100)
 
     # Manual weight setting for tuning
-    #TODO: aggiungere parametri pesi? Attualmente sono fissati in hypertuning.py
-    parser.add_argument('--weights', help='List of floating point weights for the experiment.', nargs = 5, type = float) #TODO: only for domain_sisentangle for now
-    parser.add_argument('--weights_clip', help='List of floating point weights for the clip disentangle experiment.', nargs = 6, type = float) #TODO: clip requires 6 weights
+    parser.add_argument('--weights', help='List of floating point weights for the experiment.', nargs = 5, type = float)
+    parser.add_argument('--weights_clip', help='List of floating point weights for the clip disentangle experiment.', nargs = 6, type = float)
 
     # Output settings
     parser.add_argument('--output_path', type=str, default='.', help='Where to create the output directory containing logs and weights.')
@@ -32,10 +31,6 @@ def parse_arguments():
     parser.add_argument('--determ', action='store_true', help='If set, the experiment will run in deterministic mode.')
     parser.add_argument('--clip_finetune', action='store_true', help='If set, the experiment will train also the CLIP model.')
     parser.add_argument('--dg', action='store_true', help='If set, the experiment will work following the domain generalization settings.')
-
-    
-    # Additional arguments can go below this line:
-    #parser.add_argument('--test', type=str, default='some default value', help='some hint that describes the effect')
 
     # Build options dict
     opt = vars(parser.parse_args())

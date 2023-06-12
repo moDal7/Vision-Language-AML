@@ -11,24 +11,33 @@ from experiments.clip_disentangle import CLIPDisentangleExperiment
 
 def setup_experiment(opt):
     
+    # Baseline experiment
     if opt['experiment'] == 'baseline':
         experiment = BaselineExperiment(opt)
         train_loader, validation_loader, test_loader = build_splits_baseline(opt)
-        
+    
+    # Domain disentangle experiment
     elif opt['experiment'] == 'domain_disentangle':
         experiment = DomainDisentangleExperiment(opt)
         train_loader, validation_loader, test_loader = build_splits_domain_disentangle_dg(opt) if opt['dg'] else build_splits_domain_disentangle(opt)
 
+    # CLIP disentangle experiment
     elif opt['experiment'] == 'clip_disentangle':
         experiment = CLIPDisentangleExperiment(opt)
         if opt['clip_finetune']:
             train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader = build_splits_clip_disentangle_dg(opt) if opt['dg'] else build_splits_clip_disentangle(opt)
-            return experiment, train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader
         else:
             train_loader, validation_loader, test_loader = build_splits_clip_disentangle_dg(opt) if opt['dg'] else build_splits_clip_disentangle(opt)
-            return experiment, train_loader, validation_loader, test_loader
+    
+    # Experiment not yet supported error handling
     else:
         raise ValueError('Experiment not yet supported.')
+    
+    # Finally, return the experiment and data loaders
+    if opt['clip_finetune']:
+        return experiment, train_loader, validation_loader, test_loader, train_clip_loader, val_clip_loader
+    else:
+        return experiment, train_loader, validation_loader, test_loader
 
 def main(opt):
     # Setup experiment and data loaders, clip data loader if clip finetune is set
@@ -71,6 +80,7 @@ def main(opt):
                             val_clip_loss = experiment.validate_clip(val_clip_loader)
                             wandb.log({"val_clip_loss": val_clip_loss})                 
                             
+                            # Model checkpointing and saving
                             if val_clip_loss < best_clip_loss:
                                 best_clip_loss = val_clip_loss
                                 experiment.save_checkpoint(f'{opt["output_path"]}/best_clip_checkpoint.pth', iteration, best_clip_loss, total_clip_loss)
@@ -95,7 +105,8 @@ def main(opt):
         print("Model training started.")
         with tqdm(total= opt['max_iterations'] ) as pbar:
             iteration = 0
-            # Train loop
+            
+            # Training loop
             while iteration < opt['max_iterations']:
                 for data in train_loader:
 
