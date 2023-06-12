@@ -245,6 +245,12 @@ def build_splits_clip_disentangle_dg(opt):
         g = torch.Generator()
         g.manual_seed(0)
 
+    train_examples = []
+    val_examples = []
+    test_examples = []
+    train_clip = []
+    val_clip = []
+
     source_domains = [domain for domain in DOMAINS.keys() if domain != opt['target_domain']]
     target_domain = opt['target_domain']
     descriptions = get_descriptions()
@@ -252,32 +258,33 @@ def build_splits_clip_disentangle_dg(opt):
     source_examples = [read_lines(opt['data_path'], source_domain) for source_domain in source_domains]
     target_examples = read_lines(opt['data_path'], target_domain)
 
-    source_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in source_examples.items()}
-    source_total_examples = sum(source_category_ratios.values())
-    source_category_ratios = {category_idx: c / source_total_examples for category_idx, c in source_category_ratios.items()}
+    # train dataloaders
+    for source_domain in source_domains:
+        source_examples = read_lines(opt['data_path'], source_domain)
+
+        source_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in source_examples.items()}
+        source_total_examples = sum(source_category_ratios.values())
+        source_category_ratios = {category_idx: c / source_total_examples for category_idx, c in source_category_ratios.items()}
+        val_split_length = source_total_examples * 0.2 # 20% of the training split used for validation
+
+        for category_idx, examples_list in source_examples.items():
+            split_idx = round(source_category_ratios[category_idx] * val_split_length)
+            for i, example in enumerate(examples_list):
+                domain = example.split("/")[-3] # extract domain from path
+                if example in descriptions.keys():
+                    train_examples.append([example, category_idx, DOMAINS[domain], descriptions[example]]) if i > split_idx else val_examples.append([example, category_idx, DOMAINS[domain], descriptions[example]])
+                else:
+                    train_examples.append([example, category_idx, DOMAINS[domain]]) if i > split_idx else val_examples.append([example, category_idx, DOMAINS[domain]]) # each triplet is [path_to_img, class_label, domain]
+
+    # test dataloaders
+    target_examples = read_lines(opt['data_path'], target_domain)
 
     target_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in target_examples.items()}
     target_total_examples = sum(target_category_ratios.values())
     target_category_ratios = {category_idx: c / target_total_examples for category_idx, c in target_category_ratios.items()}
-
-    val_split_length = source_total_examples * 0.2 # 20% of the training split used for validation
+    
     val_clip_split_length = target_total_examples * 0.2 # 20% of the training split used for validation
 
-    train_examples = []
-    val_examples = []
-    test_examples = []
-    train_clip = []
-    val_clip = []
-
-    for category_idx, examples_list in source_examples.items():
-        split_idx = round(source_category_ratios[category_idx] * val_split_length)
-        for i, example in enumerate(examples_list):
-
-            # extract domain from path
-            domain = example.split("/")[-3]
-            (train_examples.append([example, category_idx, DOMAINS[domain], descriptions[example]]) if example in descriptions.keys() else train_examples.append([example, category_idx, DOMAINS[domain]])) if i > split_idx else (val_examples.append([example, category_idx]) if example in descriptions.keys() else val_examples.append([example, category_idx])) # each triplet is [path_to_img, class_label, domain]  
-                    
-    
     for category_idx, examples_list in target_examples.items():
         for i, example in enumerate(examples_list):
             if example in descriptions.keys():
