@@ -183,7 +183,6 @@ def build_splits_domain_disentangle(opt):
     target_category_ratios = {category_idx: len(examples_list) for category_idx, examples_list in target_examples.items()}
     target_total_examples = sum(target_category_ratios.values())
     target_category_ratios = {category_idx: c / target_total_examples for category_idx, c in target_category_ratios.items()}
-    val_split_length_target = target_total_examples * 0.2 # 20% of the training split used for validation
 
     train_examples = []
     val_examples = []
