@@ -129,7 +129,7 @@ def main(opt):
                         validation_log.append(val_loss)    
                         validation_accuracy_log.append(val_accuracy)                       
                         
-                        if val_accuracy > best_accuracy & iteration >= opt['max_iterations']*0.8:
+                        if val_accuracy > best_accuracy and iteration >= opt['max_iterations']*0.8:
                             best_accuracy = val_accuracy
                             experiment.save_checkpoint(f'{opt["output_path"]}/best_checkpoint.pth', iteration, best_accuracy, total_train_loss)
 
