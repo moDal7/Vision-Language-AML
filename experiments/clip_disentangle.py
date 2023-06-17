@@ -11,8 +11,8 @@ class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2V
         super().__init__()
 
     def forward(self, x):
-        entropy = funct.softmax(x, dim=1) * funct.log_softmax(x, dim=1)
-        soft_sum = entropy.sum()/x.size(0)
+        entropy = funct.log_softmax(x, dim=1)
+        soft_sum = -1.0 * entropy.sum()/x.size(0)
         return soft_sum 
         
 class CLIPDisentangleExperiment: # See point 4. of the project
