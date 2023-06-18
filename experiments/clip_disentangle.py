@@ -145,18 +145,19 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         smax = nn.Softmax(dim=1)
 
         logits = self.model(x, 4)
-        loss_0 = self.loss_ce_cat(logits[1], y)
-        loss_1 = self.loss_ce_dom(logits[3], dom)
-        loss_2 = self.loss_entropy(smax(logits[2]))
-        loss_3 = self.loss_entropy(smax(logits[4]))
-        loss_4 = self.loss_MSE(logits[5], logits[0]) 
+        loss_0 = self.weights[0] * self.loss_ce_cat(logits[1], y)
+        loss_1 = self.weights[1] * self.loss_ce_dom(logits[3], dom)
+        loss_2 = self.weights[2] * self.loss_entropy(logits[2])
+        loss_3 = self.weights[3] * self.loss_entropy(logits[4])
+        loss_4 = self.weights[4] * self.loss_MSE(logits[5], logits[0]) 
 
         if self.comes_with_text(data):
-            loss_5 = self.loss_MSE(logits[6], text_features) 
-            loss_final = self.weights[0] * (loss_0 + self.weights[3] * loss_2) + self.weights[1] * (loss_1 + self.weights[4] * loss_3) + self.weights[2] * loss_4 + self.weights[5] * loss_5
+            loss_5 = self.weights[5] * self.loss_MSE(logits[6], text_features) 
+            wandb.log({"loss_clip": loss_5})
+            loss_final = loss_0 + loss_1 + loss_2 + loss_3 + loss_4 + loss_5
         else:
-            loss_final = self.weights[0] * (loss_0 + self.weights[3] * loss_2) + self.weights[1] * (loss_1 + self.weights[4] * loss_3) + self.weights[2] * loss_4
-        
+            loss_final = loss_0 + loss_1 + loss_2 + loss_3 + loss_4       
+
         self.optimizer.zero_grad()
         loss_final.backward()
         self.optimizer.step()
