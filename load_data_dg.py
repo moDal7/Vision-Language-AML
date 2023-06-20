@@ -150,11 +150,11 @@ def build_splits_domain_disentangle_dg(opt):
     target_total_examples = sum(target_category_ratios.values())
     target_category_ratios = {category_idx: c / target_total_examples for category_idx, c in target_category_ratios.items()}
 
-    
-    for category_idx, examples_list in target_examples.items():
-        for i, example in enumerate(examples_list):
-            train_examples.append([example, -100, DOMAINS[opt['target_domain']]]) # each triplet is [path_to_img, class_label, domain]
-    
+    if opt["pda"]:
+        for category_idx, examples_list in target_examples.items():
+            for i, example in enumerate(examples_list):
+                train_examples.append([example, -100, DOMAINS[opt['target_domain']]]) # each triplet is [path_to_img, class_label, domain]
+        
     for category_idx, examples_list in target_examples.items():
         for example in examples_list:
             test_examples.append([example, category_idx, DOMAINS[opt['target_domain']]]) # each triplet is [path_to_img, class_label, domain]
@@ -284,13 +284,14 @@ def build_splits_clip_disentangle_dg(opt):
     target_category_ratios = {category_idx: c / target_total_examples for category_idx, c in target_category_ratios.items()}
     
     val_clip_split_length = target_total_examples * 0.2 # 20% of the training split used for validation
-
-    for category_idx, examples_list in target_examples.items():
-        for i, example in enumerate(examples_list):
-            if example in descriptions.keys():
-                train_examples.append([example, -100, DOMAINS[opt['target_domain']], descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
-            else:
-                train_examples.append([example, -100, DOMAINS[opt['target_domain']]]) # each triplet is [path_to_img, class_label, domain]
+    
+    if opt["pda"]:
+        for category_idx, examples_list in target_examples.items():
+            for i, example in enumerate(examples_list):
+                if example in descriptions.keys():
+                    train_examples.append([example, -100, DOMAINS[opt['target_domain']], descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                else:
+                    train_examples.append([example, -100, DOMAINS[opt['target_domain']]]) # each triplet is [path_to_img, class_label, domain]
 
     for category_idx, examples_list in target_examples.items():
         for example in examples_list:
@@ -306,14 +307,15 @@ def build_splits_clip_disentangle_dg(opt):
                 else:
                     val_clip.append([example, descriptions[example]])
     
-    for category_idx, examples_list in target_examples.items():
-        split_idx = round(target_category_ratios[category_idx] * val_clip_split_length)
-        for i, example in enumerate(examples_list):
-            if example in descriptions.keys():
-                if i > split_idx:
-                    train_clip.append([example, descriptions[example]]) 
-                else:
-                    val_clip.append([example, descriptions[example]])
+    if opt["pda"]:
+        for category_idx, examples_list in target_examples.items():
+            split_idx = round(target_category_ratios[category_idx] * val_clip_split_length)
+            for i, example in enumerate(examples_list):
+                if example in descriptions.keys():
+                    if i > split_idx:
+                        train_clip.append([example, descriptions[example]]) 
+                    else:
+                        val_clip.append([example, descriptions[example]])
 
     def custom_batch_sampler(dataset):
         data_text = [index for index, _ in enumerate(dataset) if len(_)>3]

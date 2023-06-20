@@ -31,7 +31,8 @@ def parse_arguments():
     parser.add_argument('--determ', action='store_true', help='If set, the experiment will run in deterministic mode.')
     parser.add_argument('--clip_finetune', action='store_true', help='If set, the experiment will train also the CLIP model.')
     parser.add_argument('--dg', action='store_true', help='If set, the experiment will work following the domain generalization settings.')
-
+    parser.add_argument('--pda', action='store_true', help='If set, the experiment will work following the predictive domain adaptation settings. Needs to be used with --dg.')
+    
     # Build options dict
     opt = vars(parser.parse_args())
 

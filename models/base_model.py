@@ -85,10 +85,13 @@ class DomainDisentangleModel(nn.Module):
             nn.ReLU()
         )
 
-        if self.opt['dg']:
+        if self.opt['dg'] and not self.opt['pda']:
             self.domain_classifier = nn.Linear(512, 4)
+        elif self.opt['dg'] and self.opt['pda']:
+            self.domain_classifier = nn.Linear(512, 3)
         else:
             self.domain_classifier = nn.Linear(512, 2)
+
         self.category_classifier = nn.Linear(512, 7)
 
         # reconstructor
@@ -188,10 +191,13 @@ class ClipDisentangleModel(nn.Module):
             nn.ReLU()
         )
 
-        if self.opt['dg']:
+        if self.opt['dg'] and not self.opt['pda']:
             self.domain_classifier = nn.Linear(512, 4)
+        elif self.opt['dg'] and self.opt['pda']:
+            self.domain_classifier = nn.Linear(512, 3)
         else:
             self.domain_classifier = nn.Linear(512, 2)
+            
         self.category_classifier = nn.Linear(512, 7)
 
         # reconstructor
