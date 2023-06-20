@@ -127,7 +127,7 @@ class CLIPDisentangleExperiment: # See point 4. of the project
     def train_iteration(self, data):
 
         if self.opt['clip_finetune']:
-            self.clip_model.load_state_dict(torch.load(f'{self.opt["output_path"]}/best_clip_checkpoint.pth'))
+            self.clip_model.load_state_dict(torch.load(f'{self.opt["output_path"]}/best_clip_checkpoint.pt'))
 
         if self.comes_with_text(data):
             x, y, dom, description = data
