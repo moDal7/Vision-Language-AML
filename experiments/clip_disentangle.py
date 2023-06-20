@@ -104,6 +104,9 @@ class CLIPDisentangleExperiment: # See point 4. of the project
         torch.save(checkpoint, path)
         wandb.save('model.pt')
 
+    def save_clip_checkpoint(self, path):
+        torch.save(self.clip_model.state_dict(), path)
+
     def load_checkpoint(self, path):
         checkpoint = torch.load(path)
 
@@ -124,9 +127,8 @@ class CLIPDisentangleExperiment: # See point 4. of the project
     def train_iteration(self, data):
 
         if self.opt['clip_finetune']:
-            clip_checkpoint = torch.load(f'{self.opt["output_path"]}/best_clip_checkpoint.pth')
-            self.clip_model.load_state_dict(clip_checkpoint['model'])
-        
+            self.clip_model.load_state_dict(torch.load(f'{self.opt["output_path"]}/best_clip_checkpoint.pth'))
+
         if self.comes_with_text(data):
             x, y, dom, description = data
             x = x.to(self.device)

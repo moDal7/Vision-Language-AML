@@ -83,9 +83,9 @@ def main(opt):
                             # Model checkpointing and saving
                             if val_clip_loss < best_clip_loss:
                                 best_clip_loss = val_clip_loss
-                                experiment.save_checkpoint(f'{opt["output_path"]}/best_clip_checkpoint.pth', iteration, best_clip_loss, total_clip_loss)
+                                experiment.save_clip_checkpoint(f'{opt["output_path"]}/best_clip_checkpoint.pt')
 
-                            experiment.save_checkpoint(f'{opt["output_path"]}/last_clip_checkpoint.pth', iteration, best_clip_loss, total_clip_loss)
+                            experiment.save_clip_checkpoint(f'{opt["output_path"]}/last_clip_checkpoint.pt')
                             wandb.save('clip_model.h5')
 
                         total_clip_loss += experiment.train_clip_iteration(data)
