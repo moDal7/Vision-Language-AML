@@ -1,23 +1,71 @@
-import torch
 from torch import nn
 from models.base_model import DomainDisentangleModel
-
+from time import gmtime, strftime
+import torch
+import torch.nn.functional as funct
+import logging
+import random
+import numpy
+import wandb
 
 class EntropyLoss(nn.Module): # entropy loss as described in the paper 'Domain2Vec: Domain Embedding for Unsupervised Domain Adaptation', inherits from nn.Module and uses torch functions to preserve autograd
     def __init__(self):
         super().__init__()
 
     def forward(self, x):
-        softmax_batch = -torch.sum(torch.sum(torch.log(x), 0)/x.shape[0])
-        return softmax_batch
-
+        entropy = funct.log_softmax(x, dim=1)
+        soft_sum = -1.0 * entropy.sum()/x.size(0)
+        return soft_sum 
+        
 class DomainDisentangleExperiment: # See point 2. of the project
     
     def __init__(self, opt):
         # Utils
         self.opt = opt
         self.device = torch.device('cpu' if opt['cpu'] else 'cuda:0')
-        self.weights = torch.tensor([1, 1, 0.5, 0.2, 0.2])
+
+        self.time = strftime('%m-%d_%H:%M:%S', gmtime())
+        # Initialize wandb
+        wandb.init(
+            entity="vision-and-language2023", 
+            project="vision-and-language",
+            tags=["domain_disentangle", opt['experiment'], opt['target_domain']],
+            name=f"{opt['experiment']}_{opt['target_domain']}_{self.time}"
+        )
+
+        # initialize wandb config
+        config = wandb.config
+        config.backbone = "Resnet18"
+        config.experiment = opt['experiment']
+        config.target_domain = opt['target_domain']
+        config.max_iterations = opt['max_iterations']
+        config.batch_size = opt['batch_size']
+        config.learning_rate = opt['lr']
+        config.validate_every = opt['validate_every']
+        config.clip_finetune = opt['clip_finetune']
+
+        if (opt['weights']): #load weights from command line argument
+            self.weights = torch.Tensor(opt['weights'])
+            config.weights = self.weights
+
+        else:
+            self.weights = torch.tensor([12, 0.005, 0.003, 0.0002, 0.1])
+            config.weights = self.weights
+        logging.info(f'INITIAL WEIGHTS : {self.weights}')
+        logging.basicConfig(filename=f'training_logs/log.txt', format='%(message)s', level=logging.INFO, filemode='a')
+        # weights explanation:
+        # weights[0] = weight of category classifier
+        # weights[1] = weight of domain classifier 
+        # weights[2] = alpha of category entropy
+        # weights[3] = alpha of domain entropy
+        # weights[4] = weight of reconstructor loss
+        # weights[5] = if present weight of clip
+
+        if opt["determ"]:
+            random.seed(0)
+            numpy.random.seed(0)
+            torch.manual_seed(0)
+            torch.use_deterministic_algorithms(True)
 
         # Setup model
         self.model = DomainDisentangleModel()
@@ -25,10 +73,12 @@ class DomainDisentangleExperiment: # See point 2. of the project
         self.model.to(self.device)
         for param in self.model.parameters():
             param.requires_grad = True
+        wandb.watch(self.model, log="all")
 
         # Setup optimization procedure 
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=opt['lr'])
-        self.loss_ce = torch.nn.CrossEntropyLoss()
+        self.loss_ce_cat = torch.nn.CrossEntropyLoss(ignore_index=-100)
+        self.loss_ce_dom = torch.nn.CrossEntropyLoss()
         self.loss_entropy = EntropyLoss()
         self.loss_MSE = torch.nn.MSELoss()
 
@@ -47,6 +97,7 @@ class DomainDisentangleExperiment: # See point 2. of the project
         checkpoint['optimizer'] = self.optimizer.state_dict()
 
         torch.save(checkpoint, path)
+        wandb.save('model.pt')
 
     def load_checkpoint(self, path):
         checkpoint = torch.load(path)
@@ -61,77 +112,32 @@ class DomainDisentangleExperiment: # See point 2. of the project
         return iteration, best_accuracy, total_train_loss
 
     def train_iteration(self, data):
+        
         x, y, dom = data
         x = x.to(self.device)
         y = y.to(self.device)
         dom = dom.to(self.device)
-        smax = nn.Softmax(dim=1)
 
-        #step 0
-        logits = self.model(x, 0) 
-        loss_0 = self.loss_ce(logits, y)
-
-        self.optimizer.zero_grad()
-        loss_0.backward()
-        self.optimizer.step()
-
-        #step 1
-        logits = self.model(x, 1) 
-        loss_1 = self.loss_ce(logits, dom)
-
-        self.optimizer.zero_grad()
-        loss_1.backward()
-        self.optimizer.step()
-        
-        #step 2
-        #freezing layers for the adversarial stepe of the training
-        for param in self.model.category_encoder.parameters():
-            param.requires_grad = False
-        for param in self.model.category_classifier.parameters():
-            param.requires_grad = False
-        for param in self.model.domain_encoder.parameters():
-            param.requires_grad = False
-        for param in self.model.domain_classifier.parameters():
-            param.requires_grad = False
-        self.optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, self.model.parameters()), lr=self.opt['lr'])
-        logits = self.model(x, 2) 
-        loss_2 = self.loss_entropy(smax(logits))
-
-        self.optimizer.zero_grad()
-        loss_2.backward()
-        self.optimizer.step()
-
-        #step 3
-        logits = self.model(x, 3) 
-        loss_3 = self.loss_entropy(smax(logits))
-
-        self.optimizer.zero_grad()
-        loss_3.backward()
-        self.optimizer.step()
-
-        #step 4
-        for param in self.model.category_encoder.parameters():
-            param.requires_grad = True
-        for param in self.model.category_classifier.parameters():
-            param.requires_grad = True
-        for param in self.model.domain_encoder.parameters():
-            param.requires_grad = True
-        for param in self.model.domain_classifier.parameters():
-            param.requires_grad = True
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.opt['lr'])
 
         logits = self.model(x, 4)
-        loss_0 = self.loss_ce(logits[1], y)
-        loss_1 = self.loss_ce(logits[3], dom)
-        loss_2 = self.loss_entropy(smax(logits[2]))
-        loss_3 = self.loss_entropy(smax(logits[4]))
-        loss_4 = self.loss_MSE(logits[5], logits[0]) 
+        loss_0 = self.weights[0] * self.loss_ce_cat(logits[1], y)
+        loss_1 = self.weights[1] * self.loss_ce_dom(logits[3], dom)
+        loss_2 = self.weights[2] * self.loss_entropy(logits[2])
+        loss_3 = self.weights[3] * self.loss_entropy(logits[4])
+        loss_4 = self.weights[4] * self.loss_MSE(logits[5], logits[0]) 
 
-        loss_final = self.weights[0] * (loss_0 + self.weights[3] * loss_2) + self.weights[1] * (loss_1 + self.weights[4] * loss_3) + self.weights[2] * loss_4
+        loss_final = loss_0 + loss_1 + loss_2 + loss_3 + loss_4
         self.optimizer.zero_grad()
         loss_final.backward()
         self.optimizer.step()
-        
+
+        wandb.log({"loss_ce_cat": loss_0})
+        wandb.log({"loss_ce_dom": loss_1})
+        wandb.log({"loss_entropy_cat": loss_2})
+        wandb.log({"loss_entropy_dom": loss_3})
+        wandb.log({"loss_reconstructor": loss_4})
+        wandb.log({"loss_final": loss_final})
+  
         return loss_final.item()
 
     def validate(self, loader):
