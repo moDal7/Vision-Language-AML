@@ -31,7 +31,7 @@ DESC_GUIDES = [
     'perspective'
 ]
 
-DOMAINS = {
+domains = {
     'art_painting':0,
     'cartoon':1,
     'photo':2,
@@ -120,8 +120,13 @@ def build_splits_domain_disentangle_dg(opt):
         g = torch.Generator()
         g.manual_seed(0)
 
-    source_domains = [domain for domain in DOMAINS.keys() if domain != opt['target_domain']]
+    source_domains = [domain for domain in domains.keys() if domain != opt['target_domain']]
     target_domain = opt['target_domain']
+
+    if not opt["pda"]:
+        domains = {}
+        for i, domain in enumerate(source_domains):
+            domains.update({domain:i})
 
     source_examples = []
     train_examples = []
@@ -141,7 +146,7 @@ def build_splits_domain_disentangle_dg(opt):
             split_idx = round(source_category_ratios[category_idx] * val_split_length)
             for i, example in enumerate(examples_list):
                 domain = example.split("/")[-3] # extract domain from path
-                train_examples.append([example, category_idx, DOMAINS[domain]]) if i > split_idx else val_examples.append([example, category_idx, DOMAINS[domain]]) # each triplet is [path_to_img, class_label, domain]
+                train_examples.append([example, category_idx, domains[domain]]) if i > split_idx else val_examples.append([example, category_idx, domains[domain]]) # each triplet is [path_to_img, class_label, domain]
 
     # test dataloaders
     target_examples = read_lines(opt['data_path'], target_domain)
@@ -153,11 +158,11 @@ def build_splits_domain_disentangle_dg(opt):
     if opt["pda"]:
         for category_idx, examples_list in target_examples.items():
             for i, example in enumerate(examples_list):
-                train_examples.append([example, -100, DOMAINS[opt['target_domain']]]) # each triplet is [path_to_img, class_label, domain]
+                train_examples.append([example, -100, domains[opt['target_domain']]]) # each triplet is [path_to_img, class_label, domain]
         
     for category_idx, examples_list in target_examples.items():
         for example in examples_list:
-            test_examples.append([example, category_idx, DOMAINS[opt['target_domain']]]) # each triplet is [path_to_img, class_label, domain]
+            test_examples.append([example, category_idx, 42]) # each triplet is [path_to_img, class_label, domain]
 
     # Transforms
     normalize = T.Normalize([0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # ResNet18 - ImageNet Normalization
@@ -251,9 +256,14 @@ def build_splits_clip_disentangle_dg(opt):
     train_clip = []
     val_clip = []
 
-    source_domains = [domain for domain in DOMAINS.keys() if domain != opt['target_domain']]
+    source_domains = [domain for domain in domains.keys() if domain != opt['target_domain']]
     target_domain = opt['target_domain']
     descriptions = get_descriptions()
+
+    if not opt["pda"]:
+        domains = {}
+        for i, domain in enumerate(source_domains):
+            domains.update({domain:i})
 
     source_examples = [read_lines(opt['data_path'], source_domain) for source_domain in source_domains]
     target_examples = read_lines(opt['data_path'], target_domain)
@@ -272,9 +282,9 @@ def build_splits_clip_disentangle_dg(opt):
             for i, example in enumerate(examples_list):
                 domain = example.split("/")[-3] # extract domain from path
                 if example in descriptions.keys():
-                    train_examples.append([example, category_idx, DOMAINS[domain], descriptions[example]]) if i > split_idx else val_examples.append([example, category_idx])
+                    train_examples.append([example, category_idx, domains[domain], descriptions[example]]) if i > split_idx else val_examples.append([example, category_idx])
                 else:
-                    train_examples.append([example, category_idx, DOMAINS[domain]]) if i > split_idx else val_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
+                    train_examples.append([example, category_idx, domains[domain]]) if i > split_idx else val_examples.append([example, category_idx]) # each triplet is [path_to_img, class_label, domain]
 
     # test dataloaders
     target_examples = read_lines(opt['data_path'], target_domain)
@@ -289,9 +299,9 @@ def build_splits_clip_disentangle_dg(opt):
         for category_idx, examples_list in target_examples.items():
             for i, example in enumerate(examples_list):
                 if example in descriptions.keys():
-                    train_examples.append([example, -100, DOMAINS[opt['target_domain']], descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
+                    train_examples.append([example, -100, domains[opt['target_domain']], descriptions[example]]) # each triplet is [path_to_img, class_label, domain]
                 else:
-                    train_examples.append([example, -100, DOMAINS[opt['target_domain']]]) # each triplet is [path_to_img, class_label, domain]
+                    train_examples.append([example, -100, domains[opt['target_domain']]]) # each triplet is [path_to_img, class_label, domain]
 
     for category_idx, examples_list in target_examples.items():
         for example in examples_list:
