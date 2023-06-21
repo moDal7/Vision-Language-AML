@@ -31,13 +31,6 @@ DESC_GUIDES = [
     'perspective'
 ]
 
-domains = {
-    'art_painting':0,
-    'cartoon':1,
-    'photo':2,
-    'sketch':3
-}
-
 device = "cuda:0" if torch.cuda.is_available() else "cpu" # If using GPU then use mixed precision training.
 _, preprocess = clip.load("ViT-B/32",device=device,jit=False) #Must set jit=False for training
 
@@ -119,6 +112,13 @@ def build_splits_domain_disentangle_dg(opt):
         torch.use_deterministic_algorithms(True)
         g = torch.Generator()
         g.manual_seed(0)
+
+    domains = {
+    'art_painting':0,
+    'cartoon':1,
+    'photo':2,
+    'sketch':3
+    }
 
     source_domains = [domain for domain in domains.keys() if domain != opt['target_domain']]
     target_domain = opt['target_domain']
@@ -255,6 +255,13 @@ def build_splits_clip_disentangle_dg(opt):
     test_examples = []
     train_clip = []
     val_clip = []
+
+    domains = {
+    'art_painting':0,
+    'cartoon':1,
+    'photo':2,
+    'sketch':3
+    }
 
     source_domains = [domain for domain in domains.keys() if domain != opt['target_domain']]
     target_domain = opt['target_domain']
