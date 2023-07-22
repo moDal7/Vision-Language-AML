@@ -46,7 +46,7 @@ def main(opt):
     else:
         experiment, train_loader, validation_loader, test_loader = setup_experiment(opt)
     
-    # Skip training if '--test' flag is set
+    # Skip training if '--test' flag is set test gitconfig new
     if not opt['test']: 
         iteration = 0
         best_accuracy = 0
